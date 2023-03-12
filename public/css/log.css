@@ -1,0 +1,117 @@
+
+body {
+    font-family: 'Inter';
+    background-size: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#navhome {
+    background-color: #00672F;
+}
+
+#taladH {
+    color: white;
+}
+
+#home {
+    padding-left: 2em;
+}
+
+#btnhome {
+    border: none;
+}
+
+#democaru {
+    display: inline;
+}
+
+#navmenu {
+    background-color: #322213;
+}
+
+.btn {
+    color: white;
+}
+
+#btn1:hover {
+    background-color: #9F6E3F;
+}
+
+#btn2 {
+    border-left: 2px solid #9D8977;
+}
+#btn2:hover {
+    background-color: #9F6E3F;
+}
+
+#btn3 {
+    border-left: 2px solid #9D8977;
+}
+#btn3:hover {
+    background-color: #9F6E3F;
+}
+
+#btn4 {
+    border-left: 2px solid #9D8977;
+}
+#btn4:hover {
+    background-color: #9F6E3F;
+}
+
+#btn5 {
+    border-left: 2px solid #9D8977;
+}
+#btn5:hover {
+    background-color: #9F6E3F;
+}
+
+#groupmenu {
+    margin-left: 29em;
+}
+
+/* #cardTandM {
+    margin-top: 5em;
+    margin-left: 13em;
+}
+
+#cardtalad {
+    border: 10px solid #007F3A;
+    background-color: #00672F;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    
+}
+
+#imgauc {
+    margin-left: 6em;
+}
+
+#textauc {
+    margin-left: 3em;
+    margin-top: 1em;
+    color: #F5E12D;
+}
+
+#borderbook {
+    margin-left: 14em;
+}
+
+#cardbook {
+    border: 10px solid #007F3A;
+    background-color: #00672F;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+#imgbook {
+    margin-left: 3em;
+    width: 8.5em;
+}
+
+#textmanul {
+    margin-left: 1em;
+    margin-top: 1em;
+    color: #F5E12D;
+} */
