@@ -1,5 +1,5 @@
 
-body {
+body, html{
     font-family: 'Inter';
     background-size: 100%;
     background-attachment: fixed;
@@ -17,6 +17,11 @@ body {
 
 #home {
     padding-left: 2em;
+}
+
+#usename {
+    padding-right: 3em;
+    color: white;
 }
 
 #btnhome {
@@ -71,47 +76,25 @@ body {
     margin-left: 29em;
 }
 
-/* #cardTandM {
+#h563, #h777, #h778 {
+    border: 5px solid #322213;
+}
+
+#taladpramul {
+    background-color: #00672F;
     margin-top: 5em;
-    margin-left: 13em;
-}
-
-#cardtalad {
+    margin-left: 15em;
     border: 10px solid #007F3A;
-    background-color: #00672F;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-    
+    border-radius: 15px;
+    padding-left: 3em;
 }
 
-#imgauc {
-    margin-left: 6em;
+#text5 {
+    margin-left: 4em;
+    overflow: hidden;
 }
 
-#textauc {
-    margin-left: 3em;
-    margin-top: 1em;
+#Ttaladpramul {
+    margin-top: 1.5em;
     color: #F5E12D;
 }
-
-#borderbook {
-    margin-left: 14em;
-}
-
-#cardbook {
-    border: 10px solid #007F3A;
-    background-color: #00672F;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
-}
-
-#imgbook {
-    margin-left: 3em;
-    width: 8.5em;
-}
-
-#textmanul {
-    margin-left: 1em;
-    margin-top: 1em;
-    color: #F5E12D;
-} */
