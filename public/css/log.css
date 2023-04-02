@@ -1,5 +1,5 @@
 
-body, html{
+body, html {
     font-family: 'Inter';
     background-size: 100%;
     background-attachment: fixed;
@@ -19,9 +19,11 @@ body, html{
     padding-left: 2em;
 }
 
-#usename {
-    padding-right: 3em;
+#username {
+    margin-right: 3em;
     color: white;
+    background-color: #00672F;
+    border: none;
 }
 
 #btnhome {
