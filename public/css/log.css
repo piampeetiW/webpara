@@ -20,10 +20,18 @@ body, html {
 }
 
 #username {
-    margin-right: 3em;
+    margin-right: 7em;
     color: white;
-    background-color: #00672F;
     border: none;
+    background-color: #00672F
+}
+
+#textuse {
+    margin-left: 2em;
+}
+
+#img1 {
+    padding-right: 1em;
 }
 
 #btnhome {
@@ -74,6 +82,13 @@ body, html {
     background-color: #9F6E3F;
 }
 
+#btn6 {
+    border-left: 2px solid #9D8977;
+}
+#btn6:hover {
+    background-color: #9F6E3F;
+}
+
 #groupmenu {
     margin-left: 29em;
 }
@@ -99,4 +114,9 @@ body, html {
 #Ttaladpramul {
     margin-top: 1.5em;
     color: #F5E12D;
+}
+
+.dropdown-item:hover {
+    background-color: #00672F;
+    color: white;
 }
