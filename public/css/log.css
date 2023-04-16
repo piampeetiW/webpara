@@ -194,6 +194,13 @@ html {
     border-radius: 9px;
 }
 
+#statusroomsam {
+    background-color: #F37575;
+    width: 16em;
+    height: 2.5em;
+    border-radius: 9px;
+}
+
 #textstaroom {
     padding-top: 5px;
 }
@@ -241,9 +248,27 @@ html {
 #cardauc {
     margin-top: 5em;
     margin-right: 4em;
-    width: 22em;
-    height: 25em;
+    width: 55em;
+    height: 18em;
     border-radius: 5px;
+}
+
+#tasam {
+    background: none;
+    border-radius: 0.2rem;
+    width: 100%;
+    padding-bottom: 1rem;
+    margin-bottom: 0;
+}
+
+#thsam{
+    text-align: left;
+    border-bottom: #000;
+}
+
+#tdsam {
+    text-align: left;
+    border-bottom-color: #000;
 }
 
 
