@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <title>Register</title>
+</head>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    form {
+        border: none;
+    }
+
+    body {
+        background-image: url(/public/img/rubber2.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        margin-top: 100px;
+        background-size: 100%;
+        background-position: center;
+    }
+
+    div {
+        width: 500px;
+        height: 850px;
+        border-radius: 20px;
+        background-color: #E9E9E9;
+        padding: 0px 0px 0px 0px;
+        text-align: left;
+        border: none;
+    }
+
+    h3 {
+        color: #828080;
+    }
+
+    input[type=text],
+    input[type=password] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border-radius: 20px;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+    .imgcontainer {
+        text-align: center;
+        margin: 24px 0 12px 0;
+    }
+
+    img.avatar {
+        width: 40%;
+
+    }
+
+    .container {
+        padding: 50px;
+    }
+
+    span.psw {
+        float: right;
+        padding-top: 16px;
+
+    }
+
+
+    .signin {
+        width: 100%;
+        background-color: #00672F;
+        color: #f1f1f1;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .cancel {
+        width: 100%;
+        background-color: red;
+        color: #f1f1f1;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    input[type='checkbox'] {
+        accent-color: #FF6426;
+    }
+</style>
+
+<body>
+    <center>
+        <div class="bg-img">
+            <form action="/action_page.php" class="container">
+                <center><img src="/public/img/logo.png" alt="Avatar" width="30%"></center>
+                <center>
+                    <h3>REGISTER</h3>
+                </center>
+
+                <input type="text" placeholder="Username" name="uname" required>
+                <input type="password" placeholder="Password" name="psw" required>
+                <input type="password" placeholder="Confirm password" name="Cfpsw" required>
+                <input type="text" placeholder="Name-Lastname" name="" required>
+                <input type="text" placeholder="Company" name="" required>
+                <input type="text" placeholder="Address" name="" required>
+                <input type="text" placeholder="Email" name="" required>
+                <input type="text" placeholder="Phonenumber" name="" required>
+                <br>
+                <button type="sumit" value="SIGN IN" id="signin" class="signin center">Comfirm</button>
+                <button type="sumit" value="Cancel" id="cancel" class="cancel center">Cancel</button>
+
+        </div>
+
+        </form>
+    </center>
+
+</body>
+
+</html>

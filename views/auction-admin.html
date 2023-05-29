@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/public/css/log.css">
+    <title>Market Auction</title>
+</head>
+
+<style>
+    #addauction {
+        background-color: #A9B0EC;
+        border: none;
+        padding-right: 2em;
+        margin-left: 2em;
+        margin-top: 9em;
+    }
+    #addauction:hover{
+        color: #000;
+    }
+
+    #editauction {
+        background-color: #A9B0EC;
+        border: none;
+        padding-right: 2em;
+        margin-left: 1em;
+        margin-top: 9em;
+    }
+
+    #imgmark {
+        width: 3em;
+        padding-right: 1em;
+    }
+
+    .table {
+        background: #838383;
+        border-radius: 0.2rem;
+        width: 100%;
+        padding-bottom: 1rem;
+        color: #212529;
+        margin-bottom: 0;
+
+    }
+
+    .table td {
+        white-space: nowrap;
+        background-color: #D9D9D9;
+        text-align: left;
+    }
+
+    .table thead {
+        text-align: center;
+    }
+
+    .my-custom-scrollbar {
+        position: relative;
+        height: 300px;
+        overflow: auto;
+    }
+
+    #type {
+        margin-left: 5em;
+        margin-bottom: 0;
+    }
+
+    #type-button {
+        width: fit-content;
+        height: fit-content;
+        color: #000;
+        background-color: #d9d9d9;
+        font: 0.4em sans-serif;
+        text-align: center;
+        border-color: #a8a8a8;
+        border-width: thin;
+    }
+
+    #chevron-down {
+        height: 2em;
+    }
+
+    .dropdown-type:hover {
+        color: #000;
+    }
+
+    #droptype {
+        background-color: #D9D9D9;
+        padding-left: 1em;
+    }
+
+    #label-left {
+        display: inline-block;
+        float: left;
+        clear: left;
+        width: 8em;
+        text-align: left;
+        margin-top: 0.5em;
+    }
+    #label-right {
+        text-align: left;
+        margin-top: .5em;
+        margin-left: 1.5em;
+    }
+    .form-edit {
+        display: inline-block;
+        float: left;
+        margin-top: 0.5em;
+    }
+    .form-edit2 {
+        display: inline-block;
+        margin-top: 0.5em;
+        margin-left: 1em;
+    }
+
+    .sameline {
+        display: inline-block;
+        margin-bottom: 0%;
+    }
+
+    .btn-close{
+        float: right;
+    }
+    
+</style>
+
+<body id="body">
+    <div class="fixed-top">
+        <nav class="navbar " id="navhome">
+            <div class="container-fluid" id="home">
+                <button class="btn" type="button" id="btnhome">
+                    <h3 id="taladH">ตลาดประมูลการยางภาคเหนือ</h3>
+                </button>
+                <div class="dropdown">
+                    <button type="button" id="username" class="btn" data-bs-toggle="dropdown"><img
+                        src="/public/img/userbutton.png" alt="" id="textuse"> Username</button>
+
+                    <ul class="dropdown-menu" id="dropuser">
+                        <li><a class="dropdown-item" href="#"><img src="/public/img/userdrop.png" alt=""
+                                    id="img1">Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><img src="/public/img/key.png" alt="" id="img1">Change
+                                Password</a></li>
+                        <li><a class="dropdown-item" href="#"><img src="/public/img/auctionuser.png" alt=""
+                                    id="img1">Auction</a></li>
+                        <li><a class="dropdown-item" href="#"><img src="/public/img/logout.png" alt="" id="img1">Log
+                                out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <nav class="navbar" id="navmenu">
+            <div class="btn-group" id="groupmenu">
+                <button type="button" class="btn" id="btn1">Home Page</button>
+                <button type="button" class="btn" id="btn2">Market Auction</button>
+                <button type="button" class="btn" id="btn3">Auction History</button>
+                <button type="button" class="btn" id="btn4">Profile</button>
+                <button type="button" class="btn" id="btn5">Auction Manual</button>
+            </div>
+        </nav>
+    </div>
+
+    <div>
+        <a href="/add-auction.html" >
+            <button type="button" class="btn" id="addauction">
+                <img src="/public/img/plus-square.png" alt="" id="imgmark">
+                Add Auction
+            </button>
+        </a>
+        
+        <button type="button" class="btn" id="editauction" data-bs-toggle="modal" data-bs-target="#Modal-edit">
+            <img src="/public/img/edit.png" alt="" id="imgmark">
+            Edit Auction
+        </button>
+    </div>
+
+    <div class="row">
+        <div class="col-9"></div>
+        <div class="col-2">
+             <div class="dropdown mt-3" id="type">
+                <button id="type-button" data-bs-toggle="dropdown">
+                    text
+                    <img src="/public/img/chevron-down.png" id="chevron-down">
+                </button>
+
+                <ul class="dropdown-menu" id="droptype">
+                    <li><a class="dropdown-type" href="#">ทั้งหมด</a></li>
+                    <li><a class="dropdown-type" href="#">ประมูลเสร็จแล้ว</a></li>
+                    <li><a class="dropdown-type" href="#">รอประมูล</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+    <div class="container mb-4">
+        <div class="row mt-1">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <div class="table-responsive my-custom-scrollbar">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width:10%;"></th>
+                                <th scope="col" style="width:90%;">Name</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><img src="/public/img/search.png" alt="search"
+                                        style="width: 2em; margin-left: 1em;"></td>
+                                <td><input type="text" id="myInput" onkeyup="myFunction()" placeholder=""
+                                        style="width: 100%;"></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><a data-bs-toggle="modal" data-bs-target="#Modal-detail">saDSASAd</a></td>
+
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>saDSASAd</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>saDSASAd</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>saDSASAd</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>saDSASAd</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>saDSASAd</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+
+    <div class="modal " id="Modal-edit">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <label for="auction-Name" id="label-left">ชื่อห้องประมูล</label>
+                    <input type="text" class="form-edit" id="auction-Name"><br>
+
+                    <label for="small-market-Name" id="label-left">ขื่อตลาดย่อย</label>
+                    <input type="text" class="form-edit" id="small-market-Name"><br>
+
+                    <label for="big-market-Name" id="label-left">ชื่อตลาด</label>
+                    <input type="text" class="form-edit" id="big-market-Name"><br>
+
+                    <label for="date" id="label-left">วันที่ประมูล</label>
+                    <input type="date" class="form-edit" id="date"><br>
+
+                    <p class="sameline">
+                        <label for="start-auction" id="label-left">เริ่มประมูล</label>
+                        <input type="time" class="form-edit" id="start-auction">
+
+                        <label for="end-auction" id="label-right">สิ้นสุดประมูล</label>
+                        <input type="time" class="form-edit2" id="end-auction"><br>
+                    </p>
+                    
+
+                    <label for="type-rubber" id="label-left">ประเภท</label>
+                    <input type="text" class="form-edit" id="type-rubber"><br>
+
+                    <label for="price" id="label-left">ราคากลาง</label>
+                    <input type="text" class="form-edit" id="price"><br>
+
+                    <label for="amount" id="label-left">จำนวน</label>
+                    <input type="text" class="form-edit" id="amount"><br>
+
+                    <label for="weight" id="label-left">น้ำหนักจัดส่งจริง</label>
+                    <input type="text" class="form-edit" id="weight"><br>
+
+                    <label for="state" id="label-left">สถานะ</label>
+                    <input type="text" class="form-edit" id="state">
+
+
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Confirm</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancle</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal " id="Modal-detail">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Print Report</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
