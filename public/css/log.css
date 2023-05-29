@@ -5,6 +5,7 @@ html {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
+    overflow-x: hidden;
 }
 
 #navhome {
@@ -143,7 +144,6 @@ html {
 }
 
 .table {
-    background: #838383;
     border-radius: 0.2rem;
     width: 100%;
     padding-bottom: 1rem;
@@ -152,7 +152,6 @@ html {
 
 .table td {
     white-space: nowrap;
-    background-color: #D9D9D9;
     text-align: center;
 }
 
@@ -248,8 +247,16 @@ html {
 #cardauc {
     margin-top: 5em;
     margin-right: 4em;
+    width: 23em;
+    height: 24em;
+    border-radius: 5px;
+}
+
+#cardauc-sum {
+    margin-top: 5em;
+    margin-right: 4em;
     width: 55em;
-    height: 18em;
+    height: 20em;
     border-radius: 5px;
 }
 
@@ -269,6 +276,14 @@ html {
 #tdsam {
     text-align: left;
     border-bottom-color: #000;
+}
+
+#button-home-news, #button-home-newsauc {
+    background-color: white;
+    border: 1px solid #828080;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-right: 2em;
 }
 
 
