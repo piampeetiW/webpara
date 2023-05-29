@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/public/css/log.css">
+    <title>Market Auction</title>
+</head>
+
+<style>
+    .card {
+        background-color: #eeeeee;
+        border-radius: 2em;
+    }
+
+    #label-left {
+        display: inline-block;
+        float: left;
+        clear: left;
+        width: 150px;
+        text-align: left;
+        margin-top: 1em;
+    }
+
+    #label-right {
+        text-align: left;
+        margin-top: 1em;
+    }
+
+    .form-add {
+        display: inline-block;
+        float: left;
+        margin-top: 1em;
+        margin-right: 1em;
+        border-color: #fff;
+    }
+
+
+    .form-add2 {
+        margin-top: 1em;
+        border-color: #fff;
+    }
+
+    .button-card {
+        display: flex;
+        justify-content: center;
+        margin-top: 1em;        
+    }
+
+    .sameline {
+        display: inline-block;
+        margin-bottom: 0%;
+    }
+
+    #card-btn {
+        border: .1em;
+        border-radius: 2em;
+        width: 7em;
+    }
+
+    input[type=file]::file-selector-button {
+        border-radius: 2em;
+        background-color: #00672f;
+        color: #fff;
+    }
+
+</style>
+
+<body id="body">
+    <div class="fixed-top">
+        <nav class="navbar " id="navhome">
+            <div class="container-fluid" id="home">
+                <button class="btn" type="button" id="btnhome">
+                    <h3 id="taladH">ตลาดประมูลการยางภาคเหนือ</h3>
+                </button>
+                <div class="dropdown">
+                    <button type="button" id="username" class="btn" data-bs-toggle="dropdown"><img
+                        src="/public/img/userbutton.png" alt="" id="textuse"> Username</button>
+
+                    <ul class="dropdown-menu" id="dropuser">
+                        <li><a class="dropdown-item" href="#"><img src="/public/img/userdrop.png" alt=""
+                                    id="img1">Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><img src="/public/img/key.png" alt="" id="img1">Change
+                                Passwaord</a></li>
+                        <li><a class="dropdown-item" href="#"><img src="/public/img/auctionuser.png" alt=""
+                                    id="img1">Auction</a></li>
+                        <li><a class="dropdown-item" href="#"><img src="/public/img/logout.png" alt=""
+                                    id="img1">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <h2 style="margin-top: 3em;text-align:center;">Add an Auction</h2>
+
+    <div class="container mt-3 mb-4 ">
+        <div class="row  ">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <div class="card px-4 py-1 mx-5">
+                    <div class="card-body">
+                        <p>
+                            <label for="auction-room" id="label-left">ห้องประมูล</label>
+                            <input type="text" class="form-add" id="auction-room">
+                        </p>
+
+                        <p>
+                            <label for="picture" id="label-left">รูปภาพ, วีดีโอ</label>
+                            <input type="file" class="form-add" id="picture">
+                        </p>
+
+                        <p>
+                            <label for="small-market-Name" id="label-left">ตลาดย่อย</label>
+                            <input type="text" class="form-add" id="small-market-Name">
+                        </p>
+
+                        <p>
+                            <label for="type-rubber" id="label-left">ประเภท</label>
+                            <input type="text" class="form-add" id="type-rubber">
+                        </p>
+
+                        <p>
+                            <label for="price" id="label-left">ราคากลาง</label>
+                            <input type="text" class="form-add" id="price">
+                        </p>
+
+                        <p>
+                            <label for="date" id="label-left">วันที่ประมูล</label>
+                            <input type="date" class="form-add" id="date">
+                        </p>
+
+                        <p class="sameline">
+                            <label for="start-auction" id="label-left">เวลาเริ่มการประมูล</label>
+                            <input type="time" class="form-add" id="start-auction">
+                            <label for="end-auction" id="label-right"
+                                style="margin-right: 1em;margin-left: 1em;">เวลาสิ้นสุดการประมูล</label>
+                            <input type="time" class="form-add2" id="end-auction">
+                        </p>
+
+                        <p class="sameline">
+                            <label for="state" id="label-left">สถานะ</label>
+                            <input type="text" class="form-add" id="state">
+                            <input type="checkbox" class="form-add2" id="show-price"
+                                style="margin-right: 0.5em; margin-top: 1.5em; margin-left: 1em;">
+                            <label for="show-price" id="label-right">โชว์ราคา</label>
+                        </p>
+
+                    </div>
+                    <div>
+                        <p class="button-card">
+                            <a href="#" class="btn btn-success mx-1" id="card-btn">Confirm</a>
+                            <a href="#" class="btn btn-danger mx-1" id="card-btn">Cancle</a>
+                        </p>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="col-2"></div>
+        </div>
+
+    </div>
+
+
+
+</body>
+
+</html>

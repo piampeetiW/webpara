@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/public/css/log.css">
+    <title>Editmemberadmin</title>
+</head>
+<style>
+    body {
+        font-family: 'Inter';
+        background-size: 100%;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    #navhome {
+        background-color: #00672F;
+    }
+
+    #username {
+    margin-right: 7em;
+    color: white;
+    border: none;
+    background-color: #00672F
+}
+
+    .btn {
+        color: white;
+    }
+
+    .card {
+        margin-top: 2em;
+        width: 50em;
+        height: 28em;
+        font-size: 18px;
+        text-align: left;
+        color: #000000;
+        background-color: #EEEE;
+        display: flex;
+    }
+
+    #Confirm {
+        width: 10%;
+        background-color: #00672F;
+        color: #FFFFFF;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        text-align: center;
+        margin-top: 20px;
+        margin-right:50 em;
+margin-left: 56.5em;
+    }
+
+  #Cancel {
+        width: 10%;
+        background-color: #FC0712;
+        color: #FFFFFF;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        text-align: center;
+        margin-top: 20px;
+        margin-right: 2em;
+
+    }
+
+
+</style>
+
+<body id="body">
+    <div class="fixed-top">
+        <nav class="navbar " id="navhome">
+            <div class="container-fluid" id="home">
+                <button class="btn" type="button" id="btnhome">
+                    <h3 id="taladH">ตลาดประมูลการยางภาคเหนือ</h3>
+                </button>
+                <div class="dropdown">
+                    <button type="button" id="username" class="btn" data-bs-toggle="dropdown"><img
+                            src="/public/img/userbutton.png" alt="" id="textuse"> Username</button>
+
+                    <ul class="dropdown-menu" id="dropuser">
+                        <li><a class="dropdown-item" href="#"><img src="/public/img/userdrop.png" alt=""
+                                    id="img1">Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><img src="/public/img/key.png" alt="" id="img1">Change
+                                Passwaord</a></li>
+                        <li><a class="dropdown-item" href="#"><img src="/public/img/auctionuser.png" alt=""
+                                    id="img1">Auction</a></li>
+                        <li><a class="dropdown-item" href="#"><img src="/public/img/logout.png" alt="" id="img1">Log
+                                out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <form action="action_page.php">
+        <br><br><br><br><br>
+        <center>
+            <div class="card">
+                &nbsp;
+        &nbsp;
+        &nbsp;
+        <img src="/public/img/profile.png" alt="Avatar" width="10%">
+                <h4>Profile</h4>
+                <div id="name">Name - Lastname : <span id="name">-</span></div>
+                <div id="">Company : <span id="">-</span></div>
+                <div id="">Email :<span id="">-</span></div>
+                <div id="">Phonnumber :<span id="">-</span></div>
+                <div id="">Address :<span id="">-</span></div>
+                <div id="">Position :<span id="">-</span></div>
+
+                Status <input type="checkbox" name="status" id="status" value="status"><label for="status">Active</label>
+            </div>
+        </center>
+    </form>
+    <button type="sumit" value="Confirm" id="Confirm" class="Confirm center">SAVE</button>
+    <button type="sumit" value="Cancel" id="Cancel" class="cancel center">Cancel</button>
+    
+</body>
+
+</html>
