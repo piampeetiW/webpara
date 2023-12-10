@@ -12,7 +12,7 @@
     <title>Sammary</title>
 </head>
 
-<body id="body" style="background-color: #d9d9d9;">
+<body id="body" style="background-color: #FFFFFF;" onload="updateClock()">
     <div class="fixed-top">
         <nav class="navbar " id="navhome">
             <div class="container-fluid" id="home">
@@ -38,10 +38,10 @@
         </nav>
         <div class="container-fluid g-0">
             <div class="row g-0">
-                <div class="col-3 pt-3 px-4" style="background-color: #e9e9e9;height: 50em; margin: 0;">
+                <div class="col-3 pt-3 px-4" style="background-color: #FFF1DB;height: 50em; margin: 0;">
                     <p>ชื่อตลาดย่อย</p>
-                    <p>เวลาปัจจุบัน</p>
-                    <div class="btn btn-warning" id="button-back">
+                    <p id="clock">เวลาปัจจุบัน</p>
+                    <div class="btn" id="button-back" style="background-color: #CE8F6C;">
                         <img src="/public/img/arrow.png" alt="" style="height: 1em;">
                         กลับ
                     </div>
@@ -68,7 +68,7 @@
                     </nav>
                 </div>
                 <div class="col-3">
-                    <nav class="navbar" id="state-menu">
+                    <nav class="navbar" id="state-menu" style="border-bottom: solid #001AFF;">
                         <div class="btn-group">
                             <button type="button" class="btn" id="btn-ed">
                                 <img src="/public/img/arrow2.png" alt="" style="height: 1em;margin-right: .5em;">
@@ -139,7 +139,7 @@
 
 
 
-    <div class="container" style="margin-left: 19.5em;">
+    <div class="container" style="margin-left: 10em;">
         <div class="row mt-5">
             <div class="col-2"></div>
             <div class="col-8">
@@ -153,18 +153,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td id="tdsam">ผู้ยื่นประมูลรายที่ 1</td>
-                                <td id="tdsam">กองวิจัย</td>
-                                <td id="tdsam">00:00:00</td>
 
-                            </tr>
-                            <tr>
-                                <td id="tdsam">ผู้ยื่นประมูลรายที่ 2</td>
-                                <td id="tdsam">ผู้จัดการตลาด</td>
-                                <td id="tdsam">00:00:00</td>
-
-                            </tr>
 
                         </tbody>
                     </table>
@@ -174,9 +163,55 @@
         </div>
     </div>
 
-    <div class="">
 
-    </div>
+
+
+    <script>
+
+        function updateClock() {
+            var now = new Date();
+            var displayTime = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+            document.getElementById('clock').innerHTML = "เวลาปัจจุบัน: " + displayTime;
+            setTimeout(updateClock, 1000); // เรียกใช้ฟังก์ชัน updateClock() ทุกๆ 1 วินาที
+        }
+
+
+
+
+
+
+
+
+        show();
+        function show() {
+            fetch('/data')
+                .then(function (response) {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw Error('Bad response');
+                })
+                .then(function (data) {
+                    let show = '';
+                    data.forEach(function (datamem) {
+                        show = datamem.truename;
+                        username.innerHTML = show;
+
+                    })
+
+                        .catch(function (err) {
+                            alert(err);
+                        });
+                })
+        }
+
+
+
+        //===================== root =====================================//
+        document.querySelector('#button-back').onclick = function () {
+            location.assign('/auctiontoday');
+        }
+    </script>
 
 </body>
 

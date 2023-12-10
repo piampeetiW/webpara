@@ -21,300 +21,328 @@
         background-position: center;
     }
 
-    #navhome {
-        background-color: #00672F;
-    }
-
-    #taladH {
-        color: white;
-    }
-
-    #home {
-        padding-left: 2em;
-    }
-
-    #username {
-        margin-right: 7em;
-        color: white;
-        border: none;
-        background-color: #00672F
-    }
-
-    #textuse {
-        margin-left: 2em;
-        padding-right: 0.25em;
-    }
-
-    #img1 {
-        padding-right: 1em;
-    }
-
-    #btnhome {
+    #btnA1,
+    #btnA2,
+    #btnA3,
+    #btnA4,
+    #btnA5,
+    #btnA6,
+    #btnA7 {
         border: none;
     }
 
-    #democaru {
-        display: inline;
-    }
-
-    #navmenu {
-        background-color: #322213;
-    }
-
-    .btn {
-        color: white;
-    }
-
-    #btn1:hover {
+    #btnA1:hover,
+    #btnA2:hover,
+    #btnA3:hover,
+    #btnA4:hover,
+    #btnA6:hover,
+    #btnA7:hover {
         background-color: #9F6E3F;
     }
 
-    #btn2 {
-        border-left: 2px solid #9D8977;
-    }
-
-    #btn2:hover {
+    #btnA5 {
         background-color: #9F6E3F;
-    }
-
-    #btn3 {
-        border-left: 2px solid #9D8977;
-    }
-
-    #btn3:hover {
-        background-color: #9F6E3F;
-    }
-
-    #btn4 {
-        border-left: 2px solid #9D8977;
-    }
-
-    #btn4:hover {
-        background-color: #9F6E3F;
-    }
-
-    #btn5 {
-        border-left: 2px solid #9D8977;
-    }
-
-    #btn5:hover {
-        background-color: #9F6E3F;
-    }
-
-    #btn6 {
-        border-left: 2px solid #9D8977;
-    }
-
-    #btn6:hover {
-        background-color: #9F6E3F;
-    }
-
-    #groupmenu {
-        margin-left: 29em;
-    }
-
-    #h563,
-    #h777,
-    #h778 {
-        border: 5px solid #322213;
-    }
-
-    #taladpramul {
-        background-color: #00672F;
-        margin-top: 5em;
-        margin-left: 15em;
-        border: 10px solid #007F3A;
-        border-radius: 15px;
-        padding-left: 3em;
-    }
-
-    #text5 {
-        margin-left: 4em;
-        overflow: hidden;
-    }
-
-    #Ttaladpramul {
-        margin-top: 1.5em;
-        color: #F5E12D;
-    }
-
-    .dropdown-item:hover {
-        background-color: #00672F;
-        color: white;
-    }
-
-
-    #imgmark {
-        width: 3em;
-        padding-right: 1em;
-    }
-
-    .table {
-        background: #838383;
-        border-radius: 0.2rem;
-        width: 100%;
-        padding-bottom: 1rem;
-        color: #212529;
-        margin-bottom: 0;
-    }
-
-    .table td {
-        white-space: nowrap;
-        background-color: #D9D9D9;
-        text-align: center;
-    }
-
-    .table thead {
-        text-align: center;
-    }
-
-    .my-custom-scrollbar {
-        position: relative;
-        height: 400px;
-        overflow: auto;
     }
 </style>
 
 <body id="body">
 
-    <div class="fixed-top">
-        <nav class="navbar " id="navhome">
-            <div class="container-fluid" id="home">
-                <button class="btn" type="button" id="btnhome">
-                    <h3 id="taladH">ตลาดประมูลการยางภาคเหนือ</h3>
-                </button>
-                <div class="dropdown">
-                    <button type="button" id="username" class="btn" data-bs-toggle="dropdown"><img
-                            src="/public/img/userbutton.png" alt="" id="textuse"> Username</button>
+    <nav class="navbar " id="navhome">
+        <div class="container-fluid" id="home">
+            <button class="btn" type="button" id="btnhome">
+                <h3 id="taladH">ตลาดประมูลการยางภาคเหนือ</h3>
+            </button>
+            <div class="dropdown">
+                <button type="button" id="username" class="btn" data-bs-toggle="dropdown"><img
+                        src="/public/img/userbutton.png" alt="" id="textuse"> Username</button>
 
-                    <ul class="dropdown-menu" id="dropuser">
-                        <li><a class="dropdown-item" href="#"><img src="/public/img/userdrop.png" alt=""
-                                    id="img1">Profile</a></li>
-                        <li><a class="dropdown-item" href="#"><img src="/public/img/key.png" alt="" id="img1">Change
-                                Passwaord</a></li>
-                        <li><a class="dropdown-item" href="#"><img src="/public/img/auctionuser.png" alt=""
-                                    id="img1">Auction</a></li>
-                        <li><a class="dropdown-item" href="#"><img src="/public/img/logout.png" alt="" id="img1">Log
-                                out</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <div class="navbar" id="navmenu">
-            <div class="btn-group" id="groupmenu">
-                <button type="button" class="btn" id="btn1">Market Auction</button>
-                <button type="button" class="btn" id="btn2">Market</button>
-                <button type="button" class="btn" id="btn3">Market Sub</button>
-                <button type="button" class="btn" id="btn4">Auction</button>
-                <button type="button" class="btn" id="btn5">User</button>
-                <button type="button" class="btn" id="btn6">Backup-Restore</button>
+                <ul class="dropdown-menu" id="dropuser">
+                    <li><a class="dropdown-item" href="#"><img src="/public/img/userdrop.png" alt=""
+                                id="img1">Profile</a></li>
+                    <li><a class="dropdown-item" href="#"><img src="/public/img/key.png" alt="" id="img1">Change
+                            Passwaord</a></li>
+                    <li><a class="dropdown-item" href="#"><img src="/public/img/auctionuser.png" alt=""
+                                id="img1">Auction</a></li>
+                    <li><a class="dropdown-item" href="#"><img src="/public/img/logout.png" alt="" id="img1">Log
+                            out</a></li>
+                </ul>
             </div>
         </div>
-        <br>
-        <br>
+    </nav>
 
-        <div class="container">
-            <div class="row mt-5">
-                <div class="col-2"></div>
-                <div class="col-8">
-                    <div class="table-responsive my-custom-scrollbar">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Bidder's name</th>
-                                    <th scope="col">Company name</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Phone</th>
-                                    <th scope="col">Address</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>sdadsasdads</td>
-                                    <td>saDSASAd</td>
-                                    <td>sdasadassda</td>
-                                    <td>sdadsasdads@gmail.com</td>
-                                    <td>0987654321</td>
-                                    <td>sdasadassdasdasadassdasdasadassda</td>
-                                </tr>
-                                <tr>
-                                    <td>sdadsasdads</td>
-                                    <td>saDSASAd</td>
-                                    <td>sdasadassda</td>
-                                    <td>sdadsasdads@gmail.com</td>
-                                    <td>0987654321</td>
-                                    <td>sdasadassdasdasadassdasdasadassda</td>
-                                </tr>
-                                <tr>
-                                    <td>sdadsasdads</td>
-                                    <td>saDSASAd</td>
-                                    <td>sdasadassda</td>
-                                    <td>sdadsasdads@gmail.com</td>
-                                    <td>0987654321</td>
-                                    <td>sdasadassdasdasadassdasdasadassda</td>
-                                </tr>
-                                <tr>
-                                    <td>sdadsasdads</td>
-                                    <td>saDSASAd</td>
-                                    <td>sdasadassda</td>
-                                    <td>sdadsasdads@gmail.com</td>
-                                    <td>0987654321</td>
-                                    <td>sdasadassdasdasadassdasdasadassda</td>
-                                </tr>
-                                <tr>
-                                    <td>sdadsasdads</td>
-                                    <td>saDSASAd</td>
-                                    <td>sdasadassda</td>
-                                    <td>sdadsasdads@gmail.com</td>
-                                    <td>0987654321</td>
-                                    <td>sdasadassdasdasadassdasdasadassda</td>
-                                </tr>
-                                <tr>
-                                    <td>sdadsasdads</td>
-                                    <td>saDSASAd</td>
-                                    <td>sdasadassda</td>
-                                    <td>sdadsasdads@gmail.com</td>
-                                    <td>0987654321</td>
-                                    <td>sdasadassdasdasadassdasdasadassda</td>
-                                </tr>
-                                <tr>
-                                    <td>sdadsasdads</td>
-                                    <td>saDSASAd</td>
-                                    <td>sdasadassda</td>
-                                    <td>sdadsasdads@gmail.com</td>
-                                    <td>0987654321</td>
-                                    <td>sdasadassdasdasadassdasdasadassda</td>
-                                </tr>
-                                <tr>
-                                    <td>sdadsasdads</td>
-                                    <td>saDSASAd</td>
-                                    <td>sdasadassda</td>
-                                    <td>sdadsasdads@gmail.com</td>
-                                    <td>0987654321</td>
-                                    <td>sdasadassdasdasadassdasdasadassda</td>
-                                </tr>
-                                <tr>
-                                    <td>sdadsasdads</td>
-                                    <td>saDSASAd</td>
-                                    <td>sdasadassda</td>
-                                    <td>sdadsasdads@gmail.com</td>
-                                    <td>0987654321</td>
-                                    <td>sdasadassdasdasadassdasdasadassda</td>
-                                </tr>
+    <div class="navbar" id="navmenu">
+        <div class="btn-group" id="groupmenu">
+            <button type="button" class="btn" id="btnA7">Add News</button>
+            <button type="button" class="btn" id="btnA2">Market</button>
+            <button type="button" class="btn" id="btnA3">Market Sub</button>
+            <button type="button" class="btn" id="btnA4">Auction</button>
+            <button type="button" class="btn" id="btnA5">User</button>
+            <button type="button" class="btn" id="btnA6">Backup-Restore</button>
+        </div>
+    </div>
+    <br>
+    <br>
 
+    <div class="container" style="margin-right: 5em;">
+        <div class="row mt-5">
+            <div class="table-responsive my-custom">
+                <table class="table" style="margin-left: 0;">
+                    <thead>
+                        <tr>
+                            <th scope="col">Action</th>
+                            <th scope="col">Bidder's name</th>
+                            <th scope="col">Company name</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Address</th>
+                        </tr>
+                    </thead>
+                    <tbody id="userDataBody">
+                        <tr>
 
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="col-3"></div>
+                        </tr>
+
+                    </tbody>
+                </table>
             </div>
         </div>
 
     </div>
 
+    <div id="pagination-container" style="margin-left: 15em; margin-top: 2em; margin-bottom: 5em;">
+        <ul class="pagination">
+            <!-- ปุ่ม pagination จะถูกเพิ่มที่นี่ -->
+        </ul>
+    </div>
+
+
+
+    <script>
+
+
+        // fetch('/data')
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         const tableBody = document.querySelector('tbody');
+
+
+        //         data.forEach(row => {
+        //             const tr = document.createElement('tr');
+
+
+        //             // สร้าง <td> และใส่ข้อมูลลงในแต่ละเซลล์
+
+        //             const td1 = document.createElement('td');
+        //             td1.textContent = row.action;
+        //             tr.appendChild(td1);
+
+        //             const td2 = document.createElement('td');
+        //             td2.textContent = row.truename;
+        //             tr.appendChild(td2);
+
+        //             const td3 = document.createElement('td');
+        //             td3.textContent = row.bussiness;
+        //             tr.appendChild(td3);
+
+        //             const td4 = document.createElement('td');
+        //             td4.textContent = row.status;
+        //             tr.appendChild(td4);
+
+        //             const td5 = document.createElement('td');
+        //             td5.textContent = row.email;
+        //             tr.appendChild(td5);
+
+        //             const td6 = document.createElement('td');
+        //             td6.textContent = row.phone;
+        //             tr.appendChild(td6);
+
+        //             const td7 = document.createElement('td');
+        //             td7.textContent = row.address;
+        //             tr.appendChild(td7);
+
+        //             // เพิ่มแถวลงใน tbody
+        //             tableBody.appendChild(tr);
+        //         });
+
+
+        //     })
+
+        //     .catch(error => {
+        //         console.error('เกิดข้อผิดพลาดในการดึงข้อมูลผ่าน API: ', error);
+        //     });
+
+
+
+
+
+        // ฟังก์ชันในการแสดงข้อมูลสำหรับหน้าปัจจุบัน
+        function displayData(data, startIndex, endIndex) {
+            const tableBody = document.querySelector('#userDataBody');
+            tableBody.innerHTML = '';
+
+            const dataToDisplay = data.slice(startIndex, endIndex);
+
+
+            dataToDisplay.forEach(row => {
+                const tr = document.createElement('tr');
+
+                // สร้าง <td> และใส่ข้อมูลลงในแต่ละเซลล์
+
+                const td1 = document.createElement('td');
+                td1.textContent = row.action;
+                tr.appendChild(td1);
+
+                const td2 = document.createElement('td');
+                td2.textContent = row.truename;
+                tr.appendChild(td2);
+
+                const td3 = document.createElement('td');
+                td3.textContent = row.bussiness;
+                tr.appendChild(td3);
+
+                const td4 = document.createElement('td');
+                td4.textContent = row.status;
+                tr.appendChild(td4);
+
+                const td5 = document.createElement('td');
+                td5.textContent = row.email;
+                tr.appendChild(td5);
+
+                const td6 = document.createElement('td');
+                td6.textContent = row.phone;
+                tr.appendChild(td6);
+
+                const td7 = document.createElement('td');
+                td7.textContent = row.address;
+                tr.appendChild(td7);
+
+                tableBody.appendChild(tr);
+            });
+        }
+
+        function updatePagination(data) {
+            const paginationContainer = document.querySelector('#pagination-container');
+            paginationContainer.innerHTML = '';
+
+            const totalPages = Math.ceil(data.length / itemsPerPage);
+
+            const maxButtonsToShow = 7; // จำนวนสูงสุดของปุ่มที่แสดง
+
+            let startPage = 1;
+            let endPage = totalPages;
+
+            if (totalPages > maxButtonsToShow) {
+                // หากมีหลายหน้ามากกว่าจำนวนสูงสุดที่ต้องการแสดง
+                // คำนวณหน้าเริ่มต้นและหน้าสุดท้ายที่จะแสดง
+                const halfButtonsToShow = Math.floor(maxButtonsToShow / 2);
+                startPage = currentPage - halfButtonsToShow;
+                endPage = currentPage + halfButtonsToShow;
+
+                if (startPage < 1) {
+                    startPage = 1;
+                    endPage = maxButtonsToShow;
+                }
+
+                if (endPage > totalPages) {
+                    endPage = totalPages;
+                    startPage = totalPages - maxButtonsToShow + 1;
+                }
+            }
+
+            
+
+            for (let i = startPage; i <= endPage; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.textContent = i;
+
+                // เพิ่มสไตล์สีพื้นหลังใน JavaScript
+                pageButton.style.backgroundColor = '#ECF1E6';
+                pageButton.style.border = 'none';
+
+                pageButton.addEventListener('click', () => {
+                    currentPage = i;
+                    const startIndex = (currentPage - 1) * itemsPerPage;
+                    const endIndex = startIndex + itemsPerPage;
+                    displayData(data, startIndex, endIndex);
+                    updatePagination(data);
+                });
+
+                paginationContainer.appendChild(pageButton);
+            }
+        }
+
+        // การแสดงผลเริ่มต้น
+        const itemsPerPage = 10;
+        let currentPage = 1;
+
+        // ดึงข้อมูลจาก API และเริ่มแสดงผลตารางและการแบ่งหน้า
+        fetch('/data')
+            .then(response => response.json())
+            .then(data => {
+                const startIndex = (currentPage - 1) * itemsPerPage;
+                const endIndex = startIndex + itemsPerPage;
+                displayData(data, startIndex, endIndex);
+                updatePagination(data);
+            })
+            .catch(error => {
+                console.error('เกิดข้อผิดพลาดในการดึงข้อมูลจาก API: ', error);
+            });
+
+
+
+
+
+
+            show();
+        function show() {
+            fetch('/data')
+                .then(function (response) {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw Error('Bad response');
+                })
+                .then(function (data) {
+                    let show = '';
+                    data.forEach(function (datamem) {
+                        show = datamem.truename;
+                        username.innerHTML = show;
+
+                    })
+
+                        .catch(function (err) {
+                            alert(err);
+                        });
+                })
+        }
+
+
+
+
+
+
+
+        //====================================================================//
+        document.querySelector('#btnhome').onclick = function () {
+            location.assign('/homepage');
+        }
+
+        document.querySelector('#btnA2').onclick = function () {
+            location.assign('/marketad');
+        }
+
+        document.querySelector('#btnA4').onclick = function () {
+            location.assign('/auctionAd');
+        }
+
+        document.querySelector('#btnA7').onclick = function () {
+            location.assign('/addnews');
+        }
+
+       
+
+    </script>
 
 
 </body>

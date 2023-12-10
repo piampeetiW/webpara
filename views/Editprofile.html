@@ -21,15 +21,16 @@
     }
 
     #navhome {
-        background-color: #00672F;
+        background-color: #6C915F;
     }
-    
+
     #username {
-    margin-right: 7em;
-    color: white;
-    border: none;
-    background-color: #00672F
-}
+        margin-right: 7em;
+        color: white;
+        border: none;
+        background-color: #6C915F
+    }
+
     .btn {
         color: white;
     }
@@ -41,13 +42,13 @@
         font-size: 18px;
         text-align: left;
         color: #000000;
-        background-color: #EEEE;
+        background-color: #CAD7C2;
         display: flex;
     }
 
     #Confirm {
         width: 10%;
-        background-color: #00672F;
+        background-color: #6C915F;
         color: #FFFFFF;
         padding: 12px 20px;
         border: none;
@@ -55,13 +56,13 @@
         cursor: pointer;
         text-align: center;
         margin-top: 20px;
-        margin-right:50 em;
-margin-left: 56.5em;
+        margin-right: 50 em;
+        margin-left: 56.5em;
     }
 
-  #Cancel {
+    #Cancel {
         width: 10%;
-        background-color: #FC0712;
+        background-color: #DA0404;
         color: #FFFFFF;
         padding: 12px 20px;
         border: none;
@@ -72,8 +73,6 @@ margin-left: 56.5em;
         margin-right: 2em;
 
     }
-
-
 </style>
 
 <body id="body">
@@ -101,27 +100,39 @@ margin-left: 56.5em;
             </div>
         </nav>
     </div>
+
     <form action="action_page.php">
         <br><br><br><br><br>
         <center>
             <div class="card">
                 &nbsp;
-        &nbsp;
-        &nbsp;
-        <img src="/public/img/profile.png" alt="Avatar" width="10%">
+                &nbsp;
+                &nbsp;
+                <img id="profileImage" src="/public/img/profile.png" alt="Avatar" width="10%">
                 <div id="uname">Username : <span id="uname">-</span></div>
                 <div id="name">Name - Lastname : <span id="name">-</span></div>
                 <div id="">Company : <span id="">-</span></div>
                 <div id="">Email :<span id="">-</span></div>
                 <div id="">Phonnumber :<span id="">-</span></div>
                 <div id="">Address :<span id="">-</span></div>
-               
+
             </div>
         </center>
+
+
+
+
     </form>
+
     <button type="sumit" value="Confirm" id="Confirm" class="Confirm center">Comfirm</button>
     <button type="sumit" value="Cancel" id="Cancel" class="cancel center">Cancel</button>
+
     
+
+    <script>
+       
+    </script>
+
 </body>
 
 </html>

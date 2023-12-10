@@ -16,12 +16,12 @@
         height: 23.5em;
         width: 60em;
         margin-bottom: 1em;
-        background-color: #e9e9e9;
-        border-color: #e9e9e9;
+        background-color: #FFF1DB;
+        border-color: #FFF1DB;
         text-align: center;
         padding: 0.8em;
-        margin-top: 1em;
-        margin-left: 11em;
+        margin-top: 4em;
+        margin-left: 17em;
     }
 
     #area {
@@ -30,9 +30,26 @@
         margin-bottom: 0em;
     }
 
-    #province {
-        background-color: #d9d9d9;
+    #province1,
+    #province2,
+    #province3,
+    #province4,
+    #province5,
+    #province6 {
+        background-color: #CAD7C2;
         color: #000;
+        width: 18em;
+        height: 10.5em;
+    }
+
+    #province1:hover,
+    #province2:hover,
+    #province3:hover,
+    #province4:hover,
+    #province5:hover,
+    #province6:hover {
+        background-color: #6C915F;
+        color: #fff;
         width: 18em;
         height: 10.5em;
     }
@@ -47,16 +64,14 @@
     }
 
     #back {
-        background-color: #F5E12D;
+        border-color: #F3E29F;
         border-radius: 15em;
-        border-color: #F5E12D;
         height: 2.3em;
         width: 6em;
         color: #000;
-        margin-left: 65.2em;
+        margin-left: 71em;
+        margin-top: 2em;
     }
-
-    
 </style>
 
 <body id="body">
@@ -68,55 +83,59 @@
                 </button>
                 <div class="dropdown">
                     <button type="button" id="username" class="btn" data-bs-toggle="dropdown"><img
-                        src="/public/img/userbutton.png" alt="" id="textuse"> Username</button>
+                            src="/public/img/userbutton.png" alt="" id="textuse"> Username</button>
 
 
                     <ul class="dropdown-menu" id="dropuser">
-                        <li><a class="dropdown-item" href="#"><img src="/public/img/userdrop.png" alt=""id="img1">Profile</a></li>
-                        <li><a class="dropdown-item" href="#"><img src="/public/img/key.png" alt="" id="img1">Change Passwaord</a></li>
-                        <li><a class="dropdown-item" href="#"><img src="/public/img/auctionuser.png" alt=""id="img1">Auction</a></li>
-                        <li><a class="dropdown-item" href="#"><img src="/public/img/logout.png" alt="" id="img1">Logout</a></li>
+                        <li><a class="dropdown-item" href="#"><img src="/public/img/userdrop.png" alt=""
+                                    id="img1">Profile</a></li>
+                        <li><a class="dropdown-item" href="#"><img src="/public/img/key.png" alt="" id="img1">Change
+                                Passwaord</a></li>
+                        <li><a class="dropdown-item" href="#"><img src="/public/img/auctionuser.png" alt=""
+                                    id="img1">Auction</a></li>
+                        <li><a class="dropdown-item" href="#"><img src="/public/img/logout.png" alt=""
+                                    id="img1">Logout</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </div>
 
-    <h2 style="padding-top: 2.5em;text-align:center;">ตลาดย่อย</h2>
+    <h2 style="padding-top: 4em;text-align:center;">ตลาดย่อย</h2>
 
     <div class="card">
         <div class="row">
             <div class="col-sm-4">
-                <button type="button" class="btn" id="province" >
+                <button type="button" class="btn" id="province1">
                     <img src="/public/img/เชียงราย 1.png" alt="hammer" id="logo">
                     <p id="area">จังหวัดเชียงราย</p>
                     <p id="result">ประมูลเสร็จแล้ว </p>
                 </button>
-                <button type="button" class="btn" id="province" style="margin-top: 1em;">
+                <button type="button" class="btn" id="province2" style="margin-top: 1em;">
                     <img src="/public/img/พะเยา 1.png" alt="hammer" id="logo">
                     <p id="area">จังหวัดพะเยา</p>
                     <p id="result">ประมูลเสร็จแล้ว </p>
                 </button>
             </div>
-            <div class="col-sm-4" >
-                <button type="button" class="btn" id="province" >
+            <div class="col-sm-4">
+                <button type="button" class="btn" id="province3">
                     <img src="/public/img/เชียงใหม่ 1.png" alt="hammer" id="logo">
                     <p id="area">จังหวัดเชียงใหม่</p>
                     <p id="result">ประมูลเสร็จแล้ว </p>
                 </button>
-                <button type="button" class="btn" id="province" style="margin-top: 1em;">
+                <button type="button" class="btn" id="province4" style="margin-top: 1em;">
                     <img src="/public/img/แพร่ 1.png" alt="hammer" id="logo">
                     <p id="area">จังหวัดแพร่</p>
                     <p id="result">ประมูลเสร็จแล้ว </p>
                 </button>
             </div>
-            <div class="col-sm-4" >
-                <button type="button" class="btn" id="province" >
+            <div class="col-sm-4">
+                <button type="button" class="btn" id="province5">
                     <img src="/public/img/น่าน 1.png" alt="hammer" id="logo">
                     <p id="area">จังหวัดน่าน</p>
                     <p id="result">ประมูลเสร็จแล้ว </p>
                 </button>
-                <button type="button" class="btn" id="province" style="margin-top: 1em;">
+                <button type="button" class="btn" id="province6" style="margin-top: 1em;">
                     <img src="/public/img/แม่ฮองสอน 1.png" alt="hammer" id="logo">
                     <p id="area">จังหวัดแม่ฮ่องสอน</p>
                     <p id="result">ประมูลเสร็จแล้ว </p>
@@ -124,10 +143,62 @@
             </div>
         </div>
     </div>
-    <button id="back">
+    <button id="back" style="background-color: #F3E29F;">
         <img src="/public/img/arrow.png" alt="arrow" id="arrow" style="height: 1em;margin-right: 0.3em;">
         <a> กลับ</a>
     </button>
+
+
+
+    <script>
+
+
+
+
+
+
+
+
+        show();
+        function show() {
+            fetch('/data')
+                .then(function (response) {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw Error('Bad response');
+                })
+                .then(function (data) {
+                    let show = '';
+                    data.forEach(function (datamem) {
+                        show = datamem.truename;
+                        username.innerHTML = show;
+
+                    })
+
+                        .catch(function (err) {
+                            alert(err);
+                        });
+                })
+        }
+
+
+
+
+        //====================== root ===================================//
+        document.querySelector('#btnhome').onclick = function () {
+            location.assign('/homepage');
+        }
+
+        document.querySelector('#province1').onclick = function () {
+            location.assign('/auctoday');
+        }
+
+        document.querySelector('#back').onclick = function () {
+            location.assign('/roombigmarket');
+        }
+    </script>
+
 </body>
 
 </html>

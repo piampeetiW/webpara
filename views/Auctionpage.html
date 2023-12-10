@@ -12,16 +12,29 @@
     <title>Auction</title>
 </head>
 
-<body id="body" style="background-color: #d9d9d9;">
+<style>
+    #state-menu,
+    #state-menu1,
+    #state-menu2,
+    #state-menu3 {
+        background-color: #B99470;
+        margin: 0;
+        width: 100%;
+        padding: 0.2em;
+    }
+</style>
+
+<body id="body" style="background-color: #FFFFFF;" onload="updateClock()">
+
     <div class="fixed-top">
         <nav class="navbar " id="navhome">
             <div class="container-fluid" id="home">
                 <button class="btn" type="button" id="btnhome">
                     <h3 id="taladH">ตลาดประมูลการยางภาคเหนือ</h3>
                 </button>
-                <div class="dropdown" >
+                <div class="dropdown">
                     <button type="button" id="username" class="btn" data-bs-toggle="dropdown"><img
-                        src="/public/img/userbutton.png" alt="" id="textuse"> Username</button>
+                            src="/public/img/userbutton.png" alt="" id="textuse"> Username</button>
 
                     <ul class="dropdown-menu" id="dropuser">
                         <li><a class="dropdown-item" href="#"><img src="/public/img/userdrop.png" alt=""
@@ -36,18 +49,19 @@
                 </div>
             </div>
         </nav>
+
         <div class="container-fluid g-0">
             <div class="row g-0">
-                <div class="col-3 pt-3 px-4" style="background-color: #e9e9e9;height: 50em; margin: 0;">
-                    <p>ชื่อตลาดย่อย</p>
-                    <p>เวลาปัจจุบัน</p>
-                    <div class="btn btn-warning" id="button-back">
+                <div class="col-3 pt-3 px-4" style="background-color: #FFF1DB;height: 50em; margin: 0;">
+                    <p>กยท. เชียงราย</p>
+                    <p id="clock">เวลาปัจจุบัน:</p>
+                    <div class="btn" id="button-back" style="background-color: #B99470;">
                         <img src="/public/img/arrow.png" alt="" style="height: 1em;">
                         กลับ
                     </div>
                 </div>
                 <div class="col-3">
-                    <nav class="navbar" id="state-menu">
+                    <nav class="navbar" id="state-menu1">
                         <div class="btn-group">
                             <button type="button" class="btn" id="btn-today">
                                 <img src="/public/img/auctionuser.png" alt=""
@@ -58,17 +72,18 @@
                     </nav>
                 </div>
                 <div class="col-3">
-                    <nav class="navbar" id="state-menu">
+                    <!-- style="border-bottom: solid #001AFF; -->
+                    <nav class="navbar" id="state-menu2" style="border-bottom: solid #001AFF;">
                         <div class="btn-group">
                             <button type="button" class="btn" id="btn-ing">
-                                <img src="/public/img/circle.png" alt="" style="height: 1.3em;margin-right: .5em;">
+                                <img src="/public/img/circle.png" alt="" style="height: 1.3em;margin-right: .5em; ">
                                 กำลังประมูล
                             </button>
                         </div>
                     </nav>
                 </div>
                 <div class="col-3">
-                    <nav class="navbar" id="state-menu">
+                    <nav class="navbar" id="state-menu3">
                         <div class="btn-group">
                             <button type="button" class="btn" id="btn-ed">
                                 <img src="/public/img/arrow2.png" alt="" style="height: 1em;margin-right: .5em;">
@@ -80,7 +95,7 @@
             </div>
         </div>
 
-        
+
     </div>
 
     <div class="container fixed-bottom" style="padding-bottom: 1em;">
@@ -88,17 +103,17 @@
             <div class="useless-column"></div>
 
             <div class="left-column">
-                <div class="container mt-3" id="statusroom">
-                    <h4 id="textstaroom">สถานะ : </h4>
+                <div class="container mt-3" id="colorstatus" style="border-radius: 9px; width: 17em; height: 2em;">
+                    <h5 style="margin-left: 0.7em;">สถานะ : <span id="textstaroom"></span></h5>
                 </div>
 
-                <div class="card" id="cardauc">
+                <div class="card" id="cardauc" style="background-color: #FFF1DB;">
                     <div class="card-body">
                         <img src="/public/img/ex.png" alt="" style="width: 19.84em;">
                         <div class="container" style="margin-top: 1em;">
-                            <h5>ประเภท :</h5>
-                            <h5>จำนวน :</h5>
-                            <h5>ราคากลาง :</h5>
+                            <h5> ประเภท : <span id="typeroom"></span></h5>
+                            <h5 id="totalauc">จำนวนยาง: <span id="totalRubber"></span></h5>
+                            <h5>ราคากลาง : <span id="amountmiddel"></span></h5>
                         </div>
                     </div>
                 </div>
@@ -106,20 +121,31 @@
             </div>
 
             <div class="right-column">
-                <div class="container mt-1">
-                    <h3>กยท.จ.น่าน ประมูลยางก้อนถ้วยพักค้างคืน สายนาน้อย 3 ไม่รวมค่าจัดการ</h3>
+                <div class="container">
+                    <h3 id="nameauc"></h3>
+                    <div class="row ">
+                        <!-- <h5 id="auctionDate">วันประมูล: <span id="auctionDateValue"></span></h5> -->
+                        <div class="col p-3"> วันประมูล : <span id="auctionDate"></span></div>
+                        <div class="col p-3"> วันสิ้นสุดประมูล : <span id="auctionEndDate"></span></div>
+
+                        <div class="col p-3">เวลา : <span id="auctionTime"></span></div>
+                    </div>
                 </div>
-                <div class="container">วันประมูล : เวลา </div>
+
+
+
+
 
                 <div class="container"
-                    style="background-color: #FF0000; margin-left: 4em; margin-top: 5em; height: 3em; border-radius: 11px; ">
-                    <h5 style="padding-top: 0.5em; padding-left: 0.8em; ">สิ้นสุดการประมูลใน :</h5>
+                    style="background-color: #F37575; margin-left: 4em; margin-top: 5em; height: 3em; border-radius: 11px; ">
+                    <h5 style="padding-top: 0.5em; padding-left: 0.8em; ">สิ้นสุดการประมูลใน : <span
+                            id="countdown"></span></h5>
                 </div>
 
                 <div class="container" style="margin-top: 2em; margin-left: 5em;">
-                    <h5 style="margin-top: 1.5em;">จำนวนผู้เข้าชมการประมูล :</h5>
-                    <h5 style="margin-top: 1.5em;">ราคาเริ่มต้น :</h5>
-                    <h5 style="margin-top: 1.5em;">น้ำหนักการจัดส่ง</h5>
+                    <h5 style="margin-top: 1.5em;" id="toltalguest">จำนวนผู้เข้าชมการประมูล :</h5>
+                    <h5 style="margin-top: 1.5em;">ราคาเริ่มต้น : <span id="amountstart"></span></h5>
+                    <h5 style="margin-top: 1.5em;" id="">น้ำหนักการจัดส่ง</h5>
                 </div>
 
                 <div class="container">
@@ -128,7 +154,8 @@
                             <h5 id="textNtalad">เสนอราคา</h5>
                         </div>
                         <div class="col-5 p-2">
-                            <input type="text" class="form-control" placeholder="" name="">
+                            <input type="number" id="auctionInput" class="form-control" placeholder="" number=""
+                                min="0">
                         </div>
                         <div class="col-3">
                             <h5 id="textNtalad">บาท</h5>
@@ -136,12 +163,18 @@
                     </div>
                 </div>
 
-                <div class="container">
-                    <button type="button" class="btn" style="background-color: #00672F; border-radius: 31px; height: 50px; width: 140px; margin-top: 0.7em; margin-left: 11.8em;">
+                <div class="container" id="btnAuction">
+                    <button type="button" class="btn" id="saveAuctionBtn"
+                        style="background-color: #6C915F; border-radius: 31px; height: 50px; width: 140px; margin-top: 0.7em; margin-left: 11.8em;">
                         <h5 style="padding-top: 0.2em;">ประมูล</h5>
                     </button>
+
                 </div>
 
+                <button type="button" class="btn" id="summaryBtn"
+                    style="background-color: #F37575; border-radius: 31px; height: 50px; width: 200px; margin-top: 0.7em; margin-left: 11em;">
+                    <h5 style="padding-top: 0.2em;">สรุปผลการประมูล</h5>
+                </button>
 
             </div>
 
@@ -151,6 +184,343 @@
 
     </div>
 
+
+
+
+    <script>
+
+        function updateClock() {
+            var now = new Date();
+            var displayTime = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+            document.getElementById('clock').innerHTML = "เวลาปัจจุบัน: " + displayTime;
+            setTimeout(updateClock, 1000); // เรียกใช้ฟังก์ชัน updateClock() ทุกๆ 1 วินาที
+        }
+
+
+        let currentClockValue;  // เพิ่มตัวแปรเก็บค่าเวลา
+        function updateClock() {
+            var now = new Date();
+            var displayTime = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+            document.getElementById('clock').innerHTML = "เวลาปัจจุบัน: " + displayTime;
+            currentClockValue = displayTime;  // บันทึกค่าเวลาในตัวแปร
+            setTimeout(updateClock, 1000);
+        }
+
+
+
+
+
+
+
+
+        // Function to update the countdown timer
+        function updateCountdown(endTime) {
+
+        }
+
+        // Function to start the countdown
+        function startCountdown() {
+
+        }
+
+        // Call the startCountdown function when the page is loaded
+        startCountdown();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // ดึงค่า query parameter ชื่อ "id" และ "name" จาก URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const auctionId = urlParams.get('id');
+        const auctionName = urlParams.get('name');
+        const totalRubberParam = urlParams.get('totalRubber');
+        const auctionDateParam = urlParams.get('auctionDate');
+        const auctionDateEndParam = urlParams.get('auctionDateEnd');
+        const auctionStartTime = urlParams.get('auctionStartTime');
+        const auctionEndTime = urlParams.get('auctionEndTime');
+        const auctionTypeParam = urlParams.get('auctionType');
+        const amountMiddleParam = urlParams.get('amountMiddle');
+        // const auctionStatusParam = urlParams.get('auctionStatus');
+        const amountStartParam = urlParams.get('amountStart');
+        const statusTextParam = urlParams.get('statusText');
+
+
+
+
+
+
+
+
+        const totalRubber = parseInt(totalRubberParam);
+
+
+
+
+
+
+        // เลือก element ที่มี id="nameauc"
+        const nameaucElement = document.getElementById('nameauc');
+        const totalRubberElement = document.getElementById('totalRubber');
+        const auctionDateElement = document.getElementById('auctionDate');
+        const auctionDateEndElement = document.getElementById('auctionEndDate');
+        const auctionTimeElement = document.getElementById('auctionTime');
+        const auctionEndTimeElement = document.getElementById('auctionEndTime')
+        const typeroomElement = document.getElementById('typeroom');
+        const amountmiddelElement = document.getElementById('amountmiddel');
+        const textstaroomElement = document.getElementById('textstaroom');
+        const amountstartElement = document.getElementById('amountstart');
+
+
+
+        const colorstatusElement = document.getElementById('colorstatus');
+
+
+
+
+
+
+        // กำหนดข้อความให้กับ element นี้
+        nameaucElement.textContent = auctionName;
+        totalRubberElement.textContent = totalRubber;
+        auctionDateElement.textContent = auctionDateParam;
+        auctionDateEndElement.textContent = auctionDateEndParam;
+        auctionTimeElement.textContent = `${auctionStartTime} - ${auctionEndTime}`;
+        typeroomElement.textContent = auctionTypeParam;
+        amountmiddelElement.textContent = amountMiddleParam;
+        amountstartElement.textContent = amountStartParam;
+        textstaroomElement.textContent = statusTextParam
+
+
+
+
+        const statusText = textstaroomElement.textContent;
+
+        // Set background color based on the status text
+        if (statusText === "รอประมูล") {
+            colorstatusElement.style.backgroundColor = "#F3E29F";
+            document.getElementById('btnAuction').style.display = 'none';
+            document.getElementById('summaryBtn').style.display = 'none';
+
+
+
+        } else if (statusText === "กำลังประมูล") {
+            colorstatusElement.style.backgroundColor = "#B5C99A";
+            document.getElementById('summaryBtn').style.display = 'none';
+
+        } else {
+            colorstatusElement.style.backgroundColor = "#EAADAF";
+            document.getElementById('btnAuction').style.display = 'none';
+            document.getElementById('summaryBtn').style.display = 'block';
+
+        }
+
+
+
+
+
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const auctionInput = document.getElementById('auctionInput');
+            const saveAuctionBtn = document.getElementById('saveAuctionBtn');
+
+            // Check if the auction has already been made by the current user
+            const auctionMade = localStorage.getItem(`auction_${auctionId}`);
+            if (auctionMade) {
+                // Disable the button if the auction has already been made
+                saveAuctionBtn.disabled = true;
+                Swal.fire({
+                    icon: 'info',
+                    title: 'You have already made the auction for this item.',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            }
+
+            saveAuctionBtn.addEventListener('click', function () {
+                const auctionPrice = auctionInput.value;
+                const username = document.getElementById('username').textContent; // Get the username
+
+                // Check if the auction has already been made by the current user
+                const auctionMade = localStorage.getItem(`auction_${auctionId}`);
+                if (auctionMade) {
+                    // Display a message if the auction has already been made
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'You have already made the auction for this item.',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    return;
+                }
+
+                const dataToSend = {
+                    price: parseFloat(auctionPrice),
+                    auctionId: auctionId,
+                    username: username,
+                    currentClock: currentClockValue
+                };
+
+                fetch('/saveAuction', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dataToSend)
+                })
+                    .then(data => {
+                        console.log('Success:', data);
+                        // Save in local storage to indicate that the user has made the auction
+                        localStorage.setItem(`auction_${auctionId}`, 'made');
+                        saveAuctionBtn.disabled = true; // Disable the button after successful auction
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Auction successful!',
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                        window.location.href = '/auctiontoday';
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+        });
+
+
+
+
+
+
+
+
+        show();
+        function show() {
+            fetch('/data')
+                .then(function (response) {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw Error('Bad response');
+                })
+                .then(function (data) {
+                    let show = '';
+                    data.forEach(function (datamem) {
+                        show = datamem.truename;
+                        username.innerHTML = show;
+
+                    })
+
+                        .catch(function (err) {
+                            alert(err);
+                        });
+                })
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //06/11/2023 auctionDateEndParam
+        //16:00:00 auctionEndTime
+        var auctionEndDateTime = auctionDateEndParam.split("/");
+
+        const monthset = ["m", "Jan", "Feb", "March", "April", "May", "June", "July", "August", "September", "October", "Nov", "December"];
+
+        let namemon = monthset[auctionEndDateTime[1]];
+
+
+
+
+        var auctionEndDateTimeset = namemon + " " + auctionEndDateTime[0] + ", " + auctionEndDateTime[2] + " " + auctionEndTime;
+
+        var countDownDate = new Date(auctionEndDateTimeset).getTime();
+
+
+        // Update the count down every 1 second
+        var x = setInterval(function () {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in an element with id="demo"
+
+            // If the count down is over, write some text 
+            if (distance < 0 || distance == 0 || distance == null || distance == "") {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "0d 0h 0m 0s";
+                //colorstatusElement.style.backgroundColor = "#EAADAF";
+                //document.getElementById('btnAuction').style.display = 'none'; 
+            } else {
+                document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+                    + minutes + "m " + seconds + "s ";
+
+            }
+        }, 1000);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //=============================== root ============================//
+        document.querySelector('#button-back').onclick = function () {
+            location.assign('/auctiontoday');
+        }
+
+        document.querySelector('#summaryBtn').onclick = function () {
+            location.assign('/summary');
+        }
+
+
+    </script>
 
 </body>
 

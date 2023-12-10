@@ -1,6 +1,5 @@
 body,
 html {
-    font-family: 'Inter';
     background-size: 100%;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -9,7 +8,7 @@ html {
 }
 
 #navhome {
-    background-color: #00672F;
+    background-color: #6C915F;
 }
 
 #taladH {
@@ -24,7 +23,12 @@ html {
     margin-right: 7em;
     color: white;
     border: none;
-    background-color: #00672F
+    background-color: #6C915F
+}
+
+.dropdown-menu {
+    left: 50%;
+    transform: translateX(-25%);
 }
 
 #textuse {
@@ -45,11 +49,15 @@ html {
 }
 
 #navmenu {
-    background-color: #322213;
+    background-color: #B99470;
 }
 
 .btn {
     color: white;
+}
+
+#btn1 {
+    border-left: 2px solid #9D8977;
 }
 
 #btn1:hover {
@@ -107,10 +115,10 @@ html {
 }
 
 #taladpramul {
-    background-color: #00672F;
+    background-color: #8AAE75;
     margin-top: 5em;
     margin-left: 15em;
-    border: 10px solid #007F3A;
+    border: 10px solid #708E60;
     border-radius: 15px;
     padding-left: 3em;
 }
@@ -130,11 +138,11 @@ html {
     color: white;
 }
 
-#addmarket {
-    background-color: #A9B0EC;
+#addmarket, #addmarket2 {
+    background-color: white;
     border: none;
     padding-right: 2em;
-    margin-left: 21.24em;
+    margin-left: 6em;
     margin-top: 3em;
 }
 
@@ -150,21 +158,21 @@ html {
     margin-bottom: 0;
 }
 
-.table td {
+/* .table td {
     white-space: nowrap;
     text-align: center;
-}
+} */
 
 
 .table thead {
-    text-align: center;
     position: sticky;
 }
 
 
 .my-custom-scrollbar {
     position: relative;
-    height: 200px;
+    height: 30em;
+    width: 70em;
     overflow: auto;
 }
 
@@ -205,7 +213,7 @@ html {
 }
 
 #button-back {
-    position: fixed;
+    /* position: fixed; */
     top: 30em;
     border-radius: 2em;
     border: .2em;
@@ -213,8 +221,8 @@ html {
     color: #000;
 }
 
-#state-menu {
-    background-color: #9F6E3F;
+#state-menu, #state-menu1, #state-menu2, #state-menu3 {
+    background-color: #B99470;
     margin: 0;
     width: 100%;
     padding: 0.2em;
@@ -278,12 +286,8 @@ html {
     border-bottom-color: #000;
 }
 
-#button-home-news, #button-home-newsauc {
-    background-color: white;
-    border: 1px solid #828080;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    padding-right: 2em;
-}
 
 
+img.pointer-cursor {
+    cursor: pointer;
+  }

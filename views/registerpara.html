@@ -31,7 +31,7 @@
         background-position: center;
     }
 
-    div {
+    #bg-from {
         width: 500px;
         height: 850px;
         border-radius: 20px;
@@ -108,33 +108,166 @@
     input[type='checkbox'] {
         accent-color: #FF6426;
     }
+
+    .password-container {
+        position: relative;
+        width: 100%;
+    }
+
+    .field-icon {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
 </style>
 
 <body>
+
+
     <center>
-        <div class="bg-img">
-            <form action="/action_page.php" class="container">
+        <div class="container" id="bg-from" style="margin-top: 6em; ">
+            <form class="container">
                 <center><img src="/public/img/logo.png" alt="Avatar" width="30%"></center>
                 <center>
                     <h3>REGISTER</h3>
                 </center>
 
-                <input type="text" placeholder="Username" name="uname" required>
-                <input type="password" placeholder="Password" name="psw" required>
-                <input type="password" placeholder="Confirm password" name="Cfpsw" required>
-                <input type="text" placeholder="Name-Lastname" name="" required>
-                <input type="text" placeholder="Company" name="" required>
-                <input type="text" placeholder="Address" name="" required>
-                <input type="text" placeholder="Email" name="" required>
-                <input type="text" placeholder="Phonenumber" name="" required>
+                <input type="text" placeholder="Username" name="username" required>
+
+                <div class="password-container">
+                    <input type="password" placeholder="Password" id="txtPassword" name="psw" required>
+                    <span toggle="#txtPassword" class="field-icon toggle-password">แสดง</span>
+                </div>
+
+                <div class="password-container">
+                    <input type="password" placeholder="Confirm password" id="conPassword" name="Cfpsw" required>
+                    <span toggle="#conPassword" class="field-icon toggler-password">แสดง</span>
+                </div>
+
+
+                <input type="text" placeholder="Name-Lastname" name="name" required>
+                <input type="text" placeholder="Company" name="company" required>
+                <input type="text" placeholder="Address" name="address" required>
+                <input type="text" placeholder="Email" name="email" required>
+                <input type="text" placeholder="Phonenumber" name="phonenumber" required>
                 <br>
-                <button type="sumit" value="SIGN IN" id="signin" class="signin center">Comfirm</button>
-                <button type="sumit" value="Cancel" id="cancel" class="cancel center">Cancel</button>
+                <button type="submit" value="Comfirm" id="submitBtn" class="signin center">Comfirm</button>
+                <button type="button" value="Cancel" id="cancel" class="cancel center">Cancel</button>
 
         </div>
 
         </form>
     </center>
+
+
+
+
+
+
+
+
+    <script>
+
+        submitBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            const username = document.querySelector("input[name='username']").value;
+            const password = document.querySelector("input[name='psw']").value;
+            const confirmPassword = document.querySelector("input[name='Cfpsw']").value;
+            const name = document.querySelector("input[name='name']").value;
+            const company = document.querySelector("input[name='company']").value;
+            const address = document.querySelector("input[name='address']").value;
+            const email = document.querySelector("input[name='email']").value;
+            const phonenumber = document.querySelector("input[name='phonenumber']").value;
+
+            if (password !== confirmPassword) {
+                alert("การยืนยัน Password ไม่ถูกต้อง");
+                return;
+            }
+
+            // ตรวจสอบ username จากเซิร์ฟเวอร์
+            fetch(`/check-username/${username}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.exists) {
+                        // Username มีผู้ใช้งานแล้ว
+                        alert("Username มีผู้ใช้งานแล้ว");
+                    } else {
+                        // ถ้า username ยังไม่มีอยู่
+                        // ทำการส่งข้อมูลไปยังฐานข้อมูลเหมือนเดิม
+                        fetch("/register", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({
+                                username,
+                                password,
+                                name,
+                                company,
+                                address,
+                                email,
+                                phonenumber,
+                            }),
+                        })
+                            .then((response) => response.json())
+                            .then((data) => {
+                                if (data.message === "บันทึกข้อมูลสำเร็จ") {
+                                    alert("ลงทะเบียนสำเร็จ");
+                                    window.location.href = "/"; // ลิ้งค์ไปยังหน้าหลักหลังจากการลงทะเบียนสำเร็จ
+                                } else {
+                                    alert("มีข้อผิดพลาดในการลงทะเบียน");
+                                }
+                            });
+                    }
+                })
+                .catch((error) => console.error(error));
+        });
+
+
+
+
+
+        // เพิ่ม JavaScript เพื่อเปลี่ยนข้อความแสดงรหัส
+        document.querySelector('.toggle-password').addEventListener('click', function () {
+            const passwordInput = document.querySelector(this.getAttribute('toggle'));
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                this.textContent = 'ซ่อน'; /* เปลี่ยนข้อความเป็น "ซ่อน" เมื่อรหัสถูกแสดง */
+            } else {
+                passwordInput.type = 'password';
+                this.textContent = 'แสดง'; /* เปลี่ยนข้อความเป็น "แสดง" เมื่อรหัสถูกซ่อน */
+            }
+        });
+
+        document.querySelector('.toggler-password').addEventListener('click', function () {
+            const passwordInput = document.querySelector(this.getAttribute('toggle'));
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                this.textContent = 'ซ่อน'; /* เปลี่ยนข้อความเป็น "ซ่อน" เมื่อรหัสถูกแสดง */
+            } else {
+                passwordInput.type = 'password';
+                this.textContent = 'แสดง'; /* เปลี่ยนข้อความเป็น "แสดง" เมื่อรหัสถูกซ่อน */
+            }
+        });
+
+        
+
+
+
+        //====================== root ===============================//
+        // การกำหนดการคลิกปุ่ม Cancel
+        document.querySelector('#cancel').addEventListener('click', () => {
+            location.assign('/'); // ไปยังหน้าหลัก
+        });
+
+
+
+    </script>
 
 </body>
 

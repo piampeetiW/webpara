@@ -20,7 +20,8 @@
         margin-left: 2em;
         margin-top: 9em;
     }
-    #addauction:hover{
+
+    #addauction:hover {
         color: #000;
     }
 
@@ -38,7 +39,7 @@
     }
 
     .table {
-        background: #838383;
+        background-color: #fff;
         border-radius: 0.2rem;
         width: 100%;
         padding-bottom: 1rem;
@@ -49,8 +50,16 @@
 
     .table td {
         white-space: nowrap;
-        background-color: #D9D9D9;
+        background-color: #fff;
+        text-align: center;
+    }
+
+    .table tr {
         text-align: left;
+    }
+
+    .table th {
+        text-align: center;
     }
 
     .table thead {
@@ -59,7 +68,7 @@
 
     .my-custom-scrollbar {
         position: relative;
-        height: 300px;
+        height: 29em;
         overflow: auto;
     }
 
@@ -94,22 +103,25 @@
 
     #label-left {
         display: inline-block;
-        float: left;
+
         clear: left;
         width: 8em;
         text-align: left;
         margin-top: 0.5em;
     }
+
     #label-right {
         text-align: left;
         margin-top: .5em;
         margin-left: 1.5em;
     }
+
     .form-edit {
         display: inline-block;
-        float: left;
+
         margin-top: 0.5em;
     }
+
     .form-edit2 {
         display: inline-block;
         margin-top: 0.5em;
@@ -121,10 +133,29 @@
         margin-bottom: 0%;
     }
 
-    .btn-close{
+    .btn-close {
         float: right;
     }
-    
+
+    #btnA1,
+    #btnA2,
+    #btnA3,
+    #btnA4,
+    #btnA5,
+    #btnA6,
+    #btnA7 {
+        border: none;
+    }
+
+    #btnA1:hover,
+    #btnA2:hover,
+    #btnA3:hover,
+    #btnA4:hover,
+    #btnA5:hover,
+    #btnA6:hover,
+    #btnA7:hover {
+        background-color: #9F6E3F;
+    }
 </style>
 
 <body id="body">
@@ -136,11 +167,11 @@
                 </button>
                 <div class="dropdown">
                     <button type="button" id="username" class="btn" data-bs-toggle="dropdown"><img
-                        src="/public/img/userbutton.png" alt="" id="textuse"> Username</button>
+                            src="/public/img/userbutton.png" alt="" id="textuse"> Username</button>
 
                     <ul class="dropdown-menu" id="dropuser">
-                        <li><a class="dropdown-item" href="#"><img src="/public/img/userdrop.png" alt=""
-                                    id="img1">Profile</a></li>
+                        <li><a class="dropdown-item" href="#" id="profiledropM"><img src="/public/img/userdrop.png"
+                                    alt="" id="img1">Profile</a></li>
                         <li><a class="dropdown-item" href="#"><img src="/public/img/key.png" alt="" id="img1">Change
                                 Password</a></li>
                         <li><a class="dropdown-item" href="#"><img src="/public/img/auctionuser.png" alt=""
@@ -153,33 +184,34 @@
         </nav>
         <nav class="navbar" id="navmenu">
             <div class="btn-group" id="groupmenu">
-                <button type="button" class="btn" id="btn1">Home Page</button>
-                <button type="button" class="btn" id="btn2">Market Auction</button>
-                <button type="button" class="btn" id="btn3">Auction History</button>
-                <button type="button" class="btn" id="btn4">Profile</button>
-                <button type="button" class="btn" id="btn5">Auction Manual</button>
+                <button type="button" class="btn" id="btnA7">Add News</button>
+                <button type="button" class="btn" id="btnA2">Market</button>
+                <button type="button" class="btn" id="btnA3">Market Sub</button>
+                <button type="button" class="btn" id="btnA4" style="background-color: #9F6E3F;">Auction</button>
+                <button type="button" class="btn" id="btnA5">User</button>
+                <button type="button" class="btn" id="btnA6">Backup-Restore</button>
             </div>
         </nav>
     </div>
 
     <div>
-        <a href="/add-auction.html" >
-            <button type="button" class="btn" id="addauction">
+        <a>
+            <button type="button" class="btn" id="addauction" style="margin-left: 14em; margin-top: 10em;">
                 <img src="/public/img/plus-square.png" alt="" id="imgmark">
                 Add Auction
             </button>
         </a>
-        
-        <button type="button" class="btn" id="editauction" data-bs-toggle="modal" data-bs-target="#Modal-edit">
+
+        <!-- <button type="button" class="btn" id="editauction" data-bs-toggle="modal" data-bs-target="#Modal-edit">
             <img src="/public/img/edit.png" alt="" id="imgmark">
             Edit Auction
-        </button>
+        </button> -->
     </div>
 
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-9"></div>
         <div class="col-2">
-             <div class="dropdown mt-3" id="type">
+            <div class="dropdown mt-3" id="type">
                 <button id="type-button" data-bs-toggle="dropdown">
                     text
                     <img src="/public/img/chevron-down.png" id="chevron-down">
@@ -193,65 +225,70 @@
             </div>
         </div>
         <div class="col-1"></div>
-    </div>
+    </div> -->
 
-    <div class="container mb-4">
-        <div class="row mt-1">
-            <div class="col-1"></div>
-            <div class="col-10">
-                <div class="table-responsive my-custom-scrollbar">
-                    <table class="table table-bordered">
+    <div class="container" style="margin-right: 27em; ">
+        <div class="row mt-5">
+            <div class="col-2"></div>
+            <div class="col-5">
+                <div class="table-responsive  my-custom-scrollbar ">
+                    <!-- ส่วนตารางที่ไม่ใช่ค้นหา -->
+                    <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col" style="width:10%;"></th>
-                                <th scope="col" style="width:90%;">Name</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><img src="/public/img/search.png" alt="search"
-                                        style="width: 2em; margin-left: 1em;"></td>
-                                <td><input type="text" id="myInput" onkeyup="myFunction()" placeholder=""
-                                        style="width: 100%;"></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td><a data-bs-toggle="modal" data-bs-target="#Modal-detail">saDSASAd</a></td>
+
+                                <th>Edit</th>
+                                <th>Name</th>
+                                <th class="col-3">Market Sub Name</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th class="col-2">Start Auction</th>
+                                <th class="col-2">End Auction</th>
+                                <th>Picture</th>
+                                <th>Active</th>
+                                <th class="col-2">Summary Room</th>
 
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>saDSASAd</td>
-                            </tr>
-                            <tr>
+
+                                <td><input type="text" class="form-control" id="findM" placeholder="Search Name">
+                                </td>
+                                <td><input type="text" class="form-control" id="findSubM"
+                                        placeholder="Search Market Sub Name"></td>
+                                <td><input type="text" class="form-control" id="findtypeM" placeholder="Search Type">
+                                </td>
+                                <td><input type="text" class="form-control" id="findstatusM"
+                                        placeholder="Search Status"></td>
+                                <td><input type="text" class="form-control" id="findtimestartM"
+                                        placeholder="Search Start Auction"></td>
+                                <td><input type="text" class="form-control" id="findtimeEndM"
+                                        placeholder="Search End Auction"></td>
+                                <td><input type="text" class="form-control" id="findimgM" placeholder="Search Picture">
+                                <td><input type="text" class="form-control" id="findActiveM"
+                                        placeholder="Search Active"></td>
                                 <td></td>
-                                <td>saDSASAd</td>
+
                             </tr>
-                            <tr>
-                                <td></td>
-                                <td>saDSASAd</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>saDSASAd</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>saDSASAd</td>
-                            </tr>
+                        </thead>
+                        <tbody id="auctionDataBody">
+                            <!-- ข้อมูลตารางจะถูกเพิ่มที่นี่ -->
+
 
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class="col-1"></div>
+            <div class="col-3"></div>
         </div>
     </div>
 
-    <div class="modal " id="Modal-edit">
+
+
+    <!-- <div class="modal " id="Modal-edit">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-body">
+                <div class="modal-body" style="background-color: #FFF1DB;">
                     <label for="auction-Name" id="label-left">ชื่อห้องประมูล</label>
                     <input type="text" class="form-edit" id="auction-Name"><br>
 
@@ -271,7 +308,7 @@
                         <label for="end-auction" id="label-right">สิ้นสุดประมูล</label>
                         <input type="time" class="form-edit2" id="end-auction"><br>
                     </p>
-                    
+
 
                     <label for="type-rubber" id="label-left">ประเภท</label>
                     <input type="text" class="form-edit" id="type-rubber"><br>
@@ -289,32 +326,425 @@
                     <input type="text" class="form-edit" id="state">
 
 
-                </div>
+                </div> -->
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
+    <!-- Modal footer -->
+    <!-- <div class="modal-footer" style="background-color: #CAD7C2;">
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Confirm</button>
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancle</button>
                 </div>
 
             </div>
         </div>
-    </div>
-    <div class="modal " id="Modal-detail">
+    </div> -->
+
+    <!-- <div class="modal " id="Modal-detail">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-body">
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
-                <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-bs-dismiss="modal">Print Report</button>
                 </div>
 
             </div>
         </div>
+    </div> -->
+
+
+
+
+
+    <!-- //Modal แก้ไขข้อมูล// -->
+    <div class="modal fade" id="myModal2">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" id="windowMtalad">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Auction</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-2">
+                            <h6 id="textNtalad">ชื่อตลาด</h6>
+                        </div>
+                        <div class="col">
+
+                            <input type="text" class="form-control" placeholder="ชื่อห้องประมูล" id="editAuctionName">
+
+                        </div>
+                    </div>
+
+
+                    <!-- <div class="row">
+                        <div class="col-2">
+                            <h6 id="textstatus">เวลาเริ่มต้น</h6>
+                        </div>
+                        <div class="col" style="margin-top: 2em;">
+                            <input type="time" class="form-control" placeholder="เวลาเริ่มต้น" id="editTimeStart">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-2">
+                            <h6 id="textstatus">เวลาสิ้นสุด</h6>
+                        </div>
+                        <div class="col" style="margin-top: 2em;">
+                            <input type="time" class="form-control" placeholder="เวลาสิ้นสุด" id="editTimeEnd">
+                        </div>
+                    </div> -->
+
+
+                    <div class="row">
+                        <div class="col-2">
+                            <h6 id="textstatus">แสดงห้องประมูล</h6>
+                        </div>
+                        <div class="col" style="margin-top: 2em;">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="editStatusCheckbox" value="1">
+                                <label class="form-check-label" for="editStatusCheckbox">ใช้งาน</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                        onclick="editAuctionData()">Confirm</button>
+                    <button type="button" class="btn" data-bs-dismiss="modal"
+                        style="background-color: #DA0404;">Cancel</button>
+                </div>
+            </div>
+        </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+        fetch('/auctionData')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.querySelector('tbody');
+
+                const typeMapping = {
+                    1: 'น้ำยางสด (Feild Latex)',
+                    2: 'น้ำยางข้น (Concentrated Latex)',
+                    3: 'ยางแผ่นดิบชั้นดี (USS3)',
+                    4: 'ยางแผ่นดิบชั้นคละ (USS4-5)',
+                    5: 'ยางแผ่นรมควันชั้น 3 (RSS3)',
+                    6: 'ยางแผ่นรมควันชั้น 4 (RSS4)',
+                    7: 'ยางแผ่นรมควันชั้น 5 (RSS5)',
+                    8: 'ยางฟอง (Foam)',
+                    9: 'ยางคัตติ้ง (Cutting)',
+                    10: 'ยางก้อนถ้วย (Cup Lump)',
+                    11: 'ยางพรก (Prok Rubber)',
+                    12: 'เศษยาง (Scraps Rubber)',
+                    13: 'ยางเครพ (Crepe Rubber)'
+                };
+
+
+                data.forEach(row => {
+                    const tr = document.createElement('tr');
+
+                    const id = row.id;
+
+                    const td2 = document.createElement('td');
+                    const editIconImg = document.createElement('img');
+                    editIconImg.src = `/public/img/pencil.png`; // ใส่ URL รูปภาพจาก icon_edit
+                    editIconImg.alt = 'Edit Icon';
+                    editIconImg.style.width = '25px';
+                    editIconImg.classList.add('pointer-cursor');
+                    editIconImg.addEventListener('click', function () {
+                        // เรียกใช้งาน Modal เมื่อคลิกที่ Edit Icon
+                        const modal = new bootstrap.Modal(document.getElementById('myModal2'));
+                        modal.show();
+
+                        // นำข้อมูลของแถวที่คลิกแก้ไขมาเติมใน Modal
+                        document.getElementById('editAuctionName').value = row.name;
+                        document.getElementById('editStatusCheckbox').checked = row.active_room === 'Yes';
+
+                        // เพิ่ม event listener สำหรับปุ่ม "Confirm" ใน Modal แก้ไข
+                        document.querySelector('#myModal2 .btn-success').addEventListener('click', function () {
+                            // เรียกใช้ฟังก์ชันสำหรับแก้ไขข้อมูล
+                            editAuctionData(row.id);
+                        });
+                    });
+
+                    td2.appendChild(editIconImg);
+                    tr.appendChild(td2);
+
+                    const td3 = document.createElement('td');
+                    td3.textContent = row.name;
+                    tr.appendChild(td3);
+
+                    const td4 = document.createElement('td');
+                    td4.textContent = row.market_sub_name;
+                    tr.appendChild(td4);
+
+                    const td5 = document.createElement('td');
+                    td5.textContent = typeMapping[row.type];
+                    tr.appendChild(td5);
+
+                    const td6 = document.createElement('td');
+                    td6.textContent = row.Status;
+                    tr.appendChild(td6);
+
+                    const td7 = document.createElement('td');
+                    td7.textContent = row.Start_Auction;
+                    tr.appendChild(td7);
+
+                    const td8 = document.createElement('td');
+                    td8.textContent = row.End_Auction;
+                    tr.appendChild(td8);
+
+                    const td9 = document.createElement('td');
+                    td9.textContent = row.picture;
+                    tr.appendChild(td9);
+
+                    const td10 = document.createElement('td');
+                    td10.textContent = row.active_room;
+                    tr.appendChild(td10);
+
+                    const td11 = document.createElement('td');
+                    const editIconImg2 = document.createElement('img');
+                    editIconImg2.src = `/public/img/eye.png`; // ใส่ URL รูปภาพจาก icon_edit
+                    editIconImg2.alt = 'Edit Icon';
+                    editIconImg2.style.width = '25px';
+                    editIconImg2.classList.add('pointer-cursor');
+                    editIconImg2.addEventListener('click', function () {
+                        location.assign('/subsummary?id=' + id);
+                    });
+
+                    td11.appendChild(editIconImg2);
+                    tr.appendChild(td11);
+
+
+
+
+                    // เพิ่มแถวลงใน tbody
+                    tableBody.appendChild(tr);
+                });
+            })
+            .catch(error => {
+                console.error('เกิดข้อผิดพลาดในการดึงข้อมูลผ่าน API: ', error);
+            });
+
+
+
+
+
+        //--------------------------------------------------------------------//
+        function handleSearch() {
+            const inputName = document.getElementById('findM');
+            const inputSubName = document.getElementById('findSubM');
+            const inputType = document.getElementById('findtypeM');
+            const inputStatus = document.getElementById('findstatusM');
+            const inputStartTime = document.getElementById('findtimestartM');
+            const inputEndTime = document.getElementById('findtimeEndM');
+            const inputImage = document.getElementById('findimgM');
+            const inputActive = document.getElementById('findActiveM');
+
+            const filterName = inputName.value.toUpperCase();
+            const filterSubName = inputSubName.value.toUpperCase();
+            const filterType = inputType.value.toUpperCase();
+            const filterStatus = inputStatus.value.toUpperCase();
+            const filterStartTime = inputStartTime.value.toUpperCase();
+            const filterEndTime = inputEndTime.value.toUpperCase();
+            const filterImage = inputImage.value.toUpperCase();
+            const filterActive = inputActive.value.toUpperCase();
+
+
+            const table = document.querySelector('#auctionDataBody');
+            const rows = table.getElementsByTagName('tr');
+
+            let hasData = false;
+
+            for (let i = 0; i < rows.length; i++) {
+                const NameCell = rows[i].getElementsByTagName('td')[1];
+                const SubNameCell = rows[i].getElementsByTagName('td')[2];
+                const TypeCell = rows[i].getElementsByTagName('td')[3];
+                const StatusCell = rows[i].getElementsByTagName('td')[4];
+                const StartTimeCell = rows[i].getElementsByTagName('td')[5];
+                const EndTimeCell = rows[i].getElementsByTagName('td')[6];
+                const ImageCell = rows[i].getElementsByTagName('td')[7];
+                const ActiveCell = rows[i].getElementsByTagName('td')[8];
+
+                if (NameCell && SubNameCell && TypeCell && StatusCell && StartTimeCell && EndTimeCell && ImageCell && ActiveCell) {
+                    const NameValue = NameCell.textContent || NameCell.innerText;
+                    const SubNameValue = SubNameCell.textContent || SubNameCell.innerText;
+                    const TypeValue = TypeCell.textContent || TypeCell.innerText;
+                    const StatusValue = StatusCell.textContent || StatusCell.innerText;
+                    const StartTimeValue = StartTimeCell.textContent || StartTimeCell.innerText;
+                    const EndTimeValue = EndTimeCell.textContent || EndTimeCell.innerText;
+                    const ImageValue = ImageCell.textContent || ImageCell.innerText;
+                    const ActiveValue = ActiveCell.textContent || ActiveCell.innerText;
+
+                    const NameMatch = NameValue.toUpperCase().indexOf(filterName) > -1;
+                    const SubNameMatch = SubNameValue.toUpperCase().indexOf(filterSubName) > -1;
+                    const TypeMatch = TypeValue.toUpperCase().indexOf(filterType) > -1;
+                    const StatusMatch = StatusValue.toUpperCase().indexOf(filterStatus) > -1;
+                    const StartTimeMatch = StartTimeValue.toUpperCase().indexOf(filterStartTime) > -1;
+                    const EndTimeMatch = EndTimeValue.toUpperCase().indexOf(filterEndTime) > -1;
+                    const ImageMatch = ImageValue.toUpperCase().indexOf(filterImage) > -1;
+                    const ActiveMatch = ActiveValue.toUpperCase().indexOf(filterActive) > -1;
+
+                    if (NameMatch && SubNameMatch && TypeMatch && StatusMatch && StartTimeMatch && EndTimeMatch && ImageMatch && ActiveMatch) {
+                        rows[i].style.display = '';
+                        hasData = true;
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+            }
+
+            // หากไม่มีข้อมูลตรงกับคำค้นหาให้แสดงข้อความ "No data found"
+            if (!hasData) {
+                // สร้างแถวใหม่
+                const noDataRow = document.createElement('tr');
+                noDataRow.classList.add('no-data-row'); // เพิ่ม class 'no-data-row' เพื่อให้ง่ายต่อในการจัดการ
+                const noDataCell = document.createElement('td');
+                noDataCell.setAttribute('colspan', '3');
+                noDataCell.textContent = 'No data found';
+                noDataRow.appendChild(noDataCell);
+
+                // ตรวจสอบว่ามีแถว "No data found" อยู่ก่อนหน้านี้หรือไม่
+                const existingNoDataRow = table.querySelector('.no-data-row');
+                if (existingNoDataRow) {
+                    table.replaceChild(noDataRow, existingNoDataRow); // แทนที่แถว "No data found" ที่มีอยู่ก่อนหน้า
+                } else {
+                    table.appendChild(noDataRow); // เพิ่มแถว "No data found" หากยังไม่มี
+                }
+            } else {
+                // หากมีข้อมูลตรงกับคำค้นหาให้ลบแถว "No data found" ทิ้ง
+                const existingNoDataRow = table.querySelector('.no-data-row');
+                if (existingNoDataRow) {
+                    table.removeChild(existingNoDataRow);
+                }
+            }
+        }
+
+
+        document.getElementById('findM').addEventListener('keyup', handleSearch);
+        document.getElementById('findSubM').addEventListener('keyup', handleSearch);
+        document.getElementById('findtypeM').addEventListener('keyup', handleSearch);
+        document.getElementById('findstatusM').addEventListener('keyup', handleSearch);
+        document.getElementById('findtimestartM').addEventListener('keyup', handleSearch);
+        document.getElementById('findtimeEndM').addEventListener('keyup', handleSearch);
+        document.getElementById('findimgM').addEventListener('keyup', handleSearch);
+        document.getElementById('findActiveM').addEventListener('keyup', handleSearch);
+
+
+
+
+
+
+
+
+
+
+
+        function editAuctionData(id) {
+            const editedAuctionName = document.getElementById('editAuctionName').value;
+            const editedActive = document.getElementById('editStatusCheckbox').checked ? '1' : '0';
+
+            const editedAuctionData = {
+                id: id,
+                auction_name: editedAuctionName,
+                active: editedActive,
+            };
+
+            fetch('/edit_auction', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(editedAuctionData),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Response from server:', data);
+                    // รีเฟรชหน้าเว็บหลังจากแก้ไขข้อมูลสำเร็จ
+                    location.reload();
+                })
+                .catch(error => {
+                    console.error('Error editing market data:', error);
+                    // แสดงข้อความผิดพลาดให้กับผู้ใช้หรือจัดการข้อผิดพลาดนี้อย่างเหมาะสม
+                });
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        show();
+        function show() {
+            fetch('/data')
+                .then(function (response) {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw Error('Bad response');
+                })
+                .then(function (data) {
+                    let show = '';
+                    data.forEach(function (datamem) {
+                        show = datamem.truename;
+                        username.innerHTML = show;
+
+                    })
+
+                        .catch(function (err) {
+                            alert(err);
+                        });
+                })
+        }
+
+
+
+
+
+
+        //============================ root =======================//
+        document.querySelector('#addauction').onclick = function () {
+            location.assign('/addauctionroom');
+        }
+
+        document.querySelector('#profiledropM').onclick = function () {
+            location.assign('/profile');
+        }
+
+        document.querySelector('#btnhome').onclick = function () {
+            location.assign('/homepage');
+        }
+
+        document.querySelector('#btnA2').onclick = function () {
+            location.assign('/marketad');
+        }
+
+        document.querySelector('#btnA5').onclick = function () {
+            location.assign('/useradmin');
+        }
+    </script>
+
+
 
 </body>
 

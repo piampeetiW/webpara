@@ -9,13 +9,34 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/public/css/log.css">
-    <title>Market</title>
+    <title>Market Admin</title>
 </head>
+<style>
+    body,
+    html {
+        font-family: 'Inter';
+        background-size: 100%;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
 
+    #btnA1:hover,
+    #btnA2:hover,
+    #btnA3:hover,
+    #btnA4:hover,
+    #btnA6:hover {
+        background-color: #9F6E3F;
+    }
+
+    #btnA2 {
+        background-color: #9F6E3F;
+    }
+</style>
 
 <body id="body">
 
-    <div class="fixed-top">
+    <div class="">
         <nav class="navbar " id="navhome">
             <div class="container-fluid" id="home">
                 <button class="btn" type="button" id="btnhome">
@@ -41,65 +62,50 @@
 
         <div class="navbar" id="navmenu">
             <div class="btn-group" id="groupmenu">
-                <button type="button" class="btn" id="btn1">Market Auction</button>
-                <button type="button" class="btn" id="btn2">Market</button>
-                <button type="button" class="btn" id="btn3">Market Sub</button>
-                <button type="button" class="btn" id="btn4">Auction</button>
-                <button type="button" class="btn" id="btn5">User</button>
-                <button type="button" class="btn" id="btn6">Backup-Restore</button>
+                <button type="button" class="btn" id="btnA7">Add News</button>
+                <button type="button" class="btn" id="btnA2">Market</button>
+                <button type="button" class="btn" id="btnA3">Market Sub</button>
+                <button type="button" class="btn" id="btnA4">Auction</button>
+                <button type="button" class="btn" id="btnA5">User</button>
+                <button type="button" class="btn" id="btnA6">Backup-Restore</button>
             </div>
         </div>
 
-        <button id="addmarket" data-bs-toggle="modal" data-bs-target="#myModal"><img src="/public/img/plus-square.png"
-                alt="" id="imgmark">Add Market</button>
+        <button id="addmarket" style="background-color: #BBD8FA;" data-bs-toggle="modal" data-bs-target="#myModal"><img
+                src="/public/img/plus-square.png" alt="" id="imgmark">Add Market
+        </button>
 
 
 
 
-        <div class="container">
+        <div class="container" style="margin-right: 20em; margin-left: 6em;">
             <div class="row mt-5">
-                <div class="col-2"></div>
-                <div class="col-8">
-                    <div class="table-responsive my-custom-scrollbar">
+                <div class="col-5"></div>
+                <div class="col-12">
+                    <div class="table-responsive ">
+                        <!-- ส่วนตารางที่ไม่ใช่ค้นหา -->
                         <table class="table">
-                            <thead >
+                            <thead>
                                 <tr>
                                     <th scope="col">Action</th>
                                     <th scope="col">Market Name</th>
                                     <th scope="col">Active</th>
+                                    <th scope="col">Delete</th>
+
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><input type="text" class="form-control" id="findM"
+                                            placeholder="Search Market Name"></td>
+                                    <td><input type="text" class="form-control" id="findActiveM"
+                                            placeholder="Search Active"></td>
+                                    <td></td>
+
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                            <tbody id="marketDataBody">
+                                <!-- ข้อมูลตารางจะถูกเพิ่มที่นี่ -->
 
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-
-                                </tr>
 
                             </tbody>
                         </table>
@@ -109,44 +115,417 @@
             </div>
         </div>
 
-    </div>
 
-    <!-- The Modal -->
-    <div class="modal fade" id="myModal">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content" id="windowMtalad">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Add Market</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-2">
-                            <h6 id="textNtalad">ชื่อตลาด</h6>
+        <!-- //Modal เพิ่มข้อมูล// -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" id="windowMtalad">
+                    <div class="modal-header" style="background-color: #CAD7C2;">
+                        <h4 class="modal-title">Add Market</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body" style="background-color: #FFF1DB;">
+                        <div class="row">
+                            <div class="col-2">
+                                <h6 id="textNtalad">ชื่อตลาด</h6>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="ชื่อตลาด" name="NameTalad">
+                            </div>
                         </div>
-                        <div class="col">
-                            <input type="text" class="form-control" placeholder="ชื่อตลาด" name="NameTalad">
+                        <div class="row">
+                            <div class="col-2">
+                                <h6 id="textstatus">สถานะ</h6>
+                            </div>
+                            <div class="col" style="margin-top: 2em;">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="statusCheckbox" value="1">
+                                    <label class="form-check-label" for="statusCheckbox"></label>ใช้งาน
+                                </div>
+                            </div>
                         </div>
-                        <h6 id="textstatus">สถานะ</h6>
+                    </div>
+                    <div class="modal-footer" style="background-color: #CAD7C2;">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                            onclick="addMarketData()">Confirm</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                     </div>
                 </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Confirm</button>
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Cancel</button>
-                </div>
-
             </div>
         </div>
-    </div>
+
+
+
+
+        <!-- //Modal แก้ไขข้อมูล// -->
+        <div class="modal fade" id="myModal2">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" id="windowMtalad">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Edit Market</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-2">
+                                <h6 id="textNtalad">ชื่อตลาด</h6>
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="ชื่อตลาด" id="editMarketName">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                                <h6 id="textstatus">สถานะ</h6>
+                            </div>
+                            <div class="col" style="margin-top: 2em;">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="editStatusCheckbox" value="1">
+                                    <label class="form-check-label" for="editStatusCheckbox">ใช้งาน</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                            onclick="editMarketData()">Confirm</button>
+                        <button type="button" class="btn" data-bs-dismiss="modal"
+                            style="background-color: #DA0404;">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+        <script>
+
+            fetch('/markets')
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.querySelector('tbody');
+
+                    data.forEach(row => {
+
+
+
+                        const tr = document.createElement('tr');
+
+                        const id = row.id;
+
+                        const td2 = document.createElement('td');
+                        const editIconImg = document.createElement('img');
+                        editIconImg.src = `/public/img/pencil.png`; // ใส่ URL รูปภาพจาก icon_edit
+                        editIconImg.alt = 'Edit Icon';
+                        editIconImg.style.width = '25px';
+                        editIconImg.classList.add('pointer-cursor'); // เพิ่ม class 'pointer-cursor'
+                        editIconImg.addEventListener('click', function () {
+                            // เรียกใช้งาน Modal เมื่อคลิกที่ Edit Icon
+                            const modal = new bootstrap.Modal(document.getElementById('myModal2'));
+                            modal.show();
+
+                            // นำข้อมูลของแถวที่คลิกแก้ไขมาเติมใน Modal
+                            document.getElementById('editMarketName').value = row.market_name;
+                            document.getElementById('editStatusCheckbox').checked = row.active === 'Yes';
+
+                            document.querySelector('#myModal2 .btn-success').addEventListener('click', function () {
+                                // เรียกใช้ฟังก์ชันสำหรับแก้ไขข้อมูล
+                                editMarketData(row.id);
+                            });
+
+                        });
+                        td2.appendChild(editIconImg);
+                        tr.appendChild(td2);
+
+                        const td3 = document.createElement('td');
+                        td3.textContent = row.market_name;
+                        tr.appendChild(td3);
+
+                        const td4 = document.createElement('td');
+                        td4.textContent = row.active;
+                        tr.appendChild(td4);
+
+                        const td5 = document.createElement('td');
+                        const deleteButton = document.createElement('button');
+
+                        // กำหนดคุณสมบัติของปุ่มลบ
+                        deleteButton.textContent = 'Delete';
+                        deleteButton.classList.add('btn', 'btn-danger'); // เพิ่มคลาส 'btn' และ 'btn-danger'
+                        deleteButton.style.backgroundColor = '#DA0404';
+                        deleteButton.style.border = 'none';
+                        deleteButton.style.color = '#FFFFFF';
+                        deleteButton.style.cursor = 'pointer';
+
+                        // เพิ่ม event listener สำหรับปุ่มลบ
+                        deleteButton.addEventListener('click', function () {
+                            // เรียกใช้ฟังก์ชันที่คุณต้องการให้ทำงานเมื่อคลิกที่ปุ่มลบ
+                            // เช่น, ฟังก์ชันที่ลบข้อมูลตลาด
+                            deleteMarketData(row.id);
+                        });
+
+                        deleteButton.addEventListener('mouseenter', function () {
+                            deleteButton.style.backgroundColor = '#FF0000';
+                            deleteButton.style.color = '#000'
+                        });
+
+                        deleteButton.addEventListener('mouseleave', function () {
+                            deleteButton.style.backgroundColor = '#DA0404';
+                            deleteButton.style.color = '#FFFFFF'
+                        });
+
+                        td5.appendChild(deleteButton);
+                        tr.appendChild(td5);
+
+                        // เพิ่มแถวลงใน tbody
+                        tableBody.appendChild(tr);
+                    });
+                })
+                .catch(error => {
+                    console.error('เกิดข้อผิดพลาดในการดึงข้อมูลผ่าน API: ', error);
+                });
+
+
+
+
+
+
+
+
+            // ฟังก์ชันในการจัดการความสามารถในการค้นหา
+            function handleSearch() {
+                const inputMarketName = document.getElementById('findM');
+                const inputActive = document.getElementById('findActiveM');
+                const filterMarketName = inputMarketName.value.toUpperCase();
+                const filterActive = inputActive.value.toUpperCase();
+                const table = document.querySelector('#marketDataBody'); // เลือก tbody ของตารางที่มีข้อมูลจริง
+                const rows = table.getElementsByTagName('tr');
+
+                let hasData = false; // เพิ่มตัวแปรเพื่อตรวจสอบว่ามีข้อมูลตรงกับคำค้นหาหรือไม่
+
+                // วนลูปผ่านแถวของตารางทั้งหมดและซ่อนแถวที่ไม่ตรงกับคำค้นหา
+                for (let i = 0; i < rows.length; i++) {
+                    const marketNameCell = rows[i].getElementsByTagName('td')[1]; // ดัชนี 1 คือคอลัม "Market Name"
+                    const activeCell = rows[i].getElementsByTagName('td')[2]; // ดัชนี 2 คือคอลัม "Active"
+                    if (marketNameCell && activeCell) {
+                        const marketNameValue = marketNameCell.textContent || marketNameCell.innerText;
+                        const activeValue = activeCell.textContent || activeCell.innerText;
+                        const marketNameMatch = marketNameValue.toUpperCase().indexOf(filterMarketName) > -1;
+                        const activeMatch = activeValue.toUpperCase().indexOf(filterActive) > -1;
+
+                        // แสดงแถวที่ตรงกับคำค้นหาทั้งคอลัม Market Name และ Active
+                        if (marketNameMatch && activeMatch) {
+                            rows[i].style.display = '';
+                            hasData = true; // ตั้งค่าให้มีข้อมูลตรงกับคำค้นหา
+                        } else {
+                            rows[i].style.display = 'none';
+                        }
+                    }
+                }
+
+                // หากไม่มีข้อมูลตรงกับคำค้นหาให้แสดงข้อความ "No data found"
+                if (!hasData) {
+                    // สร้างแถวใหม่
+                    const noDataRow = document.createElement('tr');
+                    noDataRow.classList.add('no-data-row'); // เพิ่ม class 'no-data-row' เพื่อให้ง่ายต่อในการจัดการ
+                    const noDataCell = document.createElement('td');
+                    noDataCell.setAttribute('colspan', '3');
+                    noDataCell.textContent = 'No data found';
+                    noDataRow.appendChild(noDataCell);
+
+                    // ตรวจสอบว่ามีแถว "No data found" อยู่ก่อนหน้านี้หรือไม่
+                    const existingNoDataRow = table.querySelector('.no-data-row');
+                    if (existingNoDataRow) {
+                        table.replaceChild(noDataRow, existingNoDataRow); // แทนที่แถว "No data found" ที่มีอยู่ก่อนหน้า
+                    } else {
+                        table.appendChild(noDataRow); // เพิ่มแถว "No data found" หากยังไม่มี
+                    }
+                } else {
+                    // หากมีข้อมูลตรงกับคำค้นหาให้ลบแถว "No data found" ทิ้ง
+                    const existingNoDataRow = table.querySelector('.no-data-row');
+                    if (existingNoDataRow) {
+                        table.removeChild(existingNoDataRow);
+                    }
+                }
+            }
+
+
+            // เพิ่ม event listener เพื่อค้นหาข้อมูลเมื่อผู้ใช้พิมพ์ใน input box
+            document.getElementById('findM').addEventListener('keyup', handleSearch);
+            document.getElementById('findActiveM').addEventListener('keyup', handleSearch);
+
+
+
+
+
+
+
+
+
+
+
+
+            // ฟังก์ชันสำหรับเพิ่มข้อมูลตลาด
+            function addMarketData() {
+                const marketName = document.querySelector('input[name="NameTalad"]').value;
+                const activeCheckbox = document.querySelector('#statusCheckbox');
+                const active = activeCheckbox.checked ? '1' : '0';
+
+                // สร้างออบเจ็กต์เพื่อเก็บข้อมูลตลาดที่ต้องการเพิ่ม
+                const marketData = {
+                    market_name: marketName,
+                    active: active, // ใช้ค่า '1' หรือ '0' ที่ตรวจสอบจาก checkbox
+                };
+
+
+                // ส่งคำขอ HTTP POST ไปยังเซิร์ฟเวอร์พร้อมกับข้อมูลตลาด
+                fetch('/add_market', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(marketData),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // จัดการกับการตอบกลับจากเซิร์ฟเวอร์ (ถ้าต้องการ)
+                        console.log('Response from server:', data);
+
+                        // รีเฟรชหน้าเว็บหลังจากลบข้อมูลสำเร็จ
+                        location.reload();
+                    })
+                    .catch(error => {
+                        console.error('Error adding market data:', error);
+                        // แสดงข้อความผิดพลาดให้กับผู้ใช้หรือจัดการข้อผิดพลาดนี้อย่างเหมาะสม
+                    });
+            }
+
+
+
+
+            function editMarketData(id) {
+                // ดึงค่าจากฟอร์ม Modal แก้ไขข้อมูล
+                const editedMarketName = document.getElementById('editMarketName').value;
+                const editedActive = document.getElementById('editStatusCheckbox').checked ? '1' : '0';
+
+                // สร้างออบเจ็กต์เพื่อส่งข้อมูลไปยังเซิร์ฟเวอร์
+                const editedMarketData = {
+                    id: id,  // เพิ่ม ID ที่ระบุข้อมูลตลาดที่ต้องการแก้ไข
+                    market_name: editedMarketName,
+                    active: editedActive,
+                };
+
+                // ทำการส่งข้อมูลไปยังเซิร์ฟเวอร์ (ในที่นี้คือ /edit_market endpoint)
+                fetch('/edit_market', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(editedMarketData),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // จัดการกับการตอบกลับจากเซิร์ฟเวอร์ (ถ้าต้องการ)
+                        console.log('Response from server:', data);
+
+                        // รีเฟรชหน้าเว็บหลังจากลบข้อมูลสำเร็จ
+                        location.reload();
+                    })
+
+                    .catch(error => {
+                        console.error('Error editing market data:', error);
+                        // แสดงข้อความผิดพลาดให้กับผู้ใช้หรือจัดการข้อผิดพลาดนี้อย่างเหมาะสม
+                    });
+            }
+
+
+
+
+
+
+            function deleteMarketData(marketId) {
+                // ส่งคำขอ HTTP POST ไปยังเซิร์ฟเวอร์พร้อมกับ ID ของตลาดที่ต้องการลบ
+                fetch('/delete_market', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ id: marketId }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // จัดการกับการตอบกลับจากเซิร์ฟเวอร์ (ถ้าต้องการ)
+                        console.log('Response from server:', data);
+
+                        // รีเฟรชหน้าเว็บหลังจากลบข้อมูลสำเร็จ
+                        location.reload();
+                    })
+                    .catch(error => {
+                        console.error('Error deleting market data:', error);
+                        // แสดงข้อความผิดพลาดให้กับผู้ใช้หรือจัดการข้อผิดพลาดนี้อย่างเหมาะสม
+                    });
+            }
+
+
+
+
+            show();
+            function show() {
+                fetch('/data')
+                    .then(function (response) {
+                        if (response.ok) {
+                            return response.json();
+                        }
+                        throw Error('Bad response');
+                    })
+                    .then(function (data) {
+                        let show = '';
+                        data.forEach(function (datamem) {
+                            show = datamem.truename;
+                            username.innerHTML = show;
+
+                        })
+
+                            .catch(function (err) {
+                                alert(err);
+                            });
+                    })
+            }
+
+
+
+
+
+
+
+            //==================== root==============================================//
+
+            document.querySelector('#btnhome').onclick = function () {
+                location.assign('/homepage');
+            }
+
+            document.querySelector('#btnA5').onclick = function () {
+                location.assign('/useradmin');
+            }
+
+            document.querySelector('#btnA4').onclick = function () {
+                location.assign('/auctionAd');
+            }
+
+            document.querySelector('#btnA7').onclick = function () {
+                location.assign('/addnews');
+            }
+
+
+
+
+        </script>
 
 
 </body>
 
 </html>
-

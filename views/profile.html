@@ -21,11 +21,11 @@
     }
 
     #navhome {
-        background-color: #00672F;
+        background-color: #6C915F;
     }
 
     #navmenu {
-        background-color: #322213;
+        background-color: #B99470;
         padding-top: 5em;
     }
 
@@ -80,14 +80,14 @@
         font-size: 18px;
         text-align: left;
         color: #000000;
-        background-color: #EEEE;
+        background-color: #CAD7C2;
         display: flex;
     }
 
 
     #Edit {
         width: 10%;
-        background-color: #F5E12D;
+        background-color: #F3E29F;
         color: #000000;
         padding: 12px 20px;
         border: none;
@@ -101,12 +101,29 @@
 </style>
 
 <body id="body">
-    <div class="fixed-top">
-        <nav class="navbar " id="navhome">
+    <div class="">
+        <nav class="navbar fixed-top" id="navhome">
             <div class="container-fluid" id="home">
                 <button class="btn" type="button" id="btnhome">
                     <h3 id="taladH">ตลาดประมูลการยางภาคเหนือ</h3>
                 </button>
+                <div class="dropdown">
+                    <button type="button" id="username" class="btn" data-bs-toggle="dropdown"><img
+                            src="/public/img/userbutton.png" alt="" id="textuse"> Username</button>
+
+                    <ul class="dropdown-menu" id="dropuser">
+                        <li><a class="dropdown-item" href="#" id="profiledropM"><img src="/public/img/userdrop.png"
+                                    alt="" id="img1">Profile</a></li>
+                        <li><a class="dropdown-item" href="#" id="passworddropM"><img src="/public/img/key.png" alt=""
+                                    id="img1">Change
+                                Passwaord</a></li>
+                        <li><a class="dropdown-item" href="#" id="auctiondropM"><img src="/public/img/auctionuser.png"
+                                    alt="" id="img1">Auction</a></li>
+                        <li><a class="dropdown-item" href="#" id="logouthome"><img src="/public/img/logout.png" alt=""
+                                    id="img1">Log
+                                out</a></li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </div>
@@ -122,7 +139,7 @@
     </div>
     <br>
 
-    <form action="action_page.php">
+    <!-- <form action="action_page.php">
         <div class="container">
             <br>
             <br>
@@ -140,8 +157,139 @@
             </div>
         </center>
     </form>
-    <div class="d-flex justify-content-end " id="but"><button type="sumit" value="Confirm" id="Edit">EDIT</button></div>
+    <div class="d-flex justify-content-end " id="but"><button type="sumit" value="Confirm" id="Edit">EDIT</button></div> -->
 
+    <form action="action_page.php">
+        <div class="container">
+            <br>
+            <br>
+            <center><img src="/public/img/profile.png" alt="Avatar" width="8%"></center>
+        </div>
+        <center>
+            <div class="card">
+                <div id="uname" style="margin-left: 2em; margin-top: 0.7em;">Username:<span id="login-username"></span></div>
+                <div id="name" style="margin-left: 2em; margin-top: 0.7em;">Name - Lastname:</div>
+                <div id="company" style="margin-left: 2em; margin-top: 0.7em;">Company: </div>
+                <div id="email" style="margin-left: 2em; margin-top: 0.7em;">Email: </div>
+                <div id="phone" style="margin-left: 2em; margin-top: 0.7em;">Phonenumber: </div>
+                <div id="address" style="margin-left: 2em; margin-top: 0.7em;">Address: </div>
+            </div>
+        </center>
+    </form>
+
+    <div class="d-flex justify-content-end" id="but">
+        <button type="button" class="btn btn-primary" id="Edit">EDIT</button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit Personal Information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="update_profile.php" method="post">
+                        <div class="mb-3">
+                            <label for="avatar" class="form-label">Profile Picture:</label>
+                            <input type="file" class="form-control" id="avatar" name="avatar">
+                        </div>
+                        <div class="mb-3">
+                            <label for="avatar" class="form-label">Username:</label>
+                            <input type="button" class="form-control" id="usename" name="usename"
+                                style="cursor: context-menu; text-align: left; direction: rtl;">
+                        </div>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name - Lastname:</label>
+                            <input type="text" class="form-control" id="name" name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="company" class="form-label">Company:</label>
+                            <input type="text" class="form-control" id="company" name="company" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phonenumber:</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Address:</label>
+                            <textarea class="form-control" id="address" name="address" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+        <script>
+            document.querySelector('#logouthome').onclick = function () {
+                fetch("/logout")
+                    .then(function (response) {
+                        if (response.ok) {
+                            return response.text();
+                        }
+                        throw Error("Cannot logout");
+                    })
+                    .then(function (data) {
+                        location.replace(data);
+                    })
+                    .catch(function (error) {
+                        console.error(error);
+                    })
+
+            }
+
+
+
+
+
+            document.querySelector('#btnhome').onclick = function () {
+                location.assign('/homepage');
+            }
+
+            document.querySelector('#btn1').onclick = function () {
+                location.assign('/homepage');
+            }
+
+
+            document.querySelector('#auctiondropM').onclick = function () {
+                location.assign('/test');
+            }
+
+        </script>
+
+
+        <script>
+            var editBtn = document.getElementById("Edit");
+            var editModal = new bootstrap.Modal(document.getElementById("editModal"));
+
+            editBtn.addEventListener("click", function () {
+                editModal.show();
+            });
+
+            window.addEventListener('load', function () {
+                const usernameText = document.getElementById("uname").textContent;
+
+                const usenameInput = document.getElementById("usename");
+                usenameInput.value = usernameText.replace("Username: ", "");
+            });
+        </script>
+
+
+        <script>
+            // อ่านค่า username จาก URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const username = urlParams.get('username');
+
+            // ในส่วนของตำแหน่งที่ต้องการแสดง
+            const unameElement = document.getElementById("uname");
+            if (username) {
+                unameElement.textContent = "Username: " + username;
+            }
+        </script>
 
 
 

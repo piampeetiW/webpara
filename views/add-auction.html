@@ -9,18 +9,17 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/public/css/log.css">
-    <title>Market Auction</title>
+    <title>Add Auction</title>
 </head>
 
 <style>
     .card {
-        background-color: #eeeeee;
+        background-color: #FFF1DB;
         border-radius: 2em;
     }
 
     #label-left {
         display: inline-block;
-        float: left;
         clear: left;
         width: 150px;
         text-align: left;
@@ -34,7 +33,6 @@
 
     .form-add {
         display: inline-block;
-        float: left;
         margin-top: 1em;
         margin-right: 1em;
         border-color: #fff;
@@ -49,7 +47,7 @@
     .button-card {
         display: flex;
         justify-content: center;
-        margin-top: 1em;        
+        margin-top: 1em;
     }
 
     .sameline {
@@ -65,10 +63,10 @@
 
     input[type=file]::file-selector-button {
         border-radius: 2em;
-        background-color: #00672f;
+        background-color: #6C915F;
         color: #fff;
+        border-color: #6C915F;
     }
-
 </style>
 
 <body id="body">
@@ -80,7 +78,7 @@
                 </button>
                 <div class="dropdown">
                     <button type="button" id="username" class="btn" data-bs-toggle="dropdown"><img
-                        src="/public/img/userbutton.png" alt="" id="textuse"> Username</button>
+                            src="/public/img/userbutton.png" alt="" id="textuse"> Username</button>
 
                     <ul class="dropdown-menu" id="dropuser">
                         <li><a class="dropdown-item" href="#"><img src="/public/img/userdrop.png" alt=""
@@ -106,23 +104,37 @@
                 <div class="card px-4 py-1 mx-5">
                     <div class="card-body">
                         <p>
-                            <label for="auction-room" id="label-left">ห้องประมูล</label>
-                            <input type="text" class="form-add" id="auction-room">
+                            <label for="roomauc" id="label-left">ห้องประมูล</label>
+                            <input type="text" class="form-add" id="roomauc">
                         </p>
 
-                        <p>
+                        <!-- <p>
                             <label for="picture" id="label-left">รูปภาพ, วีดีโอ</label>
                             <input type="file" class="form-add" id="picture">
-                        </p>
+                        </p> -->
 
                         <p>
                             <label for="small-market-Name" id="label-left">ตลาดย่อย</label>
-                            <input type="text" class="form-add" id="small-market-Name">
+                            <select class="form-add" id="state-select1">
+                                <option value="option1">กยท.จ.เชียงราย</option>
+                                <option value="option2">กยท.จ.พะเยา</option>
+                                <option value="option3">กยท.จ.เชียงใหม่</option>
+                                <option value="option4">กยท.จ.แพร่</option>
+                                <option value="option5">กยท.จ.น่าน</option>
+                                <option value="option6">กยท.จ.แม่ฮ่องสอน</option>
+
+                            </select>
                         </p>
 
                         <p>
                             <label for="type-rubber" id="label-left">ประเภท</label>
-                            <input type="text" class="form-add" id="type-rubber">
+                            <select class="form-add" id="state-select3">
+                            </select>
+                        </p>
+
+                        <p>
+                            <label for="type-rubber" id="label-left">จำนวน</label>
+                            <input type="text" class="form-add" id="totalrub">
                         </p>
 
                         <p>
@@ -131,8 +143,15 @@
                         </p>
 
                         <p>
+                            <label for="type-rubber" id="label-left">ราคาเริ่มต้น</label>
+                            <input type="text" class="form-add" id="amount-start">
+                        </p>
+
+                        <p class="sameline">
                             <label for="date" id="label-left">วันที่ประมูล</label>
-                            <input type="date" class="form-add" id="date">
+                            <input type="date" class="form-add" id="auction-date">
+                            <label for="date" id="label-left">วันที่สิ้นสุดการประมูล</label>
+                            <input type="date" class="form-add" id="auction-date-end">
                         </p>
 
                         <p class="sameline">
@@ -145,17 +164,24 @@
 
                         <p class="sameline">
                             <label for="state" id="label-left">สถานะ</label>
-                            <input type="text" class="form-add" id="state">
-                            <input type="checkbox" class="form-add2" id="show-price"
-                                style="margin-right: 0.5em; margin-top: 1.5em; margin-left: 1em;">
-                            <label for="show-price" id="label-right">โชว์ราคา</label>
+                            <!-- <select class="form-add" id="state-select2">
+                                <option value="1">รอประมูล</option>
+                                <option value="2">กำลังประมูล</option>
+                                <option value="3">ประมูลเสร็จสิ้น</option>
+                            </select> -->
+                            <input style="margin-right: 0.5em; margin-left: 1em; margin-top: 1.3em;"
+                                class="form-check-input" type="checkbox" id="ActiveCheckbox" value="1">
+                            <label class="form-check-label" for="ActiveCheckbox">แสดงห้องประมูล</label>
                         </p>
+
 
                     </div>
                     <div>
                         <p class="button-card">
-                            <a href="#" class="btn btn-success mx-1" id="card-btn">Confirm</a>
-                            <a href="#" class="btn btn-danger mx-1" id="card-btn">Cancle</a>
+                            <button type="button" class="btn btn-success" id="confirmBtn"
+                                href="/auctionAd">บันทึก</button>
+                            <a href="/auctionAd" class="btn mx-1" id="card-btn2"
+                                style="background-color: #DA0404;">ยกเลิก</a>
                         </p>
                     </div>
                 </div>
@@ -167,6 +193,134 @@
         </div>
 
     </div>
+
+
+
+    <script>
+
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const confirmBtn = document.getElementById("confirmBtn");
+            const auctionRoomInput = document.getElementById("roomauc");
+            const marketSubSelect = document.getElementById("state-select1");
+            const typeRubSelect = document.getElementById("state-select3");
+            const totalRubInput = document.getElementById("totalrub");
+            const priceInput = document.getElementById("price");
+            const amountStartInput = document.getElementById("amount-start");
+            const auctionDateInput = document.getElementById("auction-date");
+            const auctionDateEndInput = document.getElementById("auction-date-end");
+            const startAuctionInput = document.getElementById("start-auction"); // เพิ่มบรรทัดนี้
+            const endAuctionInput = document.getElementById("end-auction"); // เพิ่มบรรทัดนี้
+            const activeCheckbox = document.getElementById("ActiveCheckbox");
+            const active = activeCheckbox.checked ? '1' : '0';
+
+
+            confirmBtn.addEventListener("click", () => {
+                const auctionName = auctionRoomInput.value;
+                const marketSubName = marketSubSelect.value;
+                const typeRubberValue = typeRubSelect.value;
+                const totalRubber = totalRubInput.value;
+                const price = priceInput.value;
+                const amountStart = amountStartInput.value;
+                const auctionDate = auctionDateInput.value;
+                const auctionDateEnd = auctionDateEndInput.value;
+                const startAuction = startAuctionInput.value; // เพิ่มบรรทัดนี้
+                const endAuction = endAuctionInput.value; // เพิ่มบรรทัดนี้
+                const active = activeCheckbox.value; // เพิ่มบรรทัดนี้
+
+
+
+
+                const auctionData = {
+                    auction_name: auctionName,
+                    market_sub_name: marketSubName,
+                    type_rubber_value: typeRubberValue, // ส่ง ID แทนค่าข้อความ
+                    total_rubber: totalRubber,
+                    price: price,
+                    amount_start: amountStart,
+                    auction_date: auctionDate,
+                    auction_date_end: auctionDateEnd,
+                    start_auction: startAuction, // เพิ่มบรรทัดนี้
+                    end_auction: endAuction, // เพิ่มบรรทัดนี้
+                    active_room: active
+                };
+
+                fetch('/edit_auction', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(auctionData),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Response from server:', data);
+                        // Reload the page
+                        window.location.href = '/auctionAd';
+                    })
+                    .catch(error => {
+                        console.error('Error adding auction data:', error);
+                        // แสดงข้อความผิดพลาดให้กับผู้ใช้หรือจัดการข้อผิดพลาดนี้อย่างเหมาะสม
+                    });
+            });
+        });
+
+
+
+
+
+
+
+
+
+        // เรียก API /type_rub เมื่อหน้าเว็บโหลดเสร็จ
+        window.addEventListener('DOMContentLoaded', (event) => {
+            fetch('/type_rub')
+                .then(response => response.text())
+                .then(optionsHtml => {
+                    // เลือกตำแหน่งของ <select> โดยใช้ id และเพิ่ม <option> จากข้อมูลที่ได้
+                    document.querySelector('#state-select3').innerHTML = optionsHtml;
+                })
+                .catch(error => {
+                    console.error('Error fetching type rubber data:', error);
+                });
+        });
+
+
+
+
+
+
+
+
+
+        document.querySelector('#logouthome').onclick = function () {
+            fetch("/logout")
+                .then(function (response) {
+                    if (response.ok) {
+                        return response.text();
+                    }
+                    throw Error("Cannot logout");
+                })
+                .then(function (data) {
+                    location.replace(data);
+                })
+                .catch(function (error) {
+                    console.error(error);
+                })
+
+        }
+
+
+
+
+
+
+
+
+
+    </script>
 
 
 

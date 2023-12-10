@@ -26,17 +26,6 @@
         font-size: medium;
         margin-top: 1em;
     }
-
-    #select {
-        font-size: medium;
-        font-weight: bolder;
-        background-color: #F5E12D;
-        width: 10em;
-        height: 2.5em;
-        border-radius: 1.2em;
-        border-color: #ffffff;
-        margin-top: 0.5em;
-    }
 </style>
 
 <body id="body">
@@ -48,17 +37,18 @@
                 </button>
                 <div class="dropdown">
                     <button type="button" id="username" class="btn" data-bs-toggle="dropdown"><img
-                        src="/public/img/userbutton.png" alt="" id="textuse"> Username</button>
-
+                            src="/public/img/userbutton.png" alt="" id="textuse"> Username</button>
 
                     <ul class="dropdown-menu" id="dropuser">
-                        <li><a class="dropdown-item" href="#"><img src="/public/img/userdrop.png" alt=""
-                                    id="img1">Profile</a></li>
-                        <li><a class="dropdown-item" href="#"><img src="/public/img/key.png" alt="" id="img1">Change
+                        <li><a class="dropdown-item" href="#" id="profiledropM"><img src="/public/img/userdrop.png"
+                                    alt="" id="img1">Profile</a></li>
+                        <li><a class="dropdown-item" href="#" id="passworddropM"><img src="/public/img/key.png" alt=""
+                                    id="img1">Change
                                 Passwaord</a></li>
-                        <li><a class="dropdown-item" href="#"><img src="/public/img/auctionuser.png" alt=""
-                                    id="img1">Auction</a></li>
-                        <li><a class="dropdown-item" href="#"><img src="/public/img/logout.png" alt="" id="img1">Log
+                        <li><a class="dropdown-item" href="#" id="auctiondropM"><img src="/public/img/auctionuser.png"
+                                    alt="" id="img1">Auction</a></li>
+                        <li><a class="dropdown-item" href="#" id="logouthome"><img src="/public/img/logout.png" alt=""
+                                    id="img1">Log
                                 out</a></li>
                     </ul>
                 </div>
@@ -67,9 +57,8 @@
         <nav class="navbar" id="navmenu">
             <div class="btn-group" id="groupmenu">
                 <button type="button" class="btn" id="btn1">Home Page</button>
-                <button type="button" class="btn" id="btn2">Market Auction</button>
-                <button type="button" class="btn" id="btn3">Auction History</button>
-                <button type="button" class="btn" id="btn4">Profile</button>
+                <button type="button" class="btn" id="btn2"
+                    style="background-color: #9F6E3F; color: black;">Market</button>
                 <button type="button" class="btn" id="btn5">Auction Manual</button>
             </div>
         </nav>
@@ -78,65 +67,228 @@
     <div>
         <h2 style="padding-top:4.5em ;padding-bottom: 0.5em;text-align:center;">ตลาดใหญ่</h2>
 
-        <div class="row">
-            <div class="col-sm-6" style="padding-left: 11.3em;">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="/public/img/hammer.png" alt="hammer" id="hammer">
-                        <p id="area">ตลาดประมูลยางภูมิภาคเหนือ</p>
-                        <button id="select">เลือก</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <img src="/public/img/hammer.png" alt="hammer" id="hammer">
-                        <p id="area">ตลาดประมูลยางภูมิภาคกลาง</p>
-                        <button id="select">เลือก</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <img src="/public/img/hammer.png" alt="hammer" id="hammer">
-                        <p id="area">ตลาดประมูลยางภูมิภาคใต้ฝั่งตะวันออก</p>
-                        <button id="select">เลือก</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6" style="padding-left: 4.9em;">
-                <div class="card">
-                    <div class="card-body">
-                        <img src="/public/img/hammer.png" alt="hammer" id="hammer">
-                        <p id="area">ตลาดประมูลยางภูมิภาคตะวันออกเฉียงเหนือ</p>
-                        <button id="select">เลือก</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <img src="/public/img/hammer.png" alt="hammer" id="hammer">
-                        <p id="area">ตลาดประมูลยางภูมิภาคตะวันออกรวมทั้งชายฝั่ง</p>
-                        <button id="select">เลือก</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <img src="/public/img/hammer.png" alt="hammer" id="hammer">
-                        <p id="area">ตลาดประมูลยางภูมิภาคใต้ฝั่งตะวันตก</p>
-                        <button id="select">เลือก</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="card" style="margin-left: auto; margin-right: auto;">
+    </div>
+
+    <!-- <div class="row" id="cardbigm">
+
+        <div class="col-sm-6" style="padding-left: 11.3em;" id="leftbigm">
+            <div class="card">
                 <div class="card-body">
-                    <img src="/public/img/hammer.png" alt="hammer" id="hammer">
+                    <img src="/public/img/auctionuser.png" alt="hammer" id="hammer">
+                    <p id="area">ตลาดประมูลยางภูมิภาคเหนือ</p>
+                    <button id="select">เลือก</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <img src="/public/img/auctionuser.png" alt="hammer" id="hammer">
+                    <p id="area">ตลาดประมูลยางภูมิภาคกลาง</p>
+                    <button id="select">เลือก</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <img src="/public/img/auctionuser.png" alt="hammer" id="hammer">
+                    <p id="area">ตลาดประมูลยางภูมิภาคใต้ฝั่งตะวันออก</p>
+                    <button id="select">เลือก</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <img src="/public/img/auctionuser.png" alt="hammer" id="hammer">
                     <p id="area">ตลาดประมูลยาง กรุงเทพมหานครและปริมณฑล</p>
                     <button id="select">เลือก</button>
                 </div>
             </div>
+
+        </div>
+
+        <div class="col-sm-6" style="padding-left: 4.9em;" id="rightbigm">
+            <div class="card">
+                <div class="card-body">
+                    <img src="/public/img/auctionuser.png" alt="hammer" id="hammer">
+                    <p id="area">ตลาดประมูลยางภูมิภาคตะวันออกเฉียงเหนือ</p>
+                    <button id="select">เลือก</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <img src="/public/img/auctionuser.png" alt="hammer" id="hammer">
+                    <p id="area">ตลาดประมูลยางภูมิภาคตะวันออกรวมทั้งชายฝั่ง</p>
+                    <button id="select">เลือก</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <img src="/public/img/auctionuser.png" alt="hammer" id="hammer">
+                    <p id="area">ตลาดประมูลยางภูมิภาคใต้ฝั่งตะวันตก</p>
+                    <button id="select">เลือก</button>
+                </div>
+            </div>
+        </div>
+
+    </div> -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6" style="padding-left: 11.3em;" id="leftbigm">
+                <!-- Left Side -->
+
+            </div>
+            <div class="col-sm-6" style="padding-left: 4.9em; " id="rightbigm">
+                <!-- Right Side -->
+            </div>
         </div>
     </div>
 
+
+    <script>
+
+
+
+
+
+
+
+
+
+
+        fetch('/markets')
+            .then(response => response.json())
+            .then(markets => {
+                // Filter markets with active status 'Yes'
+                const activeMarkets = markets.filter(market => market.active === 'Yes');
+
+                // Split active markets into odd and even numbers
+                const oddMarkets = activeMarkets.filter((_, index) => index % 2 === 0);
+                const evenMarkets = activeMarkets.filter((_, index) => index % 2 !== 0);
+
+                // Function to create a card element
+                function createCard(market) {
+                    const card = document.createElement('div');
+                    card.style.backgroundColor = '#CAD7C2'; // เพิ่มสีพื้นหลัง
+                    card.className = 'card';
+                    card.innerHTML = `
+        <div class="card-body">
+          <img src="/public/img/auctionuser.png" alt="hammer" id="hammer">
+          <p id="area">${market.market_name}</p>
+          <button id="${market.id}" class="select-button" style="background-color: #FFF1DB; border: none; border-radius: 25px; width: 5em;" data-market-id="${market.id}"><h6 id="textbigM" style="margin-top: 0.4em;">เลือก</h6></button>
+        </div>
+      `;
+
+                    const selectButton = card.querySelector('.select-button');
+                    selectButton.style.transition = 'opacity 0.3s ease-in-out'; // เพิ่มการเปลี่ยน opacity อย่างนุ่มๆ
+
+                    selectButton.addEventListener('mouseenter', function () {
+                        selectButton.style.opacity = '1.0'; // ลด opacity เมื่อ hover
+                        selectButton.style.color = '#B99470'; // สีข้อความเมื่อ hover
+                    });
+
+                    selectButton.addEventListener('mouseleave', function () {
+                        selectButton.style.opacity = '1.0'; // เพิ่ม opacity เมื่อไม่ hover
+                        selectButton.style.color = '#000'; // สีข้อความเมื่อไม่ hover
+
+                    });
+
+                    return card;
+                }
+
+                // Append odd markets to the left side
+                const leftContainer = document.getElementById('leftbigm');
+                oddMarkets.forEach(market => {
+                    const card = createCard(market);
+                    leftContainer.appendChild(card);
+                });
+
+                // Append even markets to the right side
+                const rightContainer = document.getElementById('rightbigm');
+                evenMarkets.forEach(market => {
+                    const card = createCard(market);
+                    rightContainer.appendChild(card);
+                });
+
+                // // Add click event listener to select buttons
+                // const selectButtons = document.querySelectorAll('.select-button');
+
+                // selectButtons.forEach(button => {
+                //     button.addEventListener('click', function () {
+                //         const marketId = this.getAttribute('data-market-id');
+                //         location.assign(`/smallmarket?id=${marketId}`);
+                //     });
+                // });
+
+                // Add click event listener to select button with id 1
+                const selectButton1 = document.getElementById('1');
+
+                selectButton1.addEventListener('click', function () {
+                    location.assign('/smallmarket?id=1');
+                });
+            })
+            .catch(error => console.error('Error fetching markets:', error));
+
+
+
+
+
+
+
+
+        show();
+        function show() {
+            fetch('/data')
+                .then(function (response) {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw Error('Bad response');
+                })
+                .then(function (data) {
+                    let show = '';
+                    data.forEach(function (datamem) {
+                        show = datamem.truename;
+                        username.innerHTML = show;
+
+                    })
+
+                        .catch(function (err) {
+                            alert(err);
+                        });
+                })
+        }
+
+
+
+
+
+
+
+
+        //============================== root ===========================//
+        document.querySelector('#btnhome').onclick = function () {
+            location.assign('/homepage');
+        }
+
+        document.querySelector('#btn1').onclick = function () {
+            location.assign('/homepage');
+        }
+
+        document.querySelector('#btn3').onclick = function () {
+            location.assign('/historyauc');
+        }
+
+        document.querySelector('#btn4').onclick = function () {
+            location.assign('/profile');
+        }
+
+        document.querySelector('#profiledropM').onclick = function () {
+            location.assign('/profile');
+        }
+
+        // document.querySelector('#select').onclick = function () {
+        //     location.assign('/smallmarket');
+        // }
+
+    </script>
 
 
 </body>

@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/public/css/log.css">
-    <title>Market Auction</title>
+    <title>กยท.เชียงราย</title>
 </head>
 
 <style>
@@ -23,7 +23,7 @@
     }
 
     #state-menu {
-        background-color: #9F6E3F;
+        background-color: #B99470;
         margin: 0;
         width: 100%;
         padding: 0.2em;
@@ -39,17 +39,20 @@
     #btn-ed {
         color: #000;
     }
-    .useless-column{
+
+    .useless-column {
         width: 26%;
     }
-    .left-column{
+
+    .left-column {
         width: 37%;
     }
 
-    .right-column{
-        width: 37%; 
+    .right-column {
+        width: 37%;
     }
-    .card{
+
+    .card {
         width: 25em;
         height: 15em;
         margin-bottom: 1.5em;
@@ -58,42 +61,50 @@
     }
 </style>
 
-<body id="body" style="background-color: #d9d9d9;">
-    <div class="fixed-top">
-        <nav class="navbar " id="navhome">
-            <div class="container-fluid" id="home">
-                <button class="btn" type="button" id="btnhome">
-                    <h3 id="taladH">ตลาดประมูลการยางภาคเหนือ</h3>
-                </button>
-                <div class="dropdown">
-                    <button type="button" id="username" class="btn" data-bs-toggle="dropdown"><img
+<body id="body" style="background-color: #FFFFFF;" onload="updateClock()">
+
+
+    <nav class="navbar" id="navhome">
+        <div class="container-fluid" id="home">
+            <button class="btn" type="button" id="btnhome">
+                <h3 id="taladH">ตลาดประมูลการยางภาคเหนือ</h3>
+            </button>
+            <div class="dropdown ">
+                <button type="button" id="username" class="btn " data-bs-toggle="dropdown"><img
                         src="/public/img/userbutton.png" alt="" id="textuse"> Username</button>
 
-                    <ul class="dropdown-menu" id="dropuser">
-                        <li><a class="dropdown-item" href="#"><img src="/public/img/userdrop.png" alt=""
-                                    id="img1">Profile</a></li>
-                        <li><a class="dropdown-item" href="#"><img src="/public/img/key.png" alt="" id="img1">Change
-                                Passwaord</a></li>
-                        <li><a class="dropdown-item" href="#"><img src="/public/img/auctionuser.png" alt=""
-                                    id="img1">Auction</a></li>
-                        <li><a class="dropdown-item" href="#"><img src="/public/img/logout.png" alt=""
-                                    id="img1">Logout</a></li>
-                    </ul>
-                </div>
+                <ul class="dropdown-menu " id="dropuser">
+                    <li><a class="dropdown-item" href="#"><img src="/public/img/userdrop.png" alt=""
+                                id="img1">Profile</a></li>
+                    <li><a class="dropdown-item" href="#"><img src="/public/img/key.png" alt="" id="img1">Change
+                            Passwaord</a></li>
+                    <li><a class="dropdown-item" href="#"><img src="/public/img/auctionuser.png" alt=""
+                                id="img1">Auction</a></li>
+                    <li><a class="dropdown-item " href="#"><img src="/public/img/logout.png" alt="" id="img1">Logout</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-        <div class="container-fluid g-0">
+        </div>
+    </nav>
+
+
+    <div class="row">
+        <div class="container g-0 ">
             <div class="row g-0">
-                <div class="col-3 pt-3 px-4" style="background-color: #e9e9e9;height: 50em; margin: 0;">
+                <div class="col-3 pt-3 px-4 " style="background-color: #FFF1DB;  margin: 0;">
+
                     <p>ชื่อตลาดย่อย</p>
-                    <p>เวลาปัจจุบัน</p>
-                    <div class="btn btn-warning" id="button-back">
+                    <p id="clock">เวลาปัจจุบัน:</p>
+                    <div class="btn" id="button-back" style="background-color: #CE8F6C; position: sticky;">
                         <img src="/public/img/arrow.png" alt="" style="height: 1em;">
                         กลับ
                     </div>
+
                 </div>
+
                 <div class="col-3">
-                    <nav class="navbar" id="state-menu">
+
+                    <nav class="navbar" id="state-menu" style="border-bottom: solid #001AFF;">
                         <div class="btn-group">
                             <button type="button" class="btn" id="btn-today">
                                 <img src="/public/img/auctionuser.png" alt=""
@@ -102,7 +113,29 @@
                             </button>
                         </div>
                     </nav>
+
+
+
+                    <div class="navbar ">
+                        <div class="row ">
+                            <!-- <div class="useless-column"></div> -->
+                            <div class="left-column " id="left-auc">
+                                <!-- Left Side -->
+
+
+                            </div>
+                            <div class="right-column" id="right-auc" style="padding-left: 16em;">
+                                <!-- Right Side -->
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
                 </div>
+
                 <div class="col-3">
                     <nav class="navbar" id="state-menu">
                         <div class="btn-group">
@@ -112,6 +145,7 @@
                             </button>
                         </div>
                     </nav>
+
                 </div>
                 <div class="col-3">
                     <nav class="navbar" id="state-menu">
@@ -122,40 +156,356 @@
                             </button>
                         </div>
                     </nav>
+
                 </div>
+
             </div>
-        </div>
-    </div>
-    <div class="container" style="margin-top: 9em;">
-        <div class="row">
-            <div class="useless-column"></div>
-            <div class="left-column">
-                <div class="card" >
-                    <div class="card-body"></div>
-                </div>
-                <div class="card" >
-                    <div class="card-body"></div>
-                </div>
-                <div class="card" >
-                    <div class="card-body"></div>
-                </div>
-            </div>
-            <div class="right-column">
-                <div class="card" >
-                    <div class="card-body"></div>
-                </div>
-                <div class="card" >
-                    <div class="card-body"></div>
-                </div>
-                <div class="card" >
-                    <div class="card-body"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
 
 
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+
+
+
+        //========================== เวลา ===================//
+        function updateClock() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+
+            // เปลี่ยนเวลาให้อยู่ในรูปแบบไทย
+            var thaiTime = hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
+
+            document.getElementById('clock').innerHTML = "เวลาปัจจุบัน: " + thaiTime;
+
+            setTimeout(updateClock, 1000);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        fetch('/auctionData')
+            .then(response => response.json())
+            .then(auctionData => {
+                // กรองข้อมูลการประมูลที่มีสถานะ 'Yes' เท่านั้น
+                const activeAuctionData = auctionData.filter(auction => auction.active_room === 'Yes');
+
+                // แบ่งข้อมูลการประมูลที่มีสถานะ 'Yes' เป็นคู่และคี่
+                const oddAuctionData = activeAuctionData.filter((_, index) => index % 2 === 0);
+                const evenAuctionData = activeAuctionData.filter((_, index) => index % 2 !== 0);
+
+
+                const typeMapping = {
+                    1: 'น้ำยางสด (Feild Latex)',
+                    2: 'น้ำยางข้น (Concentrated Latex)',
+                    3: 'ยางแผ่นดิบชั้นดี (USS3)',
+                    4: 'ยางแผ่นดิบชั้นคละ (USS4-5)',
+                    5: 'ยางแผ่นรมควันชั้น 3 (RSS3)',
+                    6: 'ยางแผ่นรมควันชั้น 4 (RSS4)',
+                    7: 'ยางแผ่นรมควันชั้น 5 (RSS5)',
+                    8: 'ยางฟอง (Foam)',
+                    9: 'ยางคัตติ้ง (Cutting)',
+                    10: 'ยางก้อนถ้วย (Cup Lump)',
+                    11: 'ยางพรก (Prok Rubber)',
+                    12: 'เศษยาง (Scraps Rubber)',
+                    13: 'ยางเครพ (Crepe Rubber)'
+                };
+
+                const typeRoom = {
+                    1: 'รอประมูล',
+                    2: 'กำลังประมูล',
+                    3: 'ประมูลเสร็จสิ้น'
+                };
+
+
+
+                // สร้างฟังก์ชันสำหรับแปลง ISO date เป็นรูปแบบ "dd/mm/yyyy"
+                function formatDateISOToDDMMYYYY(isoDate) {
+                    const dateObject = new Date(isoDate);
+                    const day = dateObject.getDate().toString().padStart(2, '0');
+                    const month = (dateObject.getMonth() + 1).toString().padStart(2, '0'); // เพิ่ม 1 เนื่องจาก getMonth() เริ่มที่ 0
+                    const year = dateObject.getFullYear();
+
+                    // สร้างรูปแบบ "dd/mm/yyyy"
+                    const formattedDate = `${day}/${month}/${year}`;
+
+                    return formattedDate;
+                }
+
+
+
+
+
+                // ฟังก์ชันสร้างองค์ประกอบการ์ด
+                function createCard(auction) {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.style.width = '34em';
+                    card.style.height = '20em';
+                    card.style.cursor = 'pointer';
+
+                    // เพิ่ม data-status โดยใช้ auction.Status
+                    // card.setAttribute('data-status', auction.Status);
+
+                    // ตรวจสอบสถานะและกำหนด background-color ของ colorstatus
+                    // const colorstatusBackgroundColor = auction.Status === 1 ? '#F3E29F' : (auction.Status === 2 ? 'อื่นๆ' : 'สีเริ่มต้น');
+
+                    // แปลงและแสดงผลวันที่ใน div
+                    const formattedDate = formatDateISOToDDMMYYYY(auction.date);
+                    const formattedDateend = formatDateISOToDDMMYYYY(auction.date_end);
+                    const datenow = Date.now();
+                    const datestart = new Date(auction.date);
+
+                    const startTimeArray = auction.Start_Auction.split(':');
+                    datestart.setHours(startTimeArray[0]);
+                    datestart.setMinutes(startTimeArray[1]);
+                    datestart.setSeconds(startTimeArray[2]);
+
+                    const datestarttime = datestart.getTime();
+
+                    const edd = auction.date_end;
+                    const dateend = new Date(auction.date_end);
+
+                    const endTimeArray = auction.End_Auction.split(':');
+                    dateend.setHours(endTimeArray[0]);
+                    dateend.setMinutes(endTimeArray[1]);
+                    dateend.setSeconds(endTimeArray[2]);
+
+
+                    const dateendtime = dateend.getTime();
+
+                    const datecheck1 = datestarttime - datenow;
+                    const datecheck2 = dateendtime - datenow;
+
+                    let colorset;
+
+                    if (datecheck1 >= 1) {
+                        colorset = "#F3E29F";
+                        statusText = "รอประมูล";
+                    } else {
+                        if (datecheck2 >= 1) {
+                            colorset = "#B5C99A";
+                            statusText = "กำลังประมูล";
+                        } else {
+                            colorset = "#EAADAF";
+                            statusText = "การประมูลเสร็จสิ้น";
+                        }
+
+
+                    }
+
+
+
+
+
+                    // สร้างเนื้อหาของการ์ดจากข้อมูลการประมูล
+                    card.innerHTML = `
+    <div class="card-body" style="background-color: ${colorset}; ">
+        <div id="${auction.id}">
+            <div id="nameauc">${auction.name}</div>
+            <div class="row">
+                <div class="col-5" id="date">วันประมูล: ${formattedDate}</div>
+                <div class="col-6" id="datำend">วันที่สิ้นสุดการประมูล: ${formattedDateend}</div>
+
+                <div class="col-5" id="timeroom">เวลา: ${auction.Start_Auction} - ${auction.End_Auction}</div>
+            </div>
+            <div id="typeroom">ประเภท: ${typeMapping[auction.type]}</div>
+            <div id="total">จำนวน: ${auction.total_rubber}</div>
+            <div id="amountmiddel">ราคากลาง: ${auction.amount_middle}</div>
+            <div id="toltalguest">จำนวนผู้เข้าชมการประมูล:</div>
+            <div id="statusroomauc">สถานะ: ${statusText}</div>
+            <div id="amountstart">ราคาเริ่มต้น: ${auction.amount_start}</div>
+            
+        </div>
+        `;
+
+
+
+                    // โค้ดกำหนดการคลิกที่การ์ด (อยู่ในส่วน createCard(auction) ของคุณ)
+                    card.addEventListener('click', function () {
+                        // สร้าง URL สำหรับหน้า /auctionpage พร้อมกับ query parameter
+                        const auctionId = auction.id;
+                        const auctionName = auction.name;
+                        const totalRubber = auction.total_rubber;
+                        const auctionDate = formattedDate;
+                        const auctionDateEnd = formattedDateend;
+                        const auctionStartTime = auction.Start_Auction;
+                        const auctionEndTime = auction.End_Auction;
+                        const auctionType = typeMapping[auction.type];
+                        const amountMiddle = auction.amount_middle;
+                        const amountStart = auction.amount_start;
+
+                        let statusText;
+
+                        if (datecheck1 >= 1) {
+                            colorset = "#F3E29F";
+                            statusText = "รอประมูล";
+                        } else {
+                            if (datecheck2 >= 1) {
+                                colorset = "#B5C99A";
+                                statusText = "กำลังประมูล";
+                            } else {
+                                colorset = "#EAADAF";
+                                statusText = "การประมูลเสร็จสิ้น";
+                            }
+                        }
+
+                        // สร้าง URL พร้อม query parameter
+                        const url = `/auctionpage?id=${auctionId}&name=${auctionName}&totalRubber=${totalRubber}&auctionDate=${auctionDate}&auctionDateEnd=${auctionDateEnd}&auctionStartTime=${auctionStartTime}&auctionEndTime=${auctionEndTime}&auctionType=${auctionType}&amountMiddle=${amountMiddle}&amountStart=${amountStart}&statusText=${statusText}`;
+
+                        // เปลี่ยนเส้นทางไปยังหน้า /auctionpage
+                        window.location.href = url;
+                    });
+
+                    return card;
+                }
+
+                // แนบข้อมูลการประมูลคู่ไปทางด้านซ้าย
+                const leftContainer = document.getElementById('left-auc');
+                oddAuctionData.forEach(auction => {
+                    const card = createCard(auction);
+                    leftContainer.appendChild(card);
+                });
+
+                // แนบข้อมูลการประมูลคี่ไปทางด้านขวา
+                const rightContainer = document.getElementById('right-auc');
+                evenAuctionData.forEach(auction => {
+                    const card = createCard(auction);
+                    rightContainer.appendChild(card);
+                });
+            })
+            .catch(error => console.error('เกิดข้อผิดพลาดในการเรียกข้อมูลการประมูล:', error));
+
+
+
+
+
+        // // สร้างวัตถุ Date จากข้อมูล auction.date
+        // const isoDate = auction.date;
+        // const dateObject = new Date(isoDate);
+
+        // // ดึงวันที่, เดือน, และปี
+        // const day = dateObject.getDate();
+        // const month = dateObject.getMonth() + 1; // เพิ่ม 1 เนื่องจาก getMonth() เริ่มที่ 0
+        // const year = dateObject.getFullYear();
+
+        // // สร้างรูปแบบ "dd/mm/yyyy"
+        // const formattedDate = `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`;
+
+        // console.log(formattedDate); // ผลลัพธ์: "12/09/2023"
+
+
+
+
+
+
+        show();
+        function show() {
+            fetch('/data')
+                .then(function (response) {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw Error('Bad response');
+                })
+                .then(function (data) {
+                    let show = '';
+                    data.forEach(function (datamem) {
+                        show = datamem.truename;
+                        username.innerHTML = show;
+
+                    })
+
+                        .catch(function (err) {
+                            alert(err);
+                        });
+                })
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //========================== root =======================//
+        document.querySelector('#btnhome').onclick = function () {
+            location.assign('/homepage');
+        }
+
+        document.querySelector('#btn-ing').onclick = function () {
+            location.assign('/auctioning');
+        }
+
+        document.querySelector('#btn-ed').onclick = function () {
+            location.assign('/auctionend');
+        }
+
+        document.querySelector('#button-back').onclick = function () {
+            location.assign('/smallmarket');
+        }
+
+
+
+    </script>
 </body>
 
 </html>
