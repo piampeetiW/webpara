@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- SweetAlert2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.5/dist/sweetalert2.all.min.js"></script>
+
+  <link rel="stylesheet" href="/public/css/log.css">
+
+  <title>Login</title>
+</head>
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  form {
+    border: none;
+  }
+
+  body {
+    background-image: url(/public/img/rubber1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-size: 100%;
+    /* background-position: center; */
+  }
+
+  #bg-from {
+    width: 33em;
+    height: 32em;
+    border-radius: 20px;
+    background-color: #E9E9E9;
+    padding: 20px;
+    text-align: left;
+    border: none;
+
+  }
+
+  input[type=text],
+  input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border-radius: 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  button:hover {
+    opacity: 0.8;
+  }
+
+  h1 {
+    color: white;
+
+
+  }
+
+  .imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+  }
+
+  img.avatar {
+    width: 40%;
+
+  }
+
+  .container {
+    padding: 50px;
+  }
+
+  span.psw {
+    float: right;
+    padding-top: 16px;
+
+  }
+
+
+  button {
+    width: 100%;
+    background-color: #00672F;
+    color: #f1f1f1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .password-container {
+  position: relative;
+  width: 100%;
+}
+
+.field-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+</style>
+
+<body>
+
+  <div class="container" id="bg-from" style="margin-top: 6em; ">
+    <form action="/action_page.php" class="container" id="formLogin">
+      <center><img src="/public/img/logo.png" alt="Avatar" width="30%"></center>
+      <br>
+
+      <!-- <label for="uname"><b>Username</b></label> -->
+      <input type="text" placeholder="Enter Username" id="txtUsername" name="uname" required>
+      <br>
+      <!-- <label for="psw"><b>Password</b></label> -->
+      <!-- เพิ่มข้อความแสดงรหัส -->
+      <div class="password-container">
+        <input type="password" placeholder="Enter Password" id="txtPassword" name="psw" required>
+        <span toggle="#txtPassword" class="field-icon toggle-password">แสดง</span>
+      </div>
+
+      <br>
+      <button type="submit" value="SIGN IN" id="signin" class="signin center">Login</button>
+
+      <div class="row mt-3">
+        <span class="col-sm-9" id="psw"> <a href="#" style="color:red;"> Forgot password?</a></span>
+        <span class="col-sm-2" id="reg"> <a href="#" style="color:#6100FF;"> Register</a></span>
+      </div>
+    </form>
+  </div>
+
+
+  <script>
+
+    const formLogin = document.querySelector('#formLogin');
+    formLogin.onsubmit = function (e) {
+      e.preventDefault();
+      const username = formLogin.elements['txtUsername'].value;
+      const password = formLogin.elements['txtPassword'].value;
+      const options = {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ "username": username, "password": password }),
+      }
+      fetch('/login', options)
+        .then(function (response) {
+          if (response.ok) {
+            return response.text();
+          }
+          throw Error("Wrong username or password");
+        })
+        .then(function (data) {
+          if (username === "admin") {
+            location.replace("/useradmin");
+          } else {
+            location.replace("/homepage");
+          }
+        })
+        .catch(function (error) {
+          Swal.fire({
+            "icon": "error",
+            "title": error
+          })
+        });
+    }
+
+
+
+
+
+
+
+    // เพิ่ม JavaScript เพื่อเปลี่ยนข้อความแสดงรหัส
+    document.querySelector('.toggle-password').addEventListener('click', function () {
+      const passwordInput = document.querySelector(this.getAttribute('toggle'));
+
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        this.textContent = 'ซ่อน'; /* เปลี่ยนข้อความเป็น "ซ่อน" เมื่อรหัสถูกแสดง */
+      } else {
+        passwordInput.type = 'password';
+        this.textContent = 'แสดง'; /* เปลี่ยนข้อความเป็น "แสดง" เมื่อรหัสถูกซ่อน */
+      }
+    });
+
+
+
+    // ============= Root ==================================
+
+    document.querySelector('#psw').onclick = function () {
+      location.assign('/forgot');
+    }
+
+    document.querySelector('#reg').onclick = function () {
+      location.assign('/regis');
+    }
+
+
+  </script>
+
+</body>
+
+</html>
