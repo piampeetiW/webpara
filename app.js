@@ -7,7 +7,32 @@ const MemoryStore = require('memorystore')(session);
 
 
 // database connection
-const con = require("./config/db");
+// const con = require("./config/db");
+const mariadb = require("mariadb");
+require("dotenv").config();
+
+const pool = mariadb.createPool({
+    host: process.env.DB_HOST || "localhost",
+    user: process.env.DB_USER || "root",
+    password: process.env.DB_PASSWORD || "",
+    database: process.env.DB_NAME || "your_database_name",
+    connectionLimit: 5,
+});
+
+pool.getConnection()
+
+    .then(conn => {
+
+        console.log('Database connected');
+
+    }).catch(err => {
+
+        //not connected
+
+        console.log('Cannot connect to database', err);
+
+    });
+
 // bcrypt
 const bcrypt = require("bcrypt");
 
@@ -19,13 +44,29 @@ const nodemailer = require('nodemailer');
 
 const app = express();
 //set "public" folder to be static folder, user can access it directly
-app.use(express.static(path.join(__dirname, '/')));
+// app.use(express.static(path.join(__dirname, '/')));
+
+const public = path.join(__dirname, 'public');
+
+app.use('/HelloNodejs', express.static(public));
 
 
 
 // for json exchange
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
+// app.use(express.urlencoded({ extended: true }));
+
+// middleware
+
+var bodyParser = require('body-parser')
+
+app.use(bodyParser.json());       // to support JSON-encoded bodies
+
+app.use(bodyParser.urlencoded({   // to support URL-encoded bodies
+
+    extended: true
+
+}));
 
 
 
@@ -43,7 +84,7 @@ app.use(session({
 
 
 // ============= Create hashed password ==============
-app.get("/password/:pass", function (req, res) {
+app.get("/HelloNodejs/api/password/:pass", function (req, res) {
     const password = req.params.pass;
     const saltRounds = 10;    //the cost of encrypting see https://github.com/kelektiv/node.bcrypt.js#a-note-on-rounds
     bcrypt.hash(password, saltRounds, function (err, hash) {
@@ -60,7 +101,7 @@ app.get("/password/:pass", function (req, res) {
 
 
 
-app.post("/login", function (req, res) {
+app.post("/HelloNodejs/api/login", function (req, res) {
     const username = req.body.username;
     const password = req.body.password;
 
@@ -83,9 +124,9 @@ app.post("/login", function (req, res) {
                 // รหัสผ่านถูกต้อง
                 // ตรวจสอบค่า username ว่าเป็น "admin" หรือไม่
                 if (username === "admin") {
-                    res.send("/useradmin"); // ส่ง URL ของหน้า "/useradmin"
+                    res.send("/HelloNodejs/useradmin"); // ส่ง URL ของหน้า "/useradmin"
                 } else {
-                    res.send("/homepage"); // ส่ง URL ของหน้า "/homepage"
+                    res.send("/HelloNodejs/homepage"); // ส่ง URL ของหน้า "/homepage"
                 }
             } else {
                 // รหัสผ่านไม่ถูกต้อง
@@ -100,7 +141,7 @@ app.post("/login", function (req, res) {
 
 
 // สร้างเส้นทาง GET เพื่อดึงข้อมูล username จากตาราง user
-app.get('/user', function (req, res) {
+app.get('/HelloNodejs/api/user', function (req, res) {
     const sql = 'SELECT username FROM user';
 
     con.query(sql, function (err, results) {
@@ -120,7 +161,7 @@ app.get('/user', function (req, res) {
 
 
 // สร้างเส้นทาง GET เพื่อดึงข้อมูล username จากตาราง user
-app.get('/member', function (req, res) {
+app.get('/HelloNodejs/api/member', function (req, res) {
     const sql = 'SELECT username FROM member';
 
     con.query(sql, function (err, results) {
@@ -146,7 +187,7 @@ app.get('/member', function (req, res) {
 
 
 
-app.post('/register', (req, res) => {
+app.post('/HelloNodejs/api/register', (req, res) => {
     const { username, password, name, company, address, email, phonenumber } = req.body;
 
     const saltRounds = 10; // ความยากข้องของการเข้ารหัส 10 rounds คือค่าที่ดีในการใช้งานทั่วไป
@@ -175,7 +216,7 @@ app.post('/register', (req, res) => {
 
 
 
-app.get('/check-username/:username', (req, res) => {
+app.get('/HelloNodejs/api/check-username/:username', (req, res) => {
     const requestedUsername = req.params.username;
 
     // ตรวจสอบ username ในฐานข้อมูล
@@ -211,7 +252,7 @@ app.get('/check-username/:username', (req, res) => {
 
 
 // ------------- Logout --------------
-app.get("/logout", function (req, res) {
+app.get("/HelloNodejs/api/logout", function (req, res) {
     //clear session variable
     req.session.destroy(function (err) {
         if (err) {
@@ -233,7 +274,7 @@ app.get("/logout", function (req, res) {
 
 
 // สร้างเส้นทาง GET เพื่อดึงข้อมูลจากตาราง member
-app.get('/data', function (req, res) {
+app.get('/HelloNodejs/api/data', function (req, res) {
     const sql = 'SELECT username, truename, bussiness, status, email, phone, address FROM member';
 
     con.query(sql, function (err, results) {
@@ -257,7 +298,7 @@ app.get('/data', function (req, res) {
 
 
 // สร้างเส้นทาง GET เพื่อดึงข้อมูลจากตาราง market
-app.get('/markets', function (req, res) {
+app.get('/HelloNodejs/api/markets', function (req, res) {
     const sql = 'SELECT id, market_name, active FROM bigmarket';
 
     con.query(sql, function (err, results) {
@@ -278,7 +319,7 @@ app.get('/markets', function (req, res) {
 
 
 
-app.get('/summaryauc', (req, res) => {
+app.get('/HelloNodejs/api/summaryauc', (req, res) => {
     const sql = 'SELECT id, Auctionranking, nameBidder, time, price FROM summary';
 
     con.query(sql, (err, result) => {
@@ -299,7 +340,7 @@ app.get('/summaryauc', (req, res) => {
 
 
 // สร้าง API endpoint สำหรับดึงข้อมูลข่าวสารทั้งหมด
-app.get('/get_news', (req, res) => {
+app.get('/HelloNodejs/api/get_news', (req, res) => {
     const sql = 'SELECT id, date_news, detail_news FROM news';
 
     con.query(sql, (err, result) => {
@@ -317,7 +358,7 @@ app.get('/get_news', (req, res) => {
 
 
 // สร้าง API endpoint สำหรับดึงข้อมูลข่าวสารทั้งหมด
-app.get('/news_auction', (req, res) => {
+app.get('/HelloNodejs/api/news_auction', (req, res) => {
     const sql = 'SELECT id, date_news_auction, detail_news_auction FROM news_auction';
 
     con.query(sql, (err, result) => {
@@ -334,7 +375,7 @@ app.get('/news_auction', (req, res) => {
 
 
 
-app.get('/auctionData', (req, res) => {
+app.get('/HelloNodejs/api/auctionData', (req, res) => {
     // ส่งคำสั่ง SQL เพื่อดึงข้อมูลจากตาราง type_rubber
     const sql = 'SELECT id, name, market_sub_name, type ,total_rubber, amount_middle, amount_start, date, date_end, Start_Auction, End_Auction, active_room FROM auction_room';
 
@@ -363,7 +404,7 @@ app.get('/auctionData', (req, res) => {
 
 
 
-app.get('/type_rub', (req, res) => {
+app.get('/HelloNodejs/api/type_rub', (req, res) => {
     // ส่งคำสั่ง SQL เพื่อดึงข้อมูลจากตาราง type_rubber
     const sql = 'SELECT id, type_name FROM rubber_type';
 
@@ -390,7 +431,7 @@ app.get('/type_rub', (req, res) => {
 
 
 
-app.post('/add_market', (req, res) => {
+app.post('/HelloNodejs/api/add_market', (req, res) => {
     const marketData = req.body;
 
     // ทำการเพิ่มข้อมูลตลาดในตาราง "bigmarket" ในฐานข้อมูล
@@ -409,7 +450,7 @@ app.post('/add_market', (req, res) => {
 
 
 
-app.post('/add_auction', (req, res) => {
+app.post('/HelloNodejs/api/add_auction', (req, res) => {
     const auctionData = req.body;
 
     // ทำการเพิ่มข้อมูลประมูลในตาราง "auction_room" ในฐานข้อมูล
@@ -427,7 +468,7 @@ app.post('/add_auction', (req, res) => {
 });
 
 
-app.post('/add_news', (req, res) => {
+app.post('/HelloNodejs/api/add_news', (req, res) => {
     const newsData = req.body;
 
     // ทำการเพิ่มข้อมูลข่าวสารลงในฐานข้อมูล
@@ -445,7 +486,7 @@ app.post('/add_news', (req, res) => {
 });
 
 
-app.post('/add_news_auc', (req, res) => {
+app.post('/HelloNodejs/api/add_news_auc', (req, res) => {
     const newsData = req.body;
 
     // ทำการเพิ่มข้อมูลข่าวสารลงในฐานข้อมูล
@@ -465,7 +506,7 @@ app.post('/add_news_auc', (req, res) => {
 
 
 
-app.post('/saveAuction', (req, res) => {
+app.post('/HelloNodejs/api/saveAuction', (req, res) => {
     const auctionPrice = req.body.price;
     const auctionId = req.body.auctionId;
     const username = req.body.username;
@@ -474,7 +515,7 @@ app.post('/saveAuction', (req, res) => {
     // นำค่าไปบันทึกในฐานข้อมูล
     const sql = `INSERT INTO summary (price, auctionroom_id, nameBidder, time_auction) VALUES (?, ?, ?, ?)`;
 
-    con.query(sql, [auctionPrice, auctionId, username,  currentClock], (err, result) => {
+    con.query(sql, [auctionPrice, auctionId, username, currentClock], (err, result) => {
         if (err) {
             console.error('Error executing query: ' + err.stack);
             return res.status(500).send('Error saving data to the database');
@@ -509,7 +550,7 @@ app.post('/saveAuction', (req, res) => {
 
 
 // ส่วนของการแก้ไขข้อมูลตลาด
-app.post('/edit_market', (req, res) => {
+app.post('/HelloNodejs/api/edit_market', (req, res) => {
     const editedMarketData = req.body;
 
     // ตรวจสอบข้อมูลที่ส่งมา
@@ -536,7 +577,7 @@ app.post('/edit_market', (req, res) => {
 
 
 
-app.post('/edit_auction', (req, res) => {
+app.post('/HelloNodejs/api/edit_auction', (req, res) => {
     const editedAuctionData = req.body;
 
     // Validation - Check if required data is present
@@ -565,7 +606,7 @@ app.post('/edit_auction', (req, res) => {
 
 
 
-app.post('/delete_market', (req, res) => {
+app.post('/HelloNodejs/api/delete_market', (req, res) => {
     // ดึง ID ของตลาดที่ต้องการลบจากข้อมูลที่ส่งมากับคำขอ
     const marketIdToDelete = req.body.id;
 
@@ -591,95 +632,95 @@ app.post('/delete_market', (req, res) => {
 
 
 // ============= Root ==============
-app.get("/", function (req, res) {
+app.get("/HelloNodejs/", function (req, res) {
     console.log(req.session.userID);
     res.sendFile(path.join(__dirname, "views/loginpara.html"));
 });
 
-app.get("/forgot", function (req, res) {
+app.get("/HelloNodejs/forgot", function (req, res) {
     console.log(req.session.userID);
     res.sendFile(path.join(__dirname, "views/resetpara.html"));
 });
 
-app.get("/regis", function (req, res) {
+app.get("/HelloNodejs/regis", function (req, res) {
     console.log(req.session.userID);
     res.sendFile(path.join(__dirname, "views/registerpara.html"));
 });
 
-app.get("/homepage", function (req, res) {
+app.get("/HelloNodejs/homepage", function (req, res) {
     console.log(req.session.userID);
     res.sendFile(path.join(__dirname, "views/homepage.html"));
 });
 
-app.get("/profile", function (_req, res) {
+app.get("/HelloNodejs/profile", function (_req, res) {
     res.sendFile(path.join(__dirname, "views/profile.html"));
 });
 
-app.get("/roombigmarket", function (_req, res) {
+app.get("/HelloNodejs/roombigmarket", function (_req, res) {
     res.sendFile(path.join(__dirname, "views/big-market.html"));
 });
 
-app.get("/smallmarket", function (_req, res) {
+app.get("/HelloNodejs/smallmarket", function (_req, res) {
     res.sendFile(path.join(__dirname, "views/small-market.html"));
 });
 
-app.get("/auctoday", function (_req, res) {
+app.get("/HelloNodejs/auctoday", function (_req, res) {
     res.sendFile(path.join(__dirname, "views/auction-today.html"));
 });
 
-app.get("/historyauc", function (_req, res) {
+app.get("/HelloNodejs/historyauc", function (_req, res) {
     res.sendFile(path.join(__dirname, "views/AuctionHistory.html"));
 });
 
-app.get("/editprouse", function (_req, res) {
+app.get("/HelloNodejs/editprouse", function (_req, res) {
     res.sendFile(path.join(__dirname, "views/Editprofile.html"));
 });
 
-app.get("/useradmin", function (_req, res) {
+app.get("/HelloNodejs/useradmin", function (_req, res) {
     res.sendFile(path.join(__dirname, "views/User(admin).html"));
 });
 
-app.get("/marketAd", function (_req, res) {
+app.get("/HelloNodejs/marketAd", function (_req, res) {
     res.sendFile(path.join(__dirname, "views/market(Admin).html"));
 });
 
-app.get("/auctionAd", function (_req, res) {
+app.get("/HelloNodejs/auctionAd", function (_req, res) {
     res.sendFile(path.join(__dirname, "views/auction-admin.html"));
 });
 
-app.get("/addauctionroom", function (_req, res) {
+app.get("/HelloNodejs/addauctionroom", function (_req, res) {
     res.sendFile(path.join(__dirname, "views/add-auction.html"));
 });
 
-app.get("/addnews", function (_req, res) {
+app.get("/HelloNodejs/addnews", function (_req, res) {
     res.sendFile(path.join(__dirname, "views/news.html"));
 });
 
-app.get("/auctioning", function (_req, res) {
+app.get("/HelloNodejs/auctioning", function (_req, res) {
     res.sendFile(path.join(__dirname, "views/auction-ing.html"));
 });
 
-app.get("/auctiontoday", function (_req, res) {
+app.get("/HelloNodejs/auctiontoday", function (_req, res) {
     res.sendFile(path.join(__dirname, "views/auction-today.html"));
 });
 
-app.get("/auctionend", function (_req, res) {
+app.get("/HelloNodejs/auctionend", function (_req, res) {
     res.sendFile(path.join(__dirname, "views/Auction-ed.html"));
 });
 
-app.get("/auctionpage", function (_req, res) {
+app.get("/HelloNodejs/auctionpage", function (_req, res) {
     res.sendFile(path.join(__dirname, "views/Auctionpage.html"));
 });
 
-app.get("/summary", function (_req, res) {
+app.get("/HelloNodejs/summary", function (_req, res) {
     res.sendFile(path.join(__dirname, "views/summary.html"));
 });
 
-app.get("/subsummary", function (_req, res) {
+app.get("/HelloNodejs/subsummary", function (_req, res) {
     res.sendFile(path.join(__dirname, "views/subsummary.html"));
 });
 
-app.get("/test", function (_req, res) {
+app.get("/HelloNodejs/test", function (_req, res) {
     res.sendFile(path.join(__dirname, "views/test.html"));
 });
 
@@ -688,8 +729,12 @@ app.get("/test", function (_req, res) {
 
 
 // ============= Port ==============
-const port = 3000;
-app.listen(port, function () {
-    console.log("Server is ready at " + port);
-});
+// const port = 2121;
+// app.listen(port, function () {
+//     console.log("Server is ready at " + port);
+// });
+app.listen(process.env.PORT, () => {
 
+    console.log(`server run on port: ${process.env.PORT}`);
+
+});
