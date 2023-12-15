@@ -166,15 +166,7 @@
         border: none;
     }
 
-    #btnA1:hover,
-    #btnA2:hover,
-    #btnA3:hover,
-    #btnA4:hover,
-    #btnA5:hover,
-    #btnA6:hover,
-    #btnA7:hover {
-        background-color: #9F6E3F;
-    }
+
 </style>
 
 <body id="body">
@@ -214,12 +206,7 @@
     </div>
 
     <div>
-        <a>
-            <button type="button" class="btn" id="addauction" style="margin-left: 14em; margin-top: 10em;">
-                <img src="/public/img/plus-square.png" alt="" id="imgmark">
-                Add Auction
-            </button>
-        </a>
+        
 
         <!-- <button type="button" class="btn" id="editauction" data-bs-toggle="modal" data-bs-target="#Modal-edit">
             <img src="/public/img/edit.png" alt="" id="imgmark">
@@ -246,7 +233,10 @@
         <div class="col-1"></div>
     </div> -->
 
-    <div class="container" style="margin-right: 25em;">
+    <center><h2 style="margin-top: 5em;">สรุปผลการประมูล</h2></center>
+
+
+    <div class="container" style="margin-right: 25em; margin-top: 6em;">
         <div class="row mt-5">
             <div class="col-2"></div>
             <div class="col-4">
@@ -554,28 +544,7 @@
 
 
 
-        show();
-        function show() {
-            fetch('/data')
-                .then(function (response) {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw Error('Bad response');
-                })
-                .then(function (data) {
-                    let show = '';
-                    data.forEach(function (datamem) {
-                        show = datamem.truename;
-                        username.innerHTML = show;
 
-                    })
-
-                        .catch(function (err) {
-                            alert(err);
-                        });
-                })
-        }
 
 
 
@@ -583,28 +552,19 @@
 
 
         //============================ root =======================//
-        document.querySelector('#addauction').onclick = function () {
-            location.assign('/addauctionroom');
-        }
+
 
         document.querySelector('#profiledropM').onclick = function () {
-            location.assign('/profile');
+            location.assign('/HelloNodejs/profile');
         }
 
         document.querySelector('#btnhome').onclick = function () {
-            location.assign('/homepage');
+            location.assign('/HelloNodejs/homepage');
         }
 
-        document.querySelector('#btnA2').onclick = function () {
-            location.assign('/marketad');
-        }
-
-        document.querySelector('#btnA5').onclick = function () {
-            location.assign('/useradmin');
-        }
 
         document.querySelector('#Edit').onclick = function () {
-            location.assign('/auctionAd')
+            location.assign('/HelloNodejs/auctionAd')
         }
     </script>
 

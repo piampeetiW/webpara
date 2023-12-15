@@ -211,8 +211,6 @@
 
 
 
-
-
         // Function to update the countdown timer
         function updateCountdown(endTime) {
 
@@ -225,8 +223,6 @@
 
         // Call the startCountdown function when the page is loaded
         startCountdown();
-
-
 
 
 
@@ -375,7 +371,7 @@
                     currentClock: currentClockValue
                 };
 
-                fetch('/saveAuction', {
+                fetch('/HelloNodejs/api/saveAuction', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -393,7 +389,7 @@
                             showConfirmButton: false,
                             timer: 2000
                         });
-                        window.location.href = '/auctiontoday';
+                        window.location.href = '/HelloNodejs/auctiontoday';
                     })
                     .catch(error => {
                         console.error('Error:', error);
@@ -408,28 +404,6 @@
 
 
 
-        show();
-        function show() {
-            fetch('/data')
-                .then(function (response) {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw Error('Bad response');
-                })
-                .then(function (data) {
-                    let show = '';
-                    data.forEach(function (datamem) {
-                        show = datamem.truename;
-                        username.innerHTML = show;
-
-                    })
-
-                        .catch(function (err) {
-                            alert(err);
-                        });
-                })
-        }
 
 
 
@@ -512,11 +486,11 @@
 
         //=============================== root ============================//
         document.querySelector('#button-back').onclick = function () {
-            location.assign('/auctiontoday');
+            location.assign('/HelloNodejs/auctiontoday');
         }
 
         document.querySelector('#summaryBtn').onclick = function () {
-            location.assign('/summary');
+            location.assign('/HelloNodejs/summary');
         }
 
 

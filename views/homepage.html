@@ -194,7 +194,7 @@
 
 
 
-        function toggleButtonStyle(clickedButtonId) {
+function toggleButtonStyle(clickedButtonId) {
             const buttonNews = document.getElementById('button-home-news');
             const buttonNewsauc = document.getElementById('button-home-newsauc');
             const tableBody = document.querySelector('#tabalehomep');
@@ -206,7 +206,7 @@
                 buttonNewsauc.style.boxShadow = "none";
 
                 // เรียกดึงข้อมูลจาก API '/get_news'
-                fetch('/get_news')
+                fetch('/HelloNodejs/api/get_news')
                     .then(response => response.json())
                     .then(data => {
                         tableBody.innerHTML = ''; // ล้างเนื้อหาที่มีอยู่เดิม
@@ -252,7 +252,7 @@
                 buttonNewsauc.style.boxShadow = "0 5px 10px 0 rgba(0, 0, 0, 0.5)";
 
                 // เรียกดึงข้อมูลจาก API '/news_auction'
-                fetch('/news_auction')
+                fetch('/HelloNodejs/api/news_auction')
                     .then(response => response.json())
                     .then(data => {
                         tableBody.innerHTML = ''; // ล้างเนื้อหาที่มีอยู่เดิม
@@ -301,7 +301,7 @@
             buttonNews.style.boxShadow = "0 5px 10px 0 rgba(0, 0, 0, 0.5)";
 
             // เรียกดึงข้อมูลจาก API '/get_news' เมื่อหน้าเริ่มต้นโหลดเสร็จสมบูรณ์
-            fetch('/get_news')
+            fetch('/HelloNodejs/api/get_news')
                 .then(response => response.json())
                 .then(data => {
                     const tableBody = document.querySelector('#tabalehomep'); // เปลี่ยนเป็น id ของ tbody
@@ -340,59 +340,26 @@
                     console.error('เกิดข้อผิดพลาดในการดึงข้อมูลผ่าน API: ', error);
                 });
         });
-
-
-        function show(truename) {
-            const usernameInput = document.getElementById('txtUsername');
-            if (usernameInput) {
-                usernameInput.value = truename;
-            }
-        }
-
-        // Function to fetch data from the server and update the username input
-        function fetchDataAndUpdateUsername() {
-            fetch('/data')  // Adjust the URL based on your actual endpoint
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw Error('Bad response');
-                })
-                .then(data => {
-                    if (data.length > 0) {
-                        const truename = data[0].truename; // Assuming truename is in the first row
-                        show(truename);
-                    }
-                })
-                .catch(error => {
-                    console.error(error);
-                    // Handle error, e.g., show a message to the user
-                });
-        }
-
-        // Wait for the DOM to be fully loaded
-        document.addEventListener('DOMContentLoaded', function () {
-            fetchDataAndUpdateUsername();
-        });
+        
 
 
 
 
         //============================== root ==================//
         document.querySelector('#profiledropM').onclick = function () {
-            location.assign('/profile');
+            location.assign('/HelloNodejs/profile');
         }
 
 
 
         document.querySelector('#taladpramul').onclick = function () {
-            location.assign('/roombigmarket');
+            location.assign('/HelloNodejs/roombigmarket');
         }
 
 
 
         document.querySelector('#logouthome').onclick = function () {
-            fetch("/logout")
+            fetch("/HelloNodejs/api/logout")  // เปลี่ยนเส้นทาง logout ที่นี่
                 .then(function (response) {
                     if (response.ok) {
                         return response.text();
@@ -404,9 +371,8 @@
                 })
                 .catch(function (error) {
                     console.error(error);
-                })
-
-        }
+                });
+        };
     </script>
 
 

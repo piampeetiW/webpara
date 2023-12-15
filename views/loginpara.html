@@ -37,10 +37,12 @@
     width: 33em;
     height: 32em;
     border-radius: 20px;
-    background-color: #E9E9E9;
     padding: 20px;
+    background-color: #E9E9E9;
     text-align: left;
     border: none;
+    overflow: hidden;
+
 
   }
 
@@ -143,36 +145,37 @@
   <script>
 
     const formLogin = document.querySelector('#formLogin');
-    formLogin.onsubmit = function (e) {
-      e.preventDefault();
-      const username = formLogin.elements['txtUsername'].value;
-      const password = formLogin.elements['txtPassword'].value;
-      const options = {
+formLogin.onsubmit = function (e) {
+    e.preventDefault();
+    const username = formLogin.elements['txtUsername'].value;
+    const password = formLogin.elements['txtPassword'].value;
+    const options = {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ "username": username, "password": password }),
-      }
-      fetch('/login', options)
+    }
+
+    fetch('/HelloNodejs/api/login', options)
         .then(function (response) {
-          if (response.ok) {
-            return response.text();
-          }
-          throw Error("Wrong username or password");
+            if (response.ok) {
+                return response.text();
+            }
+            throw Error("Wrong username or password");
         })
         .then(function (data) {
-          if (username === "admin") {
-            location.replace("/useradmin");
-          } else {
-            location.replace("/homepage");
-          }
+            if (username === "admin") {
+                location.replace("/HelloNodejs/useradmin");
+            } else {
+                location.replace("/HelloNodejs/homepage");
+            }
         })
         .catch(function (error) {
-          Swal.fire({
-            "icon": "error",
-            "title": error
-          })
+            Swal.fire({
+                "icon": "error",
+                "title": error
+            })
         });
-    }
+}
 
 
 
@@ -198,11 +201,11 @@
     // ============= Root ==================================
 
     document.querySelector('#psw').onclick = function () {
-      location.assign('/forgot');
+      location.assign('/HelloNodejs/forgot');
     }
 
     document.querySelector('#reg').onclick = function () {
-      location.assign('/regis');
+      location.assign('/HelloNodejs/regis');
     }
 
 

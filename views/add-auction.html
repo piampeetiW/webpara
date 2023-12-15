@@ -179,8 +179,8 @@
                     <div>
                         <p class="button-card">
                             <button type="button" class="btn btn-success" id="confirmBtn"
-                                href="/auctionAd">บันทึก</button>
-                            <a href="/auctionAd" class="btn mx-1" id="card-btn2"
+                                href="/HelloNodejs/auctionAd">บันทึก</button>
+                            <a href="/HelloNodejs/auctionAd" class="btn mx-1" id="card-btn2"
                                 style="background-color: #DA0404;">ยกเลิก</a>
                         </p>
                     </div>
@@ -246,7 +246,7 @@
                     active_room: active
                 };
 
-                fetch('/edit_auction', {
+                fetch('/HelloNodejs/api/add_auction', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -257,7 +257,7 @@
                     .then(data => {
                         console.log('Response from server:', data);
                         // Reload the page
-                        window.location.href = '/auctionAd';
+                        window.location.href = '/HelloNodejs/auctionAd';
                     })
                     .catch(error => {
                         console.error('Error adding auction data:', error);
@@ -276,7 +276,7 @@
 
         // เรียก API /type_rub เมื่อหน้าเว็บโหลดเสร็จ
         window.addEventListener('DOMContentLoaded', (event) => {
-            fetch('/type_rub')
+            fetch('/HelloNodejs/api/type_rub')
                 .then(response => response.text())
                 .then(optionsHtml => {
                     // เลือกตำแหน่งของ <select> โดยใช้ id และเพิ่ม <option> จากข้อมูลที่ได้

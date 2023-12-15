@@ -209,7 +209,7 @@
 
 
 
-        fetch('/auctionData')
+        fetch('/HelloNodejs/api/auctionData')
             .then(response => response.json())
             .then(auctionData => {
                 // กรองข้อมูลการประมูลที่มีสถานะ 'Yes' เท่านั้น
@@ -379,7 +379,7 @@
                         }
 
                         // สร้าง URL พร้อม query parameter
-                        const url = `/auctionpage?id=${auctionId}&name=${auctionName}&totalRubber=${totalRubber}&auctionDate=${auctionDate}&auctionDateEnd=${auctionDateEnd}&auctionStartTime=${auctionStartTime}&auctionEndTime=${auctionEndTime}&auctionType=${auctionType}&amountMiddle=${amountMiddle}&amountStart=${amountStart}&statusText=${statusText}`;
+                        const url = `/HelloNodejs/auctionpage?id=${auctionId}&name=${auctionName}&totalRubber=${totalRubber}&auctionDate=${auctionDate}&auctionDateEnd=${auctionDateEnd}&auctionStartTime=${auctionStartTime}&auctionEndTime=${auctionEndTime}&auctionType=${auctionType}&amountMiddle=${amountMiddle}&amountStart=${amountStart}&statusText=${statusText}`;
 
                         // เปลี่ยนเส้นทางไปยังหน้า /auctionpage
                         window.location.href = url;
@@ -388,19 +388,23 @@
                     return card;
                 }
 
-                // แนบข้อมูลการประมูลคู่ไปทางด้านซ้าย
-                const leftContainer = document.getElementById('left-auc');
-                oddAuctionData.forEach(auction => {
-                    const card = createCard(auction);
-                    leftContainer.appendChild(card);
-                });
+                // กรุณาเพิ่มโค้ดที่เรียงลำดับ activeAuctionData ตาม id จากน้อยไปมาก
+const sortedAuctionData = activeAuctionData.sort((a, b) => a.id - b.id);
 
-                // แนบข้อมูลการประมูลคี่ไปทางด้านขวา
-                const rightContainer = document.getElementById('right-auc');
-                evenAuctionData.forEach(auction => {
-                    const card = createCard(auction);
-                    rightContainer.appendChild(card);
-                });
+// แสดงการ์ดที่เรียงลำดับลงใน leftContainer และ rightContainer ทีละตัว
+const leftContainer = document.getElementById('left-auc');
+const rightContainer = document.getElementById('right-auc');
+
+sortedAuctionData.forEach((auction, index) => {
+    const card = createCard(auction);
+
+    // สลับไปมาทั้งซ้ายและขวาตามลำดับของ id
+    if (index % 2 === 0) {
+        leftContainer.appendChild(card);
+    } else {
+        rightContainer.appendChild(card);
+    }
+});
             })
             .catch(error => console.error('เกิดข้อผิดพลาดในการเรียกข้อมูลการประมูล:', error));
 
@@ -427,28 +431,7 @@
 
 
 
-        show();
-        function show() {
-            fetch('/data')
-                .then(function (response) {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw Error('Bad response');
-                })
-                .then(function (data) {
-                    let show = '';
-                    data.forEach(function (datamem) {
-                        show = datamem.truename;
-                        username.innerHTML = show;
 
-                    })
-
-                        .catch(function (err) {
-                            alert(err);
-                        });
-                })
-        }
 
 
 
@@ -461,19 +444,19 @@
 
         //=================== root =================//
         document.querySelector('#btnhome').onclick = function () {
-            location.assign('/homepage');
+            location.assign('/HelloNodejs/homepage');
         }
 
         document.querySelector('#btn-today').onclick = function () {
-            location.assign('/auctiontoday');
+            location.assign('/HelloNodejs/auctiontoday');
         }
 
         document.querySelector('#btn-ed').onclick = function () {
-            location.assign('/auctionend');
+            location.assign('/HelloNodejs/auctionend');
         }
 
         document.querySelector('#button-back').onclick = function () {
-            location.assign('/auctiontoday');
+            location.assign('/HelloNodejs/auctiontoday');
         }
 
     </script>

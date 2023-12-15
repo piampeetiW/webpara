@@ -204,89 +204,82 @@
 
 
         <script>
+            function displayData(data) {
 
-            fetch('/markets')
+
+                const tableBody = document.querySelector('#marketDataBody'); // Assuming the table body has the id 'userDataBody'
+                tableBody.innerHTML = '';
+
+                data.forEach(row => {
+                    const tr = document.createElement('tr');
+
+                    const td1 = document.createElement('td');
+                    const editIconImg = document.createElement('img');
+                    editIconImg.src = `/public/img/pencil.png`;
+                    editIconImg.alt = 'Edit Icon';
+                    editIconImg.style.width = '25px';
+                    editIconImg.classList.add('pointer-cursor');
+                    editIconImg.addEventListener('click', function () {
+                        const modal = new bootstrap.Modal(document.getElementById('myModal2'));
+                        modal.show();
+
+                        document.getElementById('editMarketName').value = row.market_name;
+                        document.getElementById('editStatusCheckbox').checked = row.active === 'Yes';
+
+                        document.querySelector('#myModal2 .btn-success').addEventListener('click', function () {
+                            editMarketData(row.id);
+                        });
+                    });
+                    td1.appendChild(editIconImg);
+                    tr.appendChild(td1);
+
+                    const td2 = document.createElement('td');
+                    td2.textContent = row.market_name;
+                    tr.appendChild(td2);
+
+                    const td3 = document.createElement('td');
+                    td3.textContent = row.active;
+                    tr.appendChild(td3);
+
+                    const td4 = document.createElement('td');
+                    const deleteButton = document.createElement('button');
+
+                    deleteButton.textContent = 'Delete';
+                    deleteButton.classList.add('btn', 'btn-danger');
+                    deleteButton.style.backgroundColor = '#DA0404';
+                    deleteButton.style.border = 'none';
+                    deleteButton.style.color = '#FFFFFF';
+                    deleteButton.style.cursor = 'pointer';
+
+                    deleteButton.addEventListener('click', function () {
+                        deleteMarketData(row.id);
+                    });
+
+                    deleteButton.addEventListener('mouseenter', function () {
+                        deleteButton.style.backgroundColor = '#FF0000';
+                        deleteButton.style.color = '#000'
+                    });
+
+                    deleteButton.addEventListener('mouseleave', function () {
+                        deleteButton.style.backgroundColor = '#DA0404';
+                        deleteButton.style.color = '#FFFFFF'
+                    });
+
+                    td4.appendChild(deleteButton);
+                    tr.appendChild(td4);
+
+                    tableBody.appendChild(tr);
+                });
+            }
+
+            // Usage example:
+            fetch('/HelloNodejs/api/markets')
                 .then(response => response.json())
                 .then(data => {
-                    const tableBody = document.querySelector('tbody');
-
-                    data.forEach(row => {
-
-
-
-                        const tr = document.createElement('tr');
-
-                        const id = row.id;
-
-                        const td2 = document.createElement('td');
-                        const editIconImg = document.createElement('img');
-                        editIconImg.src = `/public/img/pencil.png`; // ใส่ URL รูปภาพจาก icon_edit
-                        editIconImg.alt = 'Edit Icon';
-                        editIconImg.style.width = '25px';
-                        editIconImg.classList.add('pointer-cursor'); // เพิ่ม class 'pointer-cursor'
-                        editIconImg.addEventListener('click', function () {
-                            // เรียกใช้งาน Modal เมื่อคลิกที่ Edit Icon
-                            const modal = new bootstrap.Modal(document.getElementById('myModal2'));
-                            modal.show();
-
-                            // นำข้อมูลของแถวที่คลิกแก้ไขมาเติมใน Modal
-                            document.getElementById('editMarketName').value = row.market_name;
-                            document.getElementById('editStatusCheckbox').checked = row.active === 'Yes';
-
-                            document.querySelector('#myModal2 .btn-success').addEventListener('click', function () {
-                                // เรียกใช้ฟังก์ชันสำหรับแก้ไขข้อมูล
-                                editMarketData(row.id);
-                            });
-
-                        });
-                        td2.appendChild(editIconImg);
-                        tr.appendChild(td2);
-
-                        const td3 = document.createElement('td');
-                        td3.textContent = row.market_name;
-                        tr.appendChild(td3);
-
-                        const td4 = document.createElement('td');
-                        td4.textContent = row.active;
-                        tr.appendChild(td4);
-
-                        const td5 = document.createElement('td');
-                        const deleteButton = document.createElement('button');
-
-                        // กำหนดคุณสมบัติของปุ่มลบ
-                        deleteButton.textContent = 'Delete';
-                        deleteButton.classList.add('btn', 'btn-danger'); // เพิ่มคลาส 'btn' และ 'btn-danger'
-                        deleteButton.style.backgroundColor = '#DA0404';
-                        deleteButton.style.border = 'none';
-                        deleteButton.style.color = '#FFFFFF';
-                        deleteButton.style.cursor = 'pointer';
-
-                        // เพิ่ม event listener สำหรับปุ่มลบ
-                        deleteButton.addEventListener('click', function () {
-                            // เรียกใช้ฟังก์ชันที่คุณต้องการให้ทำงานเมื่อคลิกที่ปุ่มลบ
-                            // เช่น, ฟังก์ชันที่ลบข้อมูลตลาด
-                            deleteMarketData(row.id);
-                        });
-
-                        deleteButton.addEventListener('mouseenter', function () {
-                            deleteButton.style.backgroundColor = '#FF0000';
-                            deleteButton.style.color = '#000'
-                        });
-
-                        deleteButton.addEventListener('mouseleave', function () {
-                            deleteButton.style.backgroundColor = '#DA0404';
-                            deleteButton.style.color = '#FFFFFF'
-                        });
-
-                        td5.appendChild(deleteButton);
-                        tr.appendChild(td5);
-
-                        // เพิ่มแถวลงใน tbody
-                        tableBody.appendChild(tr);
-                    });
+                    displayData(data);
                 })
                 .catch(error => {
-                    console.error('เกิดข้อผิดพลาดในการดึงข้อมูลผ่าน API: ', error);
+                    console.error('Error fetching data from the API: ', error);
                 });
 
 
@@ -363,13 +356,7 @@
 
 
 
-
-
-
-
-
-
-            // ฟังก์ชันสำหรับเพิ่มข้อมูลตลาด
+// ฟังก์ชันสำหรับเพิ่มข้อมูลตลาด
             function addMarketData() {
                 const marketName = document.querySelector('input[name="NameTalad"]').value;
                 const activeCheckbox = document.querySelector('#statusCheckbox');
@@ -383,7 +370,7 @@
 
 
                 // ส่งคำขอ HTTP POST ไปยังเซิร์ฟเวอร์พร้อมกับข้อมูลตลาด
-                fetch('/add_market', {
+                fetch('/HelloNodejs/api/add_market', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -407,40 +394,46 @@
 
 
 
-            function editMarketData(id) {
-                // ดึงค่าจากฟอร์ม Modal แก้ไขข้อมูล
-                const editedMarketName = document.getElementById('editMarketName').value;
-                const editedActive = document.getElementById('editStatusCheckbox').checked ? '1' : '0';
 
-                // สร้างออบเจ็กต์เพื่อส่งข้อมูลไปยังเซิร์ฟเวอร์
-                const editedMarketData = {
-                    id: id,  // เพิ่ม ID ที่ระบุข้อมูลตลาดที่ต้องการแก้ไข
-                    market_name: editedMarketName,
-                    active: editedActive,
-                };
 
-                // ทำการส่งข้อมูลไปยังเซิร์ฟเวอร์ (ในที่นี้คือ /edit_market endpoint)
-                fetch('/edit_market', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(editedMarketData),
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        // จัดการกับการตอบกลับจากเซิร์ฟเวอร์ (ถ้าต้องการ)
-                        console.log('Response from server:', data);
 
-                        // รีเฟรชหน้าเว็บหลังจากลบข้อมูลสำเร็จ
-                        location.reload();
-                    })
 
-                    .catch(error => {
-                        console.error('Error editing market data:', error);
-                        // แสดงข้อความผิดพลาดให้กับผู้ใช้หรือจัดการข้อผิดพลาดนี้อย่างเหมาะสม
-                    });
-            }
+
+
+            async function editMarketData(id) {
+    try {
+        // ดึงค่าจากฟอร์ม Modal แก้ไขข้อมูล
+        const editedMarketName = document.getElementById('editMarketName').value;
+        const editedActive = document.getElementById('editStatusCheckbox').checked ? '1' : '0';
+
+        // สร้างออบเจ็กต์เพื่อส่งข้อมูลไปยังเซิร์ฟเวอร์
+        const editedMarketData = {
+            id: id,  // เพิ่ม ID ที่ระบุข้อมูลตลาดที่ต้องการแก้ไข
+            market_name: editedMarketName,
+            active: editedActive,
+        };
+
+        // ทำการส่งข้อมูลไปยังเซิร์ฟเวอร์ (ในที่นี้คือ /HelloNodejs/api/edit_market endpoint)
+        const response = await fetch('/HelloNodejs/api/edit_market', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(editedMarketData),
+        });
+
+        const data = await response.json();
+
+        // จัดการกับการตอบกลับจากเซิร์ฟเวอร์ (ถ้าต้องการ)
+        console.log('Response from server:', data);
+
+        // รีเฟรชหน้าเว็บหลังจากแก้ไขข้อมูลสำเร็จ
+        location.reload();
+    } catch (error) {
+        console.error('Error editing market data:', error);
+        // แสดงข้อความผิดพลาดให้กับผู้ใช้หรือจัดการข้อผิดพลาดนี้อย่างเหมาะสม
+    }
+}
 
 
 
@@ -449,7 +442,7 @@
 
             function deleteMarketData(marketId) {
                 // ส่งคำขอ HTTP POST ไปยังเซิร์ฟเวอร์พร้อมกับ ID ของตลาดที่ต้องการลบ
-                fetch('/delete_market', {
+                fetch('/HelloNodejs/api/delete_market', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -473,28 +466,6 @@
 
 
 
-            show();
-            function show() {
-                fetch('/data')
-                    .then(function (response) {
-                        if (response.ok) {
-                            return response.json();
-                        }
-                        throw Error('Bad response');
-                    })
-                    .then(function (data) {
-                        let show = '';
-                        data.forEach(function (datamem) {
-                            show = datamem.truename;
-                            username.innerHTML = show;
-
-                        })
-
-                            .catch(function (err) {
-                                alert(err);
-                            });
-                    })
-            }
 
 
 
@@ -505,19 +476,19 @@
             //==================== root==============================================//
 
             document.querySelector('#btnhome').onclick = function () {
-                location.assign('/homepage');
+                location.assign('/HelloNodejs/homepage');
             }
 
             document.querySelector('#btnA5').onclick = function () {
-                location.assign('/useradmin');
+                location.assign('/HelloNodejs/useradmin');
             }
 
             document.querySelector('#btnA4').onclick = function () {
-                location.assign('/auctionAd');
+                location.assign('/HelloNodejs/auctionAd');
             }
 
             document.querySelector('#btnA7').onclick = function () {
-                location.assign('/addnews');
+                location.assign('/HelloNodejs/addnews');
             }
 
 

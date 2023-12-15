@@ -283,7 +283,7 @@
     <script>
 
 
-        fetch('/get_news')
+        fetch('/HelloNodejs/api/get_news')
             .then(response => response.json())
             .then(data => {
                 const tableBody = document.querySelector('#NewsDatabody'); // เปลี่ยนเป็น id ของ tbody
@@ -322,7 +322,7 @@
 
 
 
-        fetch('/news_auction')
+        fetch('/HelloNodejs/api/news_auction')
             .then(response => response.json())
             .then(data => {
                 const tableBody = document.querySelector('#NewsAucDatabody'); // เปลี่ยนเป็น id ของ tbody
@@ -331,7 +331,7 @@
                     const tr = document.createElement('tr');
 
                     const td1 = document.createElement('td');
-                    const isoDate = row.date_news; // วันที่ในรูปแบบ ISO 8601
+                    const isoDate = row.date_news_auction; // วันที่ในรูปแบบ ISO 8601
                     const dateObject = new Date(isoDate);
                     const day = dateObject.getDate();
                     const month = [
@@ -345,7 +345,7 @@
                     tr.appendChild(td1);
 
                     const td2 = document.createElement('td');
-                    td2.textContent = row.detail_news;
+                    td2.textContent = row.detail_news_auction;
                     tr.appendChild(td2);
 
 
@@ -373,7 +373,7 @@
             };
 
             // ส่งคำขอ HTTP POST ไปยังเซิร์ฟเวอร์พร้อมกับข้อมูลข่าวสาร
-            fetch('/add_news', {
+            fetch('/HelloNodejs/api/add_news', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -394,22 +394,22 @@
 
         //============== เพิ่มข่าวประมูล ===========//
         function addNewsAucData() {
-            const dateNews = document.getElementById('adddateNews').value;
-            const detailsNews = document.getElementById('adddetailsNews').value;
+            const add_dateNewsauc = document.getElementById('add_dateNewsauc').value;
+            const detailsNewsauc = document.getElementById('add_detailsNews').value;
 
             // สร้างออบเจ็กต์เพื่อเก็บข้อมูลข่าวสารที่ต้องการเพิ่ม
-            const newsData = {
-                date_news: dateNews,
-                details_News: detailsNews,
+            const newsDataAuc = {
+                date_newsauc: add_dateNewsauc,
+                details_Newsauc: detailsNewsauc,
             };
 
             // ส่งคำขอ HTTP POST ไปยังเซิร์ฟเวอร์พร้อมกับข้อมูลข่าวสาร
-            fetch('/add_news', {
+            fetch('/HelloNodejs/api/news_auction', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(newsData), // ใช้ตัวแปร newsData ที่ประกาศไว้
+                body: JSON.stringify(newsDataAuc), // ใช้ตัวแปร newsData ที่ประกาศไว้
             })
                 .then(response => response.json())
                 .then(data => {
@@ -438,28 +438,6 @@
 
 
 
-        show();
-        function show() {
-            fetch('/data')
-                .then(function (response) {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw Error('Bad response');
-                })
-                .then(function (data) {
-                    let show = '';
-                    data.forEach(function (datamem) {
-                        show = datamem.truename;
-                        username.innerHTML = show;
-
-                    })
-
-                        .catch(function (err) {
-                            alert(err);
-                        });
-                })
-        }
 
 
 
@@ -469,19 +447,19 @@
 
         //========================== root ========================//
         document.querySelector('#btnhome').onclick = function () {
-            location.assign('/homepage');
+            location.assign('/HelloNodejs/homepage');
         }
 
         document.querySelector('#btnA2').onclick = function () {
-            location.assign('/marketad');
+            location.assign('/HelloNodejs/marketad');
         }
 
         document.querySelector('#btnA4').onclick = function () {
-            location.assign('/auctionAd');
+            location.assign('/HelloNodejs/auctionAd');
         }
 
         document.querySelector('#btnA5').onclick = function () {
-            location.assign('/useradmin');
+            location.assign('/HelloNodejs/useradmin');
 
         }
     </script>

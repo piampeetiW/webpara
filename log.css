@@ -28,6 +28,7 @@ html {
 
 .dropdown-menu {
     left: 50%;
+    transform: translateX(-25%);
 }
 
 #textuse {

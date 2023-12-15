@@ -170,7 +170,7 @@
 
     <script>
 
-        submitBtn.addEventListener("click", function (event) {
+       submitBtn.addEventListener("click", function (event) {
             event.preventDefault();
 
             const username = document.querySelector("input[name='username']").value;
@@ -188,7 +188,7 @@
             }
 
             // ตรวจสอบ username จากเซิร์ฟเวอร์
-            fetch(`/check-username/${username}`)
+            fetch(`/HelloNodejs/api/check-username/${username}`)
                 .then((response) => response.json())
                 .then((data) => {
                     if (data.exists) {
@@ -197,7 +197,9 @@
                     } else {
                         // ถ้า username ยังไม่มีอยู่
                         // ทำการส่งข้อมูลไปยังฐานข้อมูลเหมือนเดิม
-                        fetch("/register", {
+
+                        // ส่งข้อมูลไปยังเซิร์ฟเวอร์ด้วย method POST
+                        fetch("/HelloNodejs/api/register", {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
@@ -216,15 +218,17 @@
                             .then((data) => {
                                 if (data.message === "บันทึกข้อมูลสำเร็จ") {
                                     alert("ลงทะเบียนสำเร็จ");
-                                    window.location.href = "/"; // ลิ้งค์ไปยังหน้าหลักหลังจากการลงทะเบียนสำเร็จ
+                                    window.location.href = "/HelloNodejs/"; // ลิ้งค์ไปยังหน้าหลักหลังจากการลงทะเบียนสำเร็จ
                                 } else {
                                     alert("มีข้อผิดพลาดในการลงทะเบียน");
                                 }
-                            });
+                            })
+                            .catch((error) => console.error(error));
                     }
                 })
                 .catch((error) => console.error(error));
         });
+
 
 
 
@@ -262,7 +266,7 @@
         //====================== root ===============================//
         // การกำหนดการคลิกปุ่ม Cancel
         document.querySelector('#cancel').addEventListener('click', () => {
-            location.assign('/'); // ไปยังหน้าหลัก
+            location.assign('/HelloNodejs/'); // ไปยังหน้าหลัก
         });
 
 

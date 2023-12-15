@@ -59,6 +59,11 @@
         margin-right: 1em;
         margin-left: 1em;
     }
+
+    #btn-today:hover, #btn-ing:hover, #btn-ed:hover {
+
+    cursor: default; 
+    }
 </style>
 
 <body id="body" style="background-color: #FFFFFF;" onload="updateClock()">
@@ -225,7 +230,7 @@
 
 
 
-        fetch('/auctionData')
+        fetch('/HelloNodejs/api/auctionData')
             .then(response => response.json())
             .then(auctionData => {
                 // กรองข้อมูลการประมูลที่มีสถานะ 'Yes' เท่านั้น
@@ -392,7 +397,7 @@
                         }
 
                         // สร้าง URL พร้อม query parameter
-                        const url = `/auctionpage?id=${auctionId}&name=${auctionName}&totalRubber=${totalRubber}&auctionDate=${auctionDate}&auctionDateEnd=${auctionDateEnd}&auctionStartTime=${auctionStartTime}&auctionEndTime=${auctionEndTime}&auctionType=${auctionType}&amountMiddle=${amountMiddle}&amountStart=${amountStart}&statusText=${statusText}`;
+                        const url = `/HelloNodejs/auctionpage?id=${auctionId}&name=${auctionName}&totalRubber=${totalRubber}&auctionDate=${auctionDate}&auctionDateEnd=${auctionDateEnd}&auctionStartTime=${auctionStartTime}&auctionEndTime=${auctionEndTime}&auctionType=${auctionType}&amountMiddle=${amountMiddle}&amountStart=${amountStart}&statusText=${statusText}`;
 
                         // เปลี่ยนเส้นทางไปยังหน้า /auctionpage
                         window.location.href = url;
@@ -440,28 +445,7 @@
 
 
 
-        show();
-        function show() {
-            fetch('/data')
-                .then(function (response) {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw Error('Bad response');
-                })
-                .then(function (data) {
-                    let show = '';
-                    data.forEach(function (datamem) {
-                        show = datamem.truename;
-                        username.innerHTML = show;
 
-                    })
-
-                        .catch(function (err) {
-                            alert(err);
-                        });
-                })
-        }
 
 
 
@@ -488,19 +472,12 @@
 
         //========================== root =======================//
         document.querySelector('#btnhome').onclick = function () {
-            location.assign('/homepage');
+            location.assign('/HelloNodejs/homepage');
         }
 
-        document.querySelector('#btn-ing').onclick = function () {
-            location.assign('/auctioning');
-        }
-
-        document.querySelector('#btn-ed').onclick = function () {
-            location.assign('/auctionend');
-        }
 
         document.querySelector('#button-back').onclick = function () {
-            location.assign('/smallmarket');
+            location.assign('/HelloNodejs/smallmarket');
         }
 
 

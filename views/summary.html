@@ -182,34 +182,11 @@
 
 
 
-        show();
-        function show() {
-            fetch('/data')
-                .then(function (response) {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw Error('Bad response');
-                })
-                .then(function (data) {
-                    let show = '';
-                    data.forEach(function (datamem) {
-                        show = datamem.truename;
-                        username.innerHTML = show;
-
-                    })
-
-                        .catch(function (err) {
-                            alert(err);
-                        });
-                })
-        }
-
 
 
         //===================== root =====================================//
         document.querySelector('#button-back').onclick = function () {
-            location.assign('/auctiontoday');
+            location.assign('/HelloNodejs/auctiontoday');
         }
     </script>
 

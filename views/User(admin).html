@@ -277,7 +277,7 @@
         let currentPage = 1;
 
         // ดึงข้อมูลจาก API และเริ่มแสดงผลตารางและการแบ่งหน้า
-        fetch('/data')
+        fetch('/HelloNodejs/api/data') // แก้ URL เป็น /HelloNodejs/api/data
             .then(response => response.json())
             .then(data => {
                 const startIndex = (currentPage - 1) * itemsPerPage;
@@ -286,7 +286,7 @@
                 updatePagination(data);
             })
             .catch(error => {
-                console.error('เกิดข้อผิดพลาดในการดึงข้อมูลจาก API: ', error);
+                console.error('Error fetching data from the API: ', error);
             });
 
 
@@ -325,19 +325,19 @@
 
         //====================================================================//
         document.querySelector('#btnhome').onclick = function () {
-            location.assign('/homepage');
+            location.assign('/HelloNodejs/homepage');
         }
 
         document.querySelector('#btnA2').onclick = function () {
-            location.assign('/marketad');
+            location.assign('/HelloNodejs/marketad');
         }
 
         document.querySelector('#btnA4').onclick = function () {
-            location.assign('/auctionAd');
+            location.assign('/HelloNodejs/auctionAd');
         }
 
         document.querySelector('#btnA7').onclick = function () {
-            location.assign('/addnews');
+            location.assign('/HelloNodejs/addnews');
         }
 
        

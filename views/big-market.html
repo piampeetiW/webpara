@@ -153,108 +153,86 @@
 
 
 
-        fetch('/markets')
-            .then(response => response.json())
-            .then(markets => {
-                // Filter markets with active status 'Yes'
-                const activeMarkets = markets.filter(market => market.active === 'Yes');
+        document.addEventListener('DOMContentLoaded', async function () {
+    try {
+        const response = await fetch('/HelloNodejs/api/markets');
+        const markets = await response.json();
 
-                // Split active markets into odd and even numbers
-                const oddMarkets = activeMarkets.filter((_, index) => index % 2 === 0);
-                const evenMarkets = activeMarkets.filter((_, index) => index % 2 !== 0);
+        // Filter markets with active status 'Yes'
+        const activeMarkets = markets.filter(market => market.active === 'Yes');
 
-                // Function to create a card element
-                function createCard(market) {
-                    const card = document.createElement('div');
-                    card.style.backgroundColor = '#CAD7C2'; // เพิ่มสีพื้นหลัง
-                    card.className = 'card';
-                    card.innerHTML = `
-        <div class="card-body">
-          <img src="/public/img/auctionuser.png" alt="hammer" id="hammer">
-          <p id="area">${market.market_name}</p>
-          <button id="${market.id}" class="select-button" style="background-color: #FFF1DB; border: none; border-radius: 25px; width: 5em;" data-market-id="${market.id}"><h6 id="textbigM" style="margin-top: 0.4em;">เลือก</h6></button>
-        </div>
-      `;
+        // Split active markets into odd and even numbers
+        const oddMarkets = activeMarkets.filter((_, index) => index % 2 === 0);
+        const evenMarkets = activeMarkets.filter((_, index) => index % 2 !== 0);
 
-                    const selectButton = card.querySelector('.select-button');
-                    selectButton.style.transition = 'opacity 0.3s ease-in-out'; // เพิ่มการเปลี่ยน opacity อย่างนุ่มๆ
+        // Function to create a card element
+        function createCard(market) {
+            const card = document.createElement('div');
+            card.style.backgroundColor = '#CAD7C2';
+            card.className = 'card';
+            card.innerHTML = `
+                <div class="card-body">
+                    <img src="/public/img/auctionuser.png" alt="hammer" id="hammer">
+                    <p id="area">${market.market_name}</p>
+                    <button id="${market.id}" class="select-button" style="background-color: #FFF1DB; border: none; border-radius: 25px; width: 5em;" data-market-id="${market.id}">
+                        <h6 id="textbigM" style="margin-top: 0.4em;">เลือก</h6>
+                    </button>
+                </div>
+            `;
 
-                    selectButton.addEventListener('mouseenter', function () {
-                        selectButton.style.opacity = '1.0'; // ลด opacity เมื่อ hover
-                        selectButton.style.color = '#B99470'; // สีข้อความเมื่อ hover
-                    });
+            const selectButton = card.querySelector('.select-button');
+            selectButton.style.transition = 'opacity 0.3s ease-in-out';
 
-                    selectButton.addEventListener('mouseleave', function () {
-                        selectButton.style.opacity = '1.0'; // เพิ่ม opacity เมื่อไม่ hover
-                        selectButton.style.color = '#000'; // สีข้อความเมื่อไม่ hover
+            selectButton.addEventListener('mouseenter', function () {
+                selectButton.style.opacity = '1.0';
+                selectButton.style.color = '#B99470';
+            });
 
-                    });
+            selectButton.addEventListener('mouseleave', function () {
+                selectButton.style.opacity = '1.0';
+                selectButton.style.color = '#000';
+            });
 
-                    return card;
-                }
-
-                // Append odd markets to the left side
-                const leftContainer = document.getElementById('leftbigm');
-                oddMarkets.forEach(market => {
-                    const card = createCard(market);
-                    leftContainer.appendChild(card);
-                });
-
-                // Append even markets to the right side
-                const rightContainer = document.getElementById('rightbigm');
-                evenMarkets.forEach(market => {
-                    const card = createCard(market);
-                    rightContainer.appendChild(card);
-                });
-
-                // // Add click event listener to select buttons
-                // const selectButtons = document.querySelectorAll('.select-button');
-
-                // selectButtons.forEach(button => {
-                //     button.addEventListener('click', function () {
-                //         const marketId = this.getAttribute('data-market-id');
-                //         location.assign(`/smallmarket?id=${marketId}`);
-                //     });
-                // });
-
-                // Add click event listener to select button with id 1
-                const selectButton1 = document.getElementById('1');
-
-                selectButton1.addEventListener('click', function () {
-                    location.assign('/smallmarket?id=1');
-                });
-            })
-            .catch(error => console.error('Error fetching markets:', error));
-
-
-
-
-
-
-
-
-        show();
-        function show() {
-            fetch('/data')
-                .then(function (response) {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw Error('Bad response');
-                })
-                .then(function (data) {
-                    let show = '';
-                    data.forEach(function (datamem) {
-                        show = datamem.truename;
-                        username.innerHTML = show;
-
-                    })
-
-                        .catch(function (err) {
-                            alert(err);
-                        });
-                })
+            return card;
         }
+
+        // Append odd markets to the left side
+        const leftContainer = document.getElementById('leftbigm');
+        oddMarkets.forEach(market => {
+            const card = createCard(market);
+            leftContainer.appendChild(card);
+        });
+
+        // Append even markets to the right side
+        const rightContainer = document.getElementById('rightbigm');
+        evenMarkets.forEach(market => {
+            const card = createCard(market);
+            rightContainer.appendChild(card);
+        });
+
+        // Add click event listener to select buttons dynamically
+markets.forEach(market => {
+    const selectButton = document.getElementById(`${market.id}`);
+    
+    // Check if the market's id is equal to 1 before adding the click event listener
+    if (market.id === 1) {
+        selectButton.addEventListener('click', function () {
+            location.assign(`/HelloNodejs/smallmarket?id=${market.id}`);
+        });
+    }
+});
+    } catch (error) {
+        console.error('Error fetching markets:', error);
+    }
+});
+
+
+
+
+
+
+
+
 
 
 
@@ -265,28 +243,26 @@
 
         //============================== root ===========================//
         document.querySelector('#btnhome').onclick = function () {
-            location.assign('/homepage');
+            location.assign('/HelloNodejs/homepage');
         }
 
         document.querySelector('#btn1').onclick = function () {
-            location.assign('/homepage');
+            location.assign('/HelloNodejs/homepage');
         }
 
         document.querySelector('#btn3').onclick = function () {
-            location.assign('/historyauc');
+            location.assign('/HelloNodejs/historyauc');
         }
 
         document.querySelector('#btn4').onclick = function () {
-            location.assign('/profile');
+            location.assign('/HelloNodejs/profile');
         }
 
         document.querySelector('#profiledropM').onclick = function () {
-            location.assign('/profile');
+            location.assign('/HelloNodejs/profile');
         }
 
-        // document.querySelector('#select').onclick = function () {
-        //     location.assign('/smallmarket');
-        // }
+
 
     </script>
 
